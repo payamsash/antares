@@ -1,0 +1,36 @@
+# ANTARES — master configuration
+# All paths may use environment variables via ${VAR} syntax.
+
+# ---------------------------------------------------------------------------
+# Directories
+# ---------------------------------------------------------------------------
+audiometry_dir: "/mnt/d/audiometry"       # folder with subject .mat audiometry files
+subjects_dir:   "/mnt/d/antares_subjects" # root folder where per-subject data are stored
+models_dir:     "/mnt/c/antares_v2/nms"      # normative model files
+site:           "zuerich"                 # batch-effect label matching normative model training site
+
+# ---------------------------------------------------------------------------
+# Recording durations
+# ---------------------------------------------------------------------------
+baseline_duration: 80    # seconds — resting-state baseline EEG
+
+# ---------------------------------------------------------------------------
+# Neurofeedback session design
+# ---------------------------------------------------------------------------
+n_blocks:     4    # number of rest → NF pairs
+rest_duration: 30  # seconds per rest block
+nf_duration:  120  # seconds per NF block
+
+# ---------------------------------------------------------------------------
+# NF protocol defaults
+# ---------------------------------------------------------------------------
+protocol:           "zscore"   # zscore | threshold | staircase | sham
+zscore_threshold:   0.5        # z-score threshold for ZScoreProtocol
+warmup_windows:     20         # warmup windows before feedback starts
+threshold_value:    0.0        # used only when protocol = threshold
+
+# ---------------------------------------------------------------------------
+# OSC / rspv visualisation
+# ---------------------------------------------------------------------------
+osc_host: "127.0.0.1"
+osc_port: 5005

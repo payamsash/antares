@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANTARES — Code Design &amp; Methodology</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #161b27;
+    --surface2: #1e2535;
+    --border: #2a3348;
+    --accent: #4a8fe8;
+    --accent2: #5ecba1;
+    --accent3: #e87d4a;
+    --text: #e2e8f4;
+    --muted: #7a8aaa;
+    --code-bg: #0d1117;
+    --good: #3d8f5e;
+    --warn: #8f6e2a;
+    font-size: 15px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.7;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Layout */
+  .shell { display: flex; min-height: 100vh; }
+  nav {
+    width: 260px; min-width: 260px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 32px 0;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  }
+  nav .logo {
+    padding: 0 24px 28px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+  nav .logo h1 { font-size: 1.15rem; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; }
+  nav .logo p { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+  nav ul { list-style: none; padding: 0 12px; }
+  nav ul li a {
+    display: block; padding: 7px 12px; border-radius: 6px;
+    color: var(--muted); font-size: 0.86rem;
+    transition: all 0.15s;
+  }
+  nav ul li a:hover, nav ul li a.active {
+    background: var(--surface2); color: var(--text); text-decoration: none;
+  }
+  nav .nav-section {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--muted); text-transform: uppercase;
+    padding: 16px 24px 6px;
+  }
+  main { flex: 1; padding: 48px 56px; max-width: 900px; }
+
+  /* Typography */
+  h1 { font-size: 2rem; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+  h2 {
+    font-size: 1.35rem; font-weight: 600; margin: 48px 0 16px;
+    color: var(--text); padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 { font-size: 1.05rem; font-weight: 600; margin: 28px 0 10px; color: var(--accent); }
+  h4 { font-size: 0.93rem; font-weight: 600; margin: 18px 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  p { margin-bottom: 14px; color: var(--text); }
+  ul, ol { margin: 10px 0 14px 20px; }
+  li { margin-bottom: 5px; }
+  .lead { font-size: 1.05rem; color: var(--muted); margin-bottom: 32px; line-height: 1.8; }
+
+  /* Code */
+  code {
+    background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 4px; padding: 2px 7px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+    font-size: 0.83em; color: #a8d8a8;
+  }
+  pre {
+    background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 20px 24px; overflow-x: auto;
+    margin: 16px 0 24px; line-height: 1.6;
+  }
+  pre code {
+    background: none; border: none; padding: 0;
+    font-size: 0.85rem; color: #cdd9e8;
+  }
+  .comment { color: #5a7a6a; }
+  .kw { color: #79b8ff; }
+  .str { color: #9ecbff; }
+  .num { color: #f8c555; }
+  .fn { color: #b3d9ff; }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px 24px;
+    margin: 16px 0;
+  }
+  .card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  .card h3 { margin-top: 0; }
+
+  /* Pipeline diagram */
+  .pipeline {
+    display: flex; align-items: center; flex-wrap: wrap;
+    gap: 0; margin: 24px 0;
+  }
+  .pipe-step {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px 18px;
+    text-align: center; font-size: 0.85rem; font-weight: 600;
+    min-width: 110px;
+  }
+  .pipe-step .num {
+    display: block; font-size: 0.7rem; color: var(--accent);
+    font-weight: 700; letter-spacing: 0.06em; margin-bottom: 4px;
+  }
+  .pipe-arrow {
+    color: var(--muted); font-size: 1.2rem; padding: 0 8px;
+  }
+  .pipe-step.highlight { border-color: var(--accent); background: rgba(74,143,232,0.08); }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 0.88rem; }
+  th {
+    background: var(--surface2); color: var(--muted);
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.07em;
+    padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  td code { font-size: 0.82em; }
+
+  /* Badges */
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em;
+  }
+  .badge-blue { background: rgba(74,143,232,0.15); color: var(--accent); border: 1px solid rgba(74,143,232,0.3); }
+  .badge-green { background: rgba(94,203,161,0.12); color: var(--accent2); border: 1px solid rgba(94,203,161,0.25); }
+  .badge-orange { background: rgba(232,125,74,0.12); color: var(--accent3); border: 1px solid rgba(232,125,74,0.25); }
+
+  /* Callout */
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: rgba(74,143,232,0.07);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px; margin: 20px 0;
+    font-size: 0.92rem;
+  }
+  .callout.warn { border-color: var(--accent3); background: rgba(232,125,74,0.07); }
+  .callout.good { border-color: var(--accent2); background: rgba(94,203,161,0.07); }
+
+  /* File tree */
+  .file-tree {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.84rem;
+    background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 20px 24px; line-height: 2;
+  }
+  .ft-dir { color: var(--accent); }
+  .ft-new { color: var(--accent2); }
+  .ft-comment { color: var(--muted); }
+
+  /* Signal flow */
+  .signal-chain {
+    display: flex; flex-direction: column; gap: 0; margin: 20px 0;
+  }
+  .sc-step {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .sc-step:last-child { border-bottom: none; }
+  .sc-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px;
+  }
+  .sc-body { flex: 1; }
+  .sc-body strong { font-size: 0.95rem; }
+  .sc-body p { margin: 4px 0 0; font-size: 0.87rem; color: var(--muted); }
+
+  /* Session table */
+  .session-grid {
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+    margin: 20px 0; font-size: 0.88rem;
+  }
+  .sg-cell {
+    padding: 12px 18px; border-bottom: 1px solid var(--border);
+  }
+  .sg-cell:nth-child(odd) {
+    background: var(--surface2); font-weight: 600; white-space: nowrap;
+    color: var(--accent);
+  }
+  .sg-cell:nth-child(even) { background: var(--surface); }
+  .sg-cell:nth-last-child(-n+2) { border-bottom: none; }
+
+  /* Separator */
+  hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+  /* Header band */
+  .header-band {
+    background: linear-gradient(135deg, rgba(74,143,232,0.12) 0%, rgba(94,203,161,0.06) 100%);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 32px 36px; margin-bottom: 40px;
+  }
+  .header-band .tagline { color: var(--muted); font-size: 0.9rem; margin-top: 8px; }
+  .header-band .pills { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- Sidebar -->
+<nav>
+  <div class="logo">
+    <h1>ANTARES</h1>
+    <p>Design &amp; Methodology</p>
+  </div>
+  <div class="nav-section">Overview</div>
+  <ul>
+    <li><a href="#overview">System Overview</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#data-structure">Data Structure</a></li>
+  </ul>
+  <div class="nav-section">Pipeline</div>
+  <ul>
+    <li><a href="#intake">1. Intake</a></li>
+    <li><a href="#baseline">2. Baseline Recording</a></li>
+    <li><a href="#analysis">3. EEG Analysis</a></li>
+    <li><a href="#scoring">4. Normative Scoring</a></li>
+    <li><a href="#ranking">5. Feature Ranking</a></li>
+    <li><a href="#nf-session">6. NF Session</a></li>
+  </ul>
+  <div class="nav-section">Adaptive Logic</div>
+  <ul>
+    <li><a href="#session-manager">Session Manager</a></li>
+    <li><a href="#decision-tree">Decision Tree</a></li>
+  </ul>
+  <div class="nav-section">Signal Chain</div>
+  <ul>
+    <li><a href="#signal-flow">OSC Signal Flow</a></li>
+    <li><a href="#reward">Reward Direction</a></li>
+    <li><a href="#rspv">rspv Visualisation</a></li>
+  </ul>
+  <div class="nav-section">Reference</div>
+  <ul>
+    <li><a href="#config">Configuration</a></li>
+    <li><a href="#feature-types">Feature Types</a></li>
+    <li><a href="#protocols">NF Protocols</a></li>
+  </ul>
+</nav>
+
+<!-- Main content -->
+<main>
+
+<div class="header-band">
+  <h1>ANTARES</h1>
+  <p class="tagline">Advancing Neurofeedback in Tinnitus — Code Design &amp; Methodology Reference</p>
+  <div class="pills">
+    <span class="badge badge-blue">Python 3.11</span>
+    <span class="badge badge-blue">MNE-Python</span>
+    <span class="badge badge-blue">ANT (ant-nf)</span>
+    <span class="badge badge-green">pcntoolkit</span>
+    <span class="badge badge-green">py5 / Processing</span>
+    <span class="badge badge-orange">OSC / rspv</span>
+  </div>
+</div>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="overview">System Overview</h2>
+
+<p class="lead">ANTARES is a closed-loop personalised EEG neurofeedback system for tinnitus research. It records a resting-state baseline, extracts EEG features, scores them against a normative model, selects the most deviant and reliable feature as the training target, then runs a block-structured NF session with real-time visual feedback. The system adapts the training target across visits using a multi-session decision strategy.</p>
+
+<div class="card-row">
+  <div class="card">
+    <h3>Key Design Principles</h3>
+    <ul>
+      <li>Fully personalised: target selected per-subject, not fixed</li>
+      <li>Normative z-scores drive selection, not raw power</li>
+      <li>Direction-corrected reward: high reward always = moving toward norm</li>
+      <li>Adaptive across visits: SNR checks, mid-protocol re-ranking</li>
+      <li>All outputs are BIDS-compatible or CSV/JSON for reproducibility</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Technology Stack</h3>
+    <ul>
+      <li><strong>ANT (ant-nf)</strong> — EEG acquisition, baseline &amp; NF recording</li>
+      <li><strong>MNE-Python</strong> — EEG preprocessing, source imaging</li>
+      <li><strong>AutoReject</strong> — Automated epoch rejection</li>
+      <li><strong>pcntoolkit</strong> — Normative modelling (Bayesian GPR)</li>
+      <li><strong>rspv</strong> — Real-time visual feedback (py5/Processing)</li>
+      <li><strong>OSC (python-osc)</strong> — Inter-process signal bridge</li>
+      <li><strong>customtkinter</strong> — Operator GUI</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="architecture">Architecture</h2>
+
+<p>The system consists of four processes that communicate during a session:</p>
+
+<div class="card" style="margin:24px 0;">
+<pre><code><span class="comment">┌─────────────────────────────────────────────────────────────┐
+│  antares_app.py  (Operator GUI — customtkinter)             │
+│                                                             │
+│  ┌────────────┐  pipeline thread  ┌─────────────────────┐  │
+│  │  Sidebar   │ ─────────────────▶│  pipeline/          │  │
+│  │  controls  │                   │  ├── intake.py       │  │
+│  │            │   state file      │  ├── baseline.py     │  │
+│  │  Log panel │ ─────────────────▶│  ├── analysis.py     │  │
+│  └────────────┘  /tmp/antares_    │  ├── session.py      │  │
+│                  session_state    │  └── session_manager │  │
+└────────────────────────────────────────────────────────────┘
+         │                                    │
+         │ subprocess                         │ OSC UDP :5005
+         ▼                                    ▼
+┌─────────────────┐              ┌────────────────────────┐
+│  antares_gui.py │              │  rspv/src/main.py      │
+│  (Participant   │              │  (Visual feedback)     │
+│   screen – py5) │              │  SignalHandler         │
+│                 │              │  VisualTree / etc.     │
+│  polls state    │              └────────────────────────┘
+│  file @ 30fps   │
+└─────────────────┘</span>
+</code></pre>
+</div>
+
+<h3>Module Map</h3>
+<table>
+  <tr><th>File</th><th>Role</th></tr>
+  <tr><td><code>antares_app.py</code></td><td>Operator control panel (customtkinter). Orchestrates pipeline threads, writes GUI state file, manages subprocesses.</td></tr>
+  <tr><td><code>antares_gui.py</code></td><td>Full-screen participant display (py5). Polls <code>/tmp/antares_session_state.json</code> to show welcome → baseline → rest/NF → end.</td></tr>
+  <tr><td><code>pipeline/intake.py</code></td><td>Subject demographics, PTA audiometry, <code>subject_info.json</code>.</td></tr>
+  <tr><td><code>pipeline/baseline.py</code></td><td>ANT resting-state baseline recording.</td></tr>
+  <tr><td><code>pipeline/analysis.py</code></td><td>EEG preprocessing, feature extraction, normative scoring, ranking, HTML report.</td></tr>
+  <tr><td><code>pipeline/session.py</code></td><td>NF session runner: <code>BlockScheduler</code>, <code>RspvOSCSender</code>, protocol factory, YAML generator, session metadata &amp; signal logging.</td></tr>
+  <tr><td><code>pipeline/session_manager.py</code></td><td>Multi-session adaptive selection: visit routing, SNR checks, decision tree.</td></tr>
+  <tr><td><code>rspv/</code></td><td>Visual feedback engine. <code>SignalHandler</code> receives OSC, <code>VisualBase</code> provides smoothing, individual visual classes render feedback.</td></tr>
+  <tr><td><code>config_master.yml</code></td><td>Central configuration: paths, durations, protocol defaults, OSC settings.</td></tr>
+  <tr><td><code>i18n.py</code></td><td>English / German translation dictionary for participant-facing text.</td></tr>
+</table>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="data-structure">Per-Subject Data Structure</h2>
+
+<div class="file-tree">
+<span class="ft-dir">subjects_dir/sub-{id}/</span><br>
+&nbsp;&nbsp;<span class="ft-new">subject_info.json</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># demographics + visit history (updated each session)</span><br>
+&nbsp;&nbsp;<span class="ft-dir">audiometry/</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;audio.csv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># PTA4 left/right/mean from .mat audiometry files</span><br>
+&nbsp;&nbsp;<span class="ft-dir">logs/</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;v{N}.log&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># per-visit session log (duplicate-run guard)</span><br>
+&nbsp;&nbsp;<span class="ft-dir">features/</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;power_sensor_v{N}.csv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># epochs × channels×bands band-power matrix</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;power_source_v{N}.csv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># epochs × regions×bands (if inverse available)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;conn_sensor_v{N}.csv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># epochs × channel-pairs×bands coherence</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;conn_source_v{N}.csv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># epochs × region-pairs×bands coherence</span><br>
+&nbsp;&nbsp;<span class="ft-dir">reliability_metrics/</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;power_sensor_v{N}.csv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># ICC, SNR, dynamic range, stationarity, z_score</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;… (same for power_source, conn_sensor, conn_source)<br>
+&nbsp;&nbsp;<span class="ft-dir">nf_selection/</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;feature_ranking_v{N}.csv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># all features, sorted by composite score</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;selection_report_v{N}.json&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># selected + backup features + session_decision</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;selection_report_v{N}.html&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># HTML report with plots</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;feature_tracking_through_v{N}.csv &nbsp;<span class="ft-comment"># cross-visit primary feature trajectory</span><br>
+&nbsp;&nbsp;<span class="ft-dir">ses-v{N}b/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># baseline session (BIDS)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-dir">eeg/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># raw .fif from ANT + cleaned epochs .fif</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-dir">reports/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># autoreject_v{N}.html</span><br>
+&nbsp;&nbsp;<span class="ft-new">ses-v{N}m/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># NF session (BIDS)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-new">session_metadata_v{N}.json</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># protocol, feature, direction, timestamp</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-new">nf_signal_log_v{N}.csv</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># per-window: elapsed_s, raw, corrected, direction</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-new">block_log_v{N}.csv</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># exact start/end timestamps per rest+NF block</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-dir">eeg/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-comment"># raw NF EEG from ANT (BIDS .fif + .tsv)</span><br>
+</div>
+<p style="font-size:0.83rem;color:var(--muted);margin-top:8px;"><span class="ft-new" style="font-family:monospace">Green</span> = new files added in current version.</p>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="intake">Pipeline Stage 1 — Subject Intake</h2>
+<p><strong>Module:</strong> <code>pipeline/intake.py</code></p>
+
+<p>Two functions run at the start of every visit:</p>
+
+<h3>get_user_info()</h3>
+<p>Validates subject ID (4 letters), creates a per-visit log file as a duplicate-run guard, and maintains <code>subject_info.json</code> — a structured record that accumulates demographics and visit timestamps across all visits. This is the authoritative source of subject metadata for analysis scripts.</p>
+
+<h3>compute_pta()</h3>
+<p>Loads audiometry <code>.mat</code> files (one per ear) from <code>audiometry_dir/{subject_id}/</code>. Extracts thresholds at 500, 1000, 2000, 4000 Hz and computes PTA4 for each ear and the binaural mean. Saves to <code>audiometry/audio.csv</code>. PTA4 is a required covariate for the normative model — sessions without audiometry are blocked with an explicit warning.</p>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="baseline">Pipeline Stage 2 — Baseline Recording</h2>
+<p><strong>Module:</strong> <code>pipeline/baseline.py</code> | <strong>Class:</strong> <code>ANT.NFRealtime</code></p>
+
+<p>ANT's <code>NFRealtime</code> is initialised with BIDS session label <code>v{N}b</code> and records resting-state EEG. The baseline duration depends on the visit:</p>
+
+<div class="session-grid">
+  <div class="sg-cell">Visit 1</div><div class="sg-cell">Full duration from config (default 80 s) — used for comprehensive feature extraction and normative scoring.</div>
+  <div class="sg-cell">Visits 2–4</div><div class="sg-cell">Quick baseline: 180 s (3 min). Sufficient for SNR estimation without full pipeline re-run.</div>
+  <div class="sg-cell">Visit 5</div><div class="sg-cell">Mid-protocol evaluation: 300 s (5 min). Used for full re-ranking and the decision tree.</div>
+  <div class="sg-cell">Visits &gt; 5</div><div class="sg-cell">Quick baseline: 180 s. Feature is locked; recorded for longitudinal tracking only.</div>
+</div>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="analysis">Pipeline Stage 3 — EEG Analysis</h2>
+<p><strong>Module:</strong> <code>pipeline/analysis.py</code> → <code>preprocess_baseline()</code>, <code>extract_features()</code></p>
+
+<h3>Preprocessing</h3>
+<ol>
+  <li>Load raw <code>.fif</code> from BIDS path</li>
+  <li>Bandpass filter: 0.1–40 Hz (MNE FIR)</li>
+  <li>Average reference with projection</li>
+  <li>Apply EasyCap-M1 montage</li>
+  <li>Epoch into 4-second fixed-length segments (~20 epochs from 80 s)</li>
+  <li><strong>AutoReject</strong>: cross-validated epoch cleaning (cv=5, interpolation=[1,4,8] channels)</li>
+</ol>
+
+<div class="callout">
+  <strong>Why 4-second epochs?</strong> The original 10 s epochs left only 8 epochs for AutoReject's 5-fold CV, causing underfitting of the rejection threshold. At 4 s, ~20 clean epochs remain after rejection — sufficient for both ICC split-half reliability and spectral estimation.
+</div>
+
+<h3>Feature Extraction</h3>
+<p>Four feature spaces are computed for all 10 frequency bands (delta, theta, alpha-0/1/2, beta-0/1/2/3, gamma):</p>
+
+<table>
+  <tr><th>Feature Type</th><th>Method</th><th>Dimensionality</th></tr>
+  <tr><td>Sensor band power</td><td>Welch PSD (MNE), trapezoid integration per band</td><td>N_channels × N_bands</td></tr>
+  <tr><td>Source band power</td><td>dSPM inverse, mean-flip per aparc label, multitaper PSD</td><td>N_regions × N_bands</td></tr>
+  <tr><td>Sensor connectivity</td><td>CWT-Morlet coherence (mne-connectivity), 1 Hz resolution</td><td>N_pairs × N_bands</td></tr>
+  <tr><td>Source connectivity</td><td>CWT-Morlet coherence on label time courses</td><td>N_pairs × N_bands</td></tr>
+</table>
+
+<div class="callout warn">
+  <strong>Connectivity note:</strong> Full all-pairs source connectivity is computationally expensive. For clinical use, consider restricting to a predefined set of clinically motivated region pairs via a <code>regions_of_interest</code> config option.
+</div>
+
+<h3>Reliability Metrics</h3>
+<p>For each feature, four metrics are computed across epochs (<code>compute_reliability_metrics()</code>):</p>
+<table>
+  <tr><th>Metric</th><th>Formula</th><th>Threshold</th></tr>
+  <tr><td><strong>ICC</strong></td><td>Spearman-Brown split-half: 2r/(1+r)</td><td>≥ 0.6</td></tr>
+  <tr><td><strong>SNR</strong></td><td>|mean| / std across epochs</td><td>≥ 2.0</td></tr>
+  <tr><td><strong>Dynamic Range</strong></td><td>(P90 − P10) / |median|</td><td>≥ 0.3</td></tr>
+  <tr><td><strong>Stationarity</strong></td><td>1 / (1 + std(rolling_var) / mean(rolling_var))</td><td>implicit via composite score</td></tr>
+</table>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="scoring">Pipeline Stage 4 — Normative Scoring</h2>
+<p><strong>Module:</strong> <code>pipeline/analysis.py</code> → <code>compute_dev_scores()</code></p>
+
+<p>Each feature is scored against a pre-trained Bayesian Gaussian Process normative model (pcntoolkit). The model was trained on a normative population with covariates: age, sex (binary), PTA4, and site (batch-effect correction).</p>
+
+<p>The output is a <strong>z-score per feature</strong> representing how many standard deviations the subject's feature deviates from the age/hearing-matched norm. Positive z = elevated above norm; negative z = suppressed below norm.</p>
+
+<div class="callout good">
+  <strong>Sign convention:</strong> The z-score sign is preserved. The training direction is derived from it: if z &gt; 0, we train <em>down</em> (reduce elevated power); if z &lt; 0, we train <em>up</em> (restore suppressed power). Feature ranking uses |z| so that both directions are evaluated equally.
+</div>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="ranking">Pipeline Stage 5 — Feature Ranking &amp; Selection</h2>
+<p><strong>Module:</strong> <code>pipeline/analysis.py</code> → <code>rank_features()</code></p>
+
+<p>All features are ranked by a weighted composite score:</p>
+
+<pre><code>composite_score = 0.30 × min(|z| / 3.0, 1.0)       <span class="comment"># normative deviance (30%)</span>
+               + 0.25 × min(max(ICC, 0), 1.0)        <span class="comment"># reliability (25%)</span>
+               + 0.20 × min(SNR / 10.0, 1.0)         <span class="comment"># signal quality (20%)</span>
+               + 0.15 × min(DR / 2.0, 1.0)            <span class="comment"># dynamic range (15%)</span>
+               + 0.10 × min(stationarity, 1.0)        <span class="comment"># temporal stability (10%)</span></code></pre>
+
+<p>A feature <strong>meets criteria</strong> if: <code>|z| ≥ 1.5</code>, <code>ICC ≥ 0.6</code>, <code>SNR ≥ 2.0</code>, <code>DR ≥ 0.3</code>. The top viable feature is selected as primary; the next three as backups. If no feature meets criteria, the best-scored feature is selected with a <code>relaxed_criteria</code> flag.</p>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="nf-session">Pipeline Stage 6 — NF Session</h2>
+<p><strong>Module:</strong> <code>pipeline/session.py</code></p>
+
+<h3>Block Structure</h3>
+<p><code>BlockScheduler</code> drives a background thread alternating rest and NF phases. The <code>RspvOSCSender</code> is gated by the scheduler — no OSC signals are sent during rest blocks.</p>
+
+<div class="pipeline">
+  <div class="pipe-step"><span class="num">×4</span>Rest<br><small style="color:var(--muted)">30 s</small></div>
+  <div class="pipe-arrow">→</div>
+  <div class="pipe-step highlight"><span class="num">×4</span>NF<br><small style="color:var(--muted)">120 s</small></div>
+  <div class="pipe-arrow">→</div>
+  <div class="pipe-step"><span class="num">total</span>760 s<br><small style="color:var(--muted)">~12.7 min</small></div>
+</div>
+
+<h3>What gets saved per NF session</h3>
+<table>
+  <tr><th>File</th><th>Contents</th></tr>
+  <tr><td><code>session_metadata_v{N}.json</code></td><td>Protocol, selected feature, direction, all timing parameters, timestamp</td></tr>
+  <tr><td><code>nf_signal_log_v{N}.csv</code></td><td>Per-window: elapsed time, raw feature value, rolling min/max, direction-corrected value</td></tr>
+  <tr><td><code>block_log_v{N}.csv</code></td><td>Exact wall-clock start and end times for each rest and NF block</td></tr>
+  <tr><td>ANT BIDS <code>.fif</code></td><td>Full continuous NF EEG recording with events</td></tr>
+</table>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="session-manager">Adaptive Multi-Session Logic</h2>
+<p><strong>Module:</strong> <code>pipeline/session_manager.py</code> → <code>SessionManager</code></p>
+
+<div class="session-grid">
+  <div class="sg-cell">Visit 1</div><div class="sg-cell">Full baseline (config duration) → full analysis → select primary + 3 backups. Baselines for the normative z-scores.</div>
+  <div class="sg-cell">Visits 2–4</div><div class="sg-cell">Quick baseline (3 min). Re-compute SNR for the primary feature only. If SNR &lt; 1.5 <em>or</em> |z| &lt; 1.0, switch to backup #1, then #2. If all fail, keep primary with a quality warning.</div>
+  <div class="sg-cell">Visit 5</div><div class="sg-cell">Mid-protocol evaluation (5 min). Full re-ranking. Apply the 4-rule decision tree (see below).</div>
+  <div class="sg-cell">Visits &gt; 5</div><div class="sg-cell">Feature is locked. Quick baseline is recorded but no switching occurs. The selection report from the previous visit is carried forward.</div>
+</div>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="decision-tree">Session 5 Decision Tree</h2>
+<p>Applied when the full re-ranking is complete at session 5. Rules are evaluated in order; the first match wins:</p>
+
+<div class="card">
+<pre><code><span class="kw">if</span> prev_primary <span class="kw">in</span> new_top_3:
+    <span class="comment">→ MAINTAIN  (still ranked highly, no reason to switch)</span>
+
+<span class="kw">elif</span> new_SNR &lt; prev_SNR × 0.5:
+    <span class="comment">→ SWITCH to new #1  (primary SNR dropped &gt;50% — signal quality degraded)</span>
+
+<span class="kw">elif</span> new_modality == prev_modality:
+    <span class="comment">→ MAINTAIN  (within-modality drift is acceptable; avoid unnecessary change)</span>
+
+<span class="kw">elif</span> new_score ≥ prev_score × 1.30:
+    <span class="comment">→ SWITCH to new #1  (different modality, ≥30% better score — worthwhile switch)</span>
+
+<span class="kw">else</span>:
+    <span class="comment">→ MAINTAIN  (different modality but not convincingly better)</span></code></pre>
+</div>
+
+<p>The decision and reasoning are stored in <code>session_decision</code> within the selection report JSON for audit purposes.</p>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="signal-flow">OSC Signal Flow</h2>
+
+<div class="signal-chain">
+  <div class="sc-step">
+    <div class="sc-num">1</div>
+    <div class="sc-body">
+      <strong>ANT computes EEG feature</strong>
+      <p>1 Hz windows. Feature value is raw band power (µV²/Hz) or coherence [0–1]. ANT applies internal smoothing: <code>signal_smoothing=0.25</code>, <code>display_smoothing=0.3</code>.</p>
+    </div>
+  </div>
+  <div class="sc-step">
+    <div class="sc-num">2</div>
+    <div class="sc-body">
+      <strong>RspvOSCSender._forward()</strong> — <code>pipeline/session.py</code>
+      <p>Maintains a rolling min/max over the last 60 windows. Applies <strong>direction correction</strong>: for "up" training, inverts the value (<code>corrected = min + (max − value)</code>) so that higher feature always maps to higher reward. Logs to CSV. Sends <code>/rspv [min, max, corrected]</code> via UDP to localhost:5005.</p>
+    </div>
+  </div>
+  <div class="sc-step">
+    <div class="sc-num">3</div>
+    <div class="sc-body">
+      <strong>SignalHandler.osc_handler()</strong> — <code>rspv/src/signal_processing/signal_handler.py</code>
+      <p>Normalises: <code>(corrected − min) / (max − min)</code> → clamp [0,1] → scale to <code>[min_range_viz, max_range_viz]</code> = [0.0, 1.0]. Stores as latest value under a threading lock (no competing background thread).</p>
+    </div>
+  </div>
+  <div class="sc-step">
+    <div class="sc-num">4</div>
+    <div class="sc-body">
+      <strong>VisualBase.get_smooth_signal(alpha=0.08)</strong> — <code>rspv/src/visuals/visual_base.py</code>
+      <p>Single-point exponential smoothing, called once per draw frame (30 fps). Time constant ≈ 0.36 s. Consistent across all visual presets.</p>
+    </div>
+  </div>
+  <div class="sc-step">
+    <div class="sc-num">5</div>
+    <div class="sc-body">
+      <strong>Visual drives rendering</strong>
+      <p>Reward score ∈ [0, 1]. Each visual maps it to its visual parameter: VisualTree maps to leaf count (0→min_leaves, 1→max_leaves). <strong>1.0 always means maximum reward, regardless of training direction.</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="reward">Reward Direction Logic</h2>
+
+<p>The training direction is computed from the normative z-score sign:</p>
+<pre><code>direction = <span class="str">"down"</span>  <span class="kw">if</span>  z &gt; 0   <span class="comment"># feature elevated → suppress it</span>
+direction = <span class="str">"up"</span>    <span class="kw">if</span>  z &lt; 0   <span class="comment"># feature suppressed → restore it</span></code></pre>
+
+<p>Before this correction, all visuals assumed "low feature = more reward" — which was correct for "down" but backwards for "up". The fix is applied at the OSC sender level so that <strong>rspv always receives a direction-corrected reward score</strong>. No changes are needed in individual visuals.</p>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="rspv">rspv Visualisation Engine</h2>
+<p><strong>Location:</strong> <code>rspv/src/</code></p>
+
+<p>rspv is a py5/Processing-based visual feedback engine. Key components:</p>
+
+<table>
+  <tr><th>Component</th><th>Role</th></tr>
+  <tr><td><code>SignalManager</code></td><td>Reads config, instantiates <code>SignalHandler</code> with correct viz range from <code>draw_signal_mode</code>.</td></tr>
+  <tr><td><code>SignalHandler</code></td><td>Blocking OSC UDP server in daemon thread. Stores latest value under lock. No queue (latest-value pattern).</td></tr>
+  <tr><td><code>VisualBase</code></td><td>Abstract base: settings, setup, <code>get_smooth_signal()</code>, <code>get_color()</code>, debug overlays.</td></tr>
+  <tr><td><code>VisualController</code></td><td>Handles keyboard (<code>s</code> key) and OSC trigger switching between visual presets.</td></tr>
+  <tr><td>Visual classes</td><td>11 presets: VisualTree, VisualRorschach, VisualEllipses, VisualWire, VisualSunflower, VisualGalaxySpiral, VisualRings, VisualFlowField, VisualAmoeba, VisualMetaBalls, VisualSpider.</td></tr>
+</table>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="config">Configuration Reference</h2>
+<p><strong>File:</strong> <code>config_master.yml</code></p>
+
+<table>
+  <tr><th>Key</th><th>Default</th><th>Description</th></tr>
+  <tr><td><code>subjects_dir</code></td><td><code>/mnt/d/antares_subjects</code></td><td>Root directory for all subject data</td></tr>
+  <tr><td><code>audiometry_dir</code></td><td><code>/mnt/d/audiometry</code></td><td>Folder containing per-subject audiometry .mat files</td></tr>
+  <tr><td><code>models_dir</code></td><td><code>/mnt/c/ANTARES/nms</code></td><td>Pre-trained normative model files (pcntoolkit)</td></tr>
+  <tr><td><code>site</code></td><td><code>zuerich</code></td><td>Batch-effect label for normative model</td></tr>
+  <tr><td><code>baseline_duration</code></td><td><code>80</code></td><td>Visit-1 baseline length (seconds)</td></tr>
+  <tr><td><code>n_blocks</code></td><td><code>4</code></td><td>Number of rest→NF pairs per session</td></tr>
+  <tr><td><code>rest_duration</code></td><td><code>30</code></td><td>Seconds per rest block</td></tr>
+  <tr><td><code>nf_duration</code></td><td><code>120</code></td><td>Seconds per NF block</td></tr>
+  <tr><td><code>protocol</code></td><td><code>zscore</code></td><td>zscore | threshold | staircase | sham</td></tr>
+  <tr><td><code>zscore_threshold</code></td><td><code>0.5</code></td><td>Reward threshold for ZScoreProtocol</td></tr>
+  <tr><td><code>warmup_windows</code></td><td><code>20</code></td><td>Windows before feedback activates</td></tr>
+  <tr><td><code>osc_host</code></td><td><code>127.0.0.1</code></td><td>OSC target IP (rspv)</td></tr>
+  <tr><td><code>osc_port</code></td><td><code>5005</code></td><td>OSC target port (rspv)</td></tr>
+</table>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="feature-types">Feature Type Reference</h2>
+
+<h3>Frequency Bands</h3>
+<table>
+  <tr><th>Band</th><th>Range (Hz)</th></tr>
+  <tr><td>delta</td><td>1 – 6</td></tr>
+  <tr><td>theta</td><td>6.5 – 8.5</td></tr>
+  <tr><td>alpha_0</td><td>8.5 – 12.5 (full alpha)</td></tr>
+  <tr><td>alpha_1</td><td>8.5 – 10.5 (low alpha)</td></tr>
+  <tr><td>alpha_2</td><td>10.5 – 12.5 (high alpha)</td></tr>
+  <tr><td>beta_0</td><td>12.5 – 30 (full beta)</td></tr>
+  <tr><td>beta_1</td><td>12.5 – 18.5</td></tr>
+  <tr><td>beta_2</td><td>18.5 – 21</td></tr>
+  <tr><td>beta_3</td><td>21 – 30</td></tr>
+  <tr><td>gamma</td><td>30 – 40</td></tr>
+</table>
+
+<h3>Feature Name Convention</h3>
+<table>
+  <tr><th>Type</th><th>Format</th><th>Example</th></tr>
+  <tr><td>Sensor power</td><td><code>{channel}_{band}</code></td><td><code>Cz_alpha_0</code></td></tr>
+  <tr><td>Source power</td><td><code>{region}_{band}</code></td><td><code>pericalcarine-lh_alpha_1</code></td></tr>
+  <tr><td>Sensor connectivity</td><td><code>{ch1}_vs_{ch2}_{band}_coh</code></td><td><code>Cz_vs_Oz_alpha_0_coh</code></td></tr>
+  <tr><td>Source connectivity</td><td><code>{r1}_vs_{r2}_{band}_coh</code></td><td><code>transversetemporal-lh_vs_transversetemporal-rh_alpha_0_coh</code></td></tr>
+</table>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="protocols">NF Protocol Reference</h2>
+
+<table>
+  <tr><th>Protocol</th><th>Behaviour</th><th>Use case</th></tr>
+  <tr><td><code>zscore</code></td><td>Feedback when instantaneous z-score crosses threshold (default 0.5). Continuous reward proportional to z.</td><td>Standard clinical use</td></tr>
+  <tr><td><code>threshold</code></td><td>Binary feedback above a fixed absolute threshold.</td><td>Simple calibration sessions</td></tr>
+  <tr><td><code>staircase</code></td><td>Wraps ZScoreProtocol; automatically adjusts difficulty via up-down staircase.</td><td>Adaptive difficulty</td></tr>
+  <tr><td><code>sham</code></td><td>Wraps ZScoreProtocol; plays back pre-recorded signal to a different participant. Real EEG recorded, no true feedback.</td><td>Control condition</td></tr>
+</table>
+
+<hr>
+<p style="color:var(--muted);font-size:0.82rem;text-align:center;padding-bottom:40px;">
+  ANTARES — Advancing Neurofeedback in Tinnitus &nbsp;·&nbsp; Design Reference
+</p>
+
+</main>
+</div>
+</body>
+</html>

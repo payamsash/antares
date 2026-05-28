@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANTARES — Operator Working Guide</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #161b27;
+    --surface2: #1e2535;
+    --border: #2a3348;
+    --accent: #4a8fe8;
+    --accent2: #5ecba1;
+    --accent3: #e87d4a;
+    --accent4: #e84a6a;
+    --text: #e2e8f4;
+    --muted: #7a8aaa;
+    --code-bg: #0d1117;
+    --good: #3d8f5e;
+    --warn: #8f6e2a;
+    font-size: 15px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.7;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Layout */
+  .shell { display: flex; min-height: 100vh; }
+  nav {
+    width: 260px; min-width: 260px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 32px 0;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  }
+  nav .logo {
+    padding: 0 24px 28px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+  nav .logo h1 { font-size: 1.15rem; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; }
+  nav .logo p { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+  nav ul { list-style: none; padding: 0 12px; }
+  nav ul li a {
+    display: block; padding: 7px 12px; border-radius: 6px;
+    color: var(--muted); font-size: 0.86rem;
+    transition: all 0.15s;
+  }
+  nav ul li a:hover, nav ul li a.active {
+    background: var(--surface2); color: var(--text); text-decoration: none;
+  }
+  nav .nav-section {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--muted); text-transform: uppercase;
+    padding: 16px 24px 6px;
+  }
+  main { flex: 1; padding: 48px 56px; max-width: 900px; }
+
+  /* Typography */
+  h1 { font-size: 2rem; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+  h2 {
+    font-size: 1.35rem; font-weight: 600; margin: 48px 0 16px;
+    color: var(--text); padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 { font-size: 1.05rem; font-weight: 600; margin: 28px 0 10px; color: var(--accent); }
+  h4 { font-size: 0.93rem; font-weight: 600; margin: 18px 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  p { margin-bottom: 14px; color: var(--text); }
+  ul, ol { margin: 10px 0 14px 20px; }
+  li { margin-bottom: 5px; }
+  .lead { font-size: 1.05rem; color: var(--muted); margin-bottom: 32px; line-height: 1.8; }
+
+  /* Code */
+  code {
+    background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 4px; padding: 2px 7px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+    font-size: 0.83em; color: #a8d8a8;
+  }
+  pre {
+    background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 20px 24px; overflow-x: auto;
+    margin: 16px 0 24px; line-height: 1.6;
+  }
+  pre code {
+    background: none; border: none; padding: 0;
+    font-size: 0.85rem; color: #cdd9e8;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px 24px;
+    margin: 16px 0;
+  }
+  .card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  .card h3 { margin-top: 0; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 0.88rem; }
+  th {
+    background: var(--surface2); color: var(--muted);
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.07em;
+    padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  td code { font-size: 0.82em; }
+
+  /* Badges */
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em;
+  }
+  .badge-blue  { background: rgba(74,143,232,0.15); color: var(--accent);  border: 1px solid rgba(74,143,232,0.3); }
+  .badge-green { background: rgba(94,203,161,0.12); color: var(--accent2); border: 1px solid rgba(94,203,161,0.25); }
+  .badge-orange{ background: rgba(232,125,74,0.12); color: var(--accent3); border: 1px solid rgba(232,125,74,0.25); }
+  .badge-red   { background: rgba(232,74,106,0.12); color: var(--accent4); border: 1px solid rgba(232,74,106,0.25); }
+
+  /* Callout */
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: rgba(74,143,232,0.07);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px; margin: 20px 0;
+    font-size: 0.92rem;
+  }
+  .callout.warn {
+    border-left-color: var(--accent3);
+    background: rgba(232,125,74,0.07);
+  }
+  .callout.danger {
+    border-left-color: var(--accent4);
+    background: rgba(232,74,106,0.07);
+  }
+  .callout.success {
+    border-left-color: var(--accent2);
+    background: rgba(94,203,161,0.07);
+  }
+  .callout strong { color: var(--text); }
+
+  /* Step list */
+  .steps { counter-reset: step; list-style: none; margin: 16px 0; padding: 0; }
+  .steps li {
+    counter-increment: step;
+    display: flex; gap: 16px; margin-bottom: 20px;
+    align-items: flex-start;
+  }
+  .steps li::before {
+    content: counter(step);
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    background: var(--accent); color: #fff;
+    border-radius: 50%; display: flex;
+    align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 700;
+    margin-top: 2px;
+  }
+  .steps li .step-body { flex: 1; }
+  .steps li .step-body strong { display: block; margin-bottom: 4px; color: var(--text); }
+
+  /* Visit tabs */
+  .visit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
+  .visit-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 16px;
+    text-align: center;
+  }
+  .visit-card .vnum {
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--accent); display: block; margin-bottom: 4px;
+  }
+  .visit-card .vtitle { font-size: 0.8rem; color: var(--muted); }
+  .visit-card.v5 .vnum { color: var(--accent3); }
+  .visit-card.vlocked .vnum { color: var(--muted); }
+
+  /* GUI mockup */
+  .gui-layout {
+    display: flex; gap: 0; border: 1px solid var(--border); border-radius: 8px;
+    overflow: hidden; margin: 20px 0; font-size: 0.82rem;
+  }
+  .gui-sidebar {
+    width: 220px; min-width: 220px;
+    background: var(--surface2);
+    border-right: 1px solid var(--border);
+    padding: 16px;
+  }
+  .gui-sidebar .gsec {
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); margin: 12px 0 6px; padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .gui-sidebar .gfield { color: var(--muted); margin: 4px 0; }
+  .gui-sidebar .gfield span { color: var(--text); float: right; }
+  .gui-main {
+    flex: 1; padding: 16px; background: var(--bg);
+  }
+  .gui-main .gstatus {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px; padding: 10px 14px; margin-bottom: 10px;
+    display: flex; justify-content: space-between;
+  }
+  .gui-main .gstatus .stext { font-weight: 600; color: var(--accent2); }
+  .gui-main .glog {
+    background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 6px; padding: 10px 14px; height: 100px;
+    overflow: hidden; margin-bottom: 10px;
+    font-family: monospace; font-size: 0.78rem; color: var(--muted);
+  }
+  .gui-main .gbtns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .gbtn {
+    padding: 6px 12px; border-radius: 5px; font-size: 0.78rem; font-weight: 600;
+    border: none; cursor: pointer;
+  }
+  .gbtn-green { background: #2a7a2a; color: #cff; }
+  .gbtn-blue  { background: #1e4a8a; color: #adf; }
+  .gbtn-red   { background: #8b1010; color: #fcc; }
+
+  /* Keyboard shortcut */
+  kbd {
+    display: inline-block;
+    padding: 2px 6px; border: 1px solid var(--border);
+    border-radius: 4px; font-size: 0.8em;
+    font-family: monospace; background: var(--surface2);
+    color: var(--text);
+  }
+
+  /* File tree */
+  .tree {
+    background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 18px 24px; margin: 16px 0;
+    font-family: monospace; font-size: 0.84rem; line-height: 1.9;
+  }
+  .tree .dir  { color: var(--accent); }
+  .tree .file { color: #cdd9e8; }
+  .tree .note { color: var(--muted); margin-left: 8px; font-size: 0.8rem; }
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- ============================================================ SIDEBAR -->
+<nav>
+  <div class="logo">
+    <h1>ANTARES</h1>
+    <p>Operator Working Guide</p>
+  </div>
+  <div class="nav-section">Getting Started</div>
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#setup">First-Time Setup</a></li>
+    <li><a href="#gui-tour">Operator GUI Tour</a></li>
+  </ul>
+  <div class="nav-section">Session Workflow</div>
+  <ul>
+    <li><a href="#before-session">Before Every Session</a></li>
+    <li><a href="#visit1">Visit 1 — Full Protocol</a></li>
+    <li><a href="#visit2-4">Visits 2–4 — Quick Check</a></li>
+    <li><a href="#visit5">Visit 5 — Mid-Evaluation</a></li>
+    <li><a href="#visit6plus">Visits 6+ — Locked</a></li>
+  </ul>
+  <div class="nav-section">Reference</div>
+  <ul>
+    <li><a href="#buttons">Button Reference</a></li>
+    <li><a href="#participant-screen">Participant Screen</a></li>
+    <li><a href="#files">Output Files</a></li>
+    <li><a href="#troubleshooting">Troubleshooting</a></li>
+    <li><a href="#keyboard">Keyboard Shortcuts</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================================ MAIN -->
+<main>
+
+<!-- ------------------------------------------------------------------ -->
+<h1>Operator Working Guide</h1>
+<p class="lead">Step-by-step instructions for running ANTARES neurofeedback sessions.
+This document is intended for the operator (researcher / clinician) — the person
+sitting at the control station while the participant is in the EEG chair.</p>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="overview">Overview</h2>
+
+<p>ANTARES is a multi-session adaptive EEG neurofeedback protocol for tinnitus. The operator
+uses a single GUI (<code>antares_app.py</code>) to control all stages.
+A separate participant screen (<code>antares_gui.py</code>) runs full-screen on the second
+monitor facing the participant.</p>
+
+<div class="visit-grid">
+  <div class="visit-card">
+    <span class="vnum">1</span>
+    <div class="vtitle">Full baseline<br>80 s · Full analysis<br>Target selected</div>
+  </div>
+  <div class="visit-card">
+    <span class="vnum">2–4</span>
+    <div class="vtitle">Quick check<br>3 min baseline<br>SNR re-validated</div>
+  </div>
+  <div class="visit-card v5">
+    <span class="vnum">5</span>
+    <div class="vtitle">Mid-evaluation<br>5 min baseline<br>Full re-ranking</div>
+  </div>
+  <div class="visit-card vlocked">
+    <span class="vnum">6+</span>
+    <div class="vtitle">Locked<br>3 min baseline<br>No target change</div>
+  </div>
+</div>
+
+<div class="callout">
+  <strong>One rule to remember:</strong> always enter the correct visit number before clicking
+  <em>Start Full Protocol</em>. The visit number determines baseline duration, analysis depth,
+  and whether the NF target can still be changed.
+</div>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="setup">First-Time Setup</h2>
+
+<ol class="steps">
+  <li>
+    <div class="step-body">
+      <strong>Install dependencies</strong>
+      Run <code>pip install -r requirements.txt</code> from the project root.
+      The rspv visualisation engine has its own venv at <code>rspv/venv/</code> — activate and
+      install <code>rspv/requirements.txt</code> separately if rspv is used.
+    </div>
+  </li>
+  <li>
+    <div class="step-body">
+      <strong>Edit <code>config_master.yml</code></strong>
+      Set the four path keys at minimum:
+      <pre><code>subjects_dir:    /data/subjects
+audiometry_dir:  /data/audiometry
+models_dir:      /data/models
+site:            zuerich          # or basel</code></pre>
+      The GUI reads this file on startup and pre-fills all fields. You rarely need to change
+      anything in the GUI itself once the config is correct.
+    </div>
+  </li>
+  <li>
+    <div class="step-body">
+      <strong>Verify the LSL stream</strong>
+      Turn on the EEG amplifier and confirm the LSL stream is broadcasting before opening
+      ANTARES. If hardware is unavailable, enable <em>Mock LSL</em> in the Subject section and
+      point it to a pre-recorded <code>.xdf</code> or <code>.fif</code> file.
+    </div>
+  </li>
+  <li>
+    <div class="step-body">
+      <strong>Place audiometry files</strong>
+      Each subject's audiometry <code>.mat</code> files must be in
+      <code>&lt;audiometry_dir&gt;/&lt;SUBJECT_ID&gt;/</code>.
+      File names must start with <code>&lt;id&gt; L</code> or <code>&lt;id&gt; R</code>
+      (case-insensitive).  If a subject has no audiometry, PTA will be recorded as
+      <code>NaN</code> and the session continues normally.
+    </div>
+  </li>
+  <li>
+    <div class="step-body">
+      <strong>Launch ANTARES</strong>
+      <pre><code>cd /path/to/antares
+python antares_app.py</code></pre>
+      The operator GUI opens.  The participant screen is <em>not</em> launched automatically
+      at startup — you launch it via the <em>Participant Screen</em> button when you are ready.
+    </div>
+  </li>
+</ol>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="gui-tour">Operator GUI Tour</h2>
+
+<div class="gui-layout">
+  <div class="gui-sidebar">
+    <div class="gsec">Subject</div>
+    <div class="gfield">Subject ID <span>abcd</span></div>
+    <div class="gfield">Age <span>45</span></div>
+    <div class="gfield">Sex <span>Female</span></div>
+    <div class="gfield">Visit Number <span>1</span></div>
+    <div class="gfield">Participant Language <span>English</span></div>
+    <div class="gfield">Mock LSL <span>off</span></div>
+    <div class="gsec">Protocol</div>
+    <div class="gfield">NF Protocol <span>Z-Score</span></div>
+    <div class="gfield">Z-Score Threshold <span>0.50</span></div>
+    <div class="gfield">Warmup Windows <span>20</span></div>
+    <div class="gsec">Session Design</div>
+    <div class="gfield">Baseline Duration <span>80 s</span></div>
+    <div class="gfield">Number of Blocks <span>4</span></div>
+    <div class="gfield">Rest / Block <span>30 s</span></div>
+    <div class="gfield">NF / Block <span>120 s</span></div>
+    <div class="gfield">OSC Host / Port <span>127.0.0.1:5005</span></div>
+    <div class="gfield">Visual (rspv) <span>VisualTree</span></div>
+    <div class="gsec">Paths</div>
+    <div class="gfield">Subjects Dir <span>…</span></div>
+    <div class="gfield">Audiometry Dir <span>…</span></div>
+    <div class="gfield">Models Dir <span>…</span></div>
+  </div>
+  <div class="gui-main">
+    <div class="gstatus">
+      <span class="stext">Ready</span>
+      <span style="color:var(--muted)">—</span>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:10px 14px;margin-bottom:10px;height:24px;display:flex;align-items:center;gap:8px;">
+      <span style="font-size:0.78rem;color:var(--muted)">Overall</span>
+      <div style="flex:1;height:6px;background:var(--surface2);border-radius:3px;border:1px solid var(--border)">
+        <div style="width:0%;height:100%;background:var(--accent);border-radius:3px;"></div>
+      </div>
+      <span style="font-size:0.78rem;color:var(--muted)">0%</span>
+    </div>
+    <div class="glog">
+      [10:31:02] ANTARES ready.<br>
+      [10:31:02] Config loaded from config_master.yml<br>
+      <span style="color:var(--accent)">_</span>
+    </div>
+    <div class="gbtns">
+      <button class="gbtn gbtn-green">Start Full Protocol</button>
+      <button class="gbtn gbtn-blue">Baseline Only</button>
+      <button class="gbtn gbtn-blue">Analyse Only</button>
+      <button class="gbtn gbtn-blue">NF Session Only</button>
+      <button class="gbtn gbtn-blue">Participant Screen</button>
+      <button class="gbtn gbtn-red" style="opacity:0.4">Abort</button>
+    </div>
+  </div>
+</div>
+
+<h3>Left sidebar — settings</h3>
+<table>
+  <thead><tr><th>Section</th><th>Field</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Subject</strong></td><td>Subject ID</td><td>Exactly 4 letters (e.g. <code>jdoe</code>). Creates <code>sub-jdoe/</code> folder automatically.</td></tr>
+    <tr><td></td><td>Age</td><td>Integer. Saved to <code>subject_info.json</code> each visit.</td></tr>
+    <tr><td></td><td>Sex</td><td>Female / Male. Saved to <code>subject_info.json</code>.</td></tr>
+    <tr><td></td><td>Visit Number</td><td><strong>Critical.</strong> Controls baseline duration and analysis depth.</td></tr>
+    <tr><td></td><td>Participant Language</td><td>English or German. Controls text shown on the participant screen only.</td></tr>
+    <tr><td></td><td>Mock LSL</td><td>Toggle on to replay a pre-recorded file instead of live EEG hardware.</td></tr>
+    <tr><td><strong>Protocol</strong></td><td>NF Protocol</td><td>Z-Score (recommended). Threshold and Staircase for special studies. Sham for control condition.</td></tr>
+    <tr><td></td><td>Z-Score Threshold</td><td>How many SDs above/below baseline before reward triggers. 0.5 is a good starting point.</td></tr>
+    <tr><td></td><td>Warmup Windows</td><td>Number of 2-second windows used to seed the rolling baseline statistics. Default 20 (≈40 s).</td></tr>
+    <tr><td><strong>Session Design</strong></td><td>Baseline Duration</td><td>Used only for visit 1. Visits 2–4 override to 180 s, visit 5 to 300 s automatically.</td></tr>
+    <tr><td></td><td>Number of Blocks</td><td>Rest→NF pairs per session. Default 4 (≈25 min total NF time).</td></tr>
+    <tr><td></td><td>Rest / NF Duration</td><td>Seconds per block phase. Rest 30 s, NF 120 s by default.</td></tr>
+    <tr><td></td><td>OSC Host / Port</td><td>ANTARES sends the reward score here; rspv listens on the same address. Leave at <code>127.0.0.1:5005</code> unless running rspv on a separate machine.</td></tr>
+    <tr><td></td><td>Participant Visual</td><td>Which rspv animation to use. VisualTree is the default for tinnitus protocol.</td></tr>
+    <tr><td><strong>Paths</strong></td><td>Subjects / Audiometry / Models</td><td>Click <strong>…</strong> to browse. Pre-filled from <code>config_master.yml</code>.</td></tr>
+  </tbody>
+</table>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="before-session">Before Every Session</h2>
+
+<ol class="steps">
+  <li>
+    <div class="step-body">
+      <strong>Seat the participant, fit the EEG cap, check impedances.</strong>
+      Aim for &lt;10 kΩ on all channels before proceeding.
+    </div>
+  </li>
+  <li>
+    <div class="step-body">
+      <strong>Open ANTARES and verify the sidebar fields.</strong>
+      In particular: Subject ID, Age, Sex, and — most importantly — the correct Visit Number.
+    </div>
+  </li>
+  <li>
+    <div class="step-body">
+      <strong>Click <em>Participant Screen</em></strong> to open the full-screen participant display
+      on the second monitor. It will show a dark waiting screen with animated dots.
+      The participant should now be looking at their screen.
+    </div>
+  </li>
+  <li>
+    <div class="step-body">
+      <strong>Explain the session to the participant</strong> before starting. For visit 1,
+      explain the resting baseline ("relax with eyes open, look at the fixation cross, try not
+      to blink or move"). For NF visits, show them the visualisation briefly.
+    </div>
+  </li>
+  <li>
+    <div class="step-body">
+      <strong>Click <em>Start Full Protocol</em></strong> when ready. The pipeline runs
+      automatically from this point.
+    </div>
+  </li>
+</ol>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="visit1">Visit 1 — Full Protocol</h2>
+
+<p>Visit 1 performs the complete baseline recording and feature analysis.
+No prior data exists; everything is computed from scratch.</p>
+
+<div class="card">
+  <h3>What happens automatically</h3>
+  <ol>
+    <li><strong>Intake</strong> — subject_info.json created; audiometry loaded, PTA computed.</li>
+    <li><strong>Baseline recording</strong> — default 80 s resting-state EEG recorded. Participant screen shows fixation cross.</li>
+    <li><strong>Full analysis</strong> — power, connectivity, and source features extracted; SNR, ICC, and dynamic range computed for each; all features ranked by composite score; top-3 selected; NF target (feature 1) and direction (up/down) stored in <code>analysis_report_v1.json</code>.</li>
+    <li><strong>Participant screen</strong> — switches to NF-ready instruction screen.</li>
+    <li><strong>NF session</strong> — rspv visual launched; 4×(rest+NF) block structure runs; reward signal sent via OSC.</li>
+    <li><strong>Session complete</strong> — all output files written; participant screen shows end screen.</li>
+  </ol>
+</div>
+
+<div class="callout warn">
+  <strong>After visit 1 analysis completes</strong>, the log panel shows the selected NF target
+  (e.g. <code>alpha_Cz | direction: down | score: 2.87</code>). Check that the
+  selected feature is clinically plausible for this participant before the NF session starts.
+  If it looks wrong, click <strong>Abort</strong>, investigate the analysis report, and restart
+  <em>NF Session Only</em> with a different protocol if needed.
+</div>
+
+<h3>Expected timeline (visit 1)</h3>
+<table>
+  <thead><tr><th>Stage</th><th>Duration</th><th>Participant screen shows</th></tr></thead>
+  <tbody>
+    <tr><td>Intake + audiometry</td><td>~10 s</td><td>Waiting (animated dots)</td></tr>
+    <tr><td>Baseline recording</td><td>80 s</td><td>Fixation cross + pulsing ring</td></tr>
+    <tr><td>Full analysis</td><td>30–90 s</td><td>Waiting</td></tr>
+    <tr><td>NF ready instructions</td><td>Until you're ready</td><td>Instructions text</td></tr>
+    <tr><td>NF session (4 blocks)</td><td>~25 min</td><td>rspv animation</td></tr>
+    <tr><td>End screen</td><td>—</td><td>Thank you + checkmark</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  The NF ready screen persists until the NF session thread begins — there is no extra operator
+  action required. The transition from instructions to visual happens automatically.
+</div>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="visit2-4">Visits 2–4 — Quick SNR Check</h2>
+
+<p>For visits 2–4 the system reuses the visit-1 NF target unless the SNR or z-score has
+degraded below acceptable thresholds. The baseline is shortened to 3 minutes (180 s).</p>
+
+<div class="card">
+  <h3>What happens automatically</h3>
+  <ol>
+    <li><strong>Intake</strong> — subject_info.json updated with new visit entry.</li>
+    <li><strong>Quick baseline</strong> — 3 min resting EEG recorded (hard-coded; GUI baseline duration field is ignored for these visits).</li>
+    <li><strong>Quick SNR check</strong> — SNR, ICC, and dynamic range recomputed for the current primary feature only. Sensor-band power features supported; connectivity/source fall back to stored visit-1 metrics.</li>
+    <li><strong>Decision</strong> — if SNR &lt; 1.5 or z &lt; 1.0, the system automatically tries the next backup feature. Decision and reason logged.</li>
+    <li><strong>NF session</strong> — proceeds with confirmed feature.</li>
+  </ol>
+</div>
+
+<h3>Expected timeline (visits 2–4)</h3>
+<table>
+  <thead><tr><th>Stage</th><th>Duration</th><th>Participant screen shows</th></tr></thead>
+  <tbody>
+    <tr><td>Intake</td><td>~5 s</td><td>Waiting</td></tr>
+    <tr><td>Quick baseline</td><td>3 min (180 s)</td><td>Fixation cross + pulsing ring</td></tr>
+    <tr><td>Quick SNR check</td><td>~5 s</td><td>Waiting</td></tr>
+    <tr><td>NF ready screen → NF</td><td>~25 min</td><td>rspv animation</td></tr>
+  </tbody>
+</table>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="visit5">Visit 5 — Mid-Protocol Evaluation</h2>
+
+<p>Visit 5 is a full feature re-ranking mid-protocol. The baseline is 5 minutes (300 s).
+A 4-rule decision tree then decides whether to maintain or switch the NF target.</p>
+
+<div class="card">
+  <h3>Decision tree (runs automatically)</h3>
+  <ol>
+    <li><strong>Rule 1 — Primary still in top 3</strong>: current feature ranks top-3 in new analysis → maintain.</li>
+    <li><strong>Rule 2 — SNR degraded &gt;50%</strong>: SNR dropped by half or more → switch to new top-1.</li>
+    <li><strong>Rule 3 — Same modality</strong>: new top-1 is same modality (both alpha-band, both connectivity, etc.) → maintain to avoid modality change mid-study.</li>
+    <li><strong>Rule 4 — Different modality, large improvement</strong>: new feature scores ≥30% better → switch. Otherwise maintain.</li>
+  </ol>
+</div>
+
+<h3>Expected timeline (visit 5)</h3>
+<table>
+  <thead><tr><th>Stage</th><th>Duration</th></tr></thead>
+  <tbody>
+    <tr><td>Intake</td><td>~5 s</td></tr>
+    <tr><td>Mid-evaluation baseline</td><td>5 min (300 s)</td></tr>
+    <tr><td>Full re-analysis + decision tree</td><td>30–90 s</td></tr>
+    <tr><td>NF session (4 blocks)</td><td>~25 min</td></tr>
+  </tbody>
+</table>
+
+<div class="callout warn">
+  <strong>Read the decision</strong> in the log before the NF session starts. It will say
+  something like <em>"Maintain primary: rule 1 — primary still top-3"</em> or
+  <em>"Switch to delta_FCz: rule 4 — 35% better score"</em>.
+  If the switch looks clinically wrong, click <strong>Abort</strong> and discuss.
+</div>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="visit6plus">Visits 6+ — Locked</h2>
+
+<p>After visit 5 the NF target is locked. No analysis or re-ranking is performed. The system
+loads the stored target from the most recent analysis report and runs the NF session directly.</p>
+
+<div class="card">
+  <h3>What happens</h3>
+  <ol>
+    <li><strong>Intake</strong> — subject_info.json updated.</li>
+    <li><strong>Quick baseline</strong> — 3 min (same as visits 2–4).</li>
+    <li><strong>Locked target loaded</strong> — no decision logic. Feature and direction read from stored report.</li>
+    <li><strong>NF session</strong>.</li>
+  </ol>
+</div>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="buttons">Button Reference</h2>
+
+<table>
+  <thead><tr><th>Button</th><th>What it does</th><th>When to use</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Start Full Protocol</strong></td>
+      <td>Runs the complete pipeline: intake → baseline → analysis → NF session. Launches participant screen automatically.</td>
+      <td>Normal session start. Use this for all visits.</td>
+    </tr>
+    <tr>
+      <td><strong>Baseline Only</strong></td>
+      <td>Records a resting-state baseline and saves the EEG file. Does not analyse or run NF.</td>
+      <td>If analysis or NF needs to be run later / separately.</td>
+    </tr>
+    <tr>
+      <td><strong>Analyse Only</strong></td>
+      <td>Runs full feature extraction and ranking on existing baseline data. Does not record EEG.</td>
+      <td>Re-run analysis after adjusting preprocessing parameters, or when baseline was recorded in a previous step.</td>
+    </tr>
+    <tr>
+      <td><strong>NF Session Only</strong></td>
+      <td>Loads stored analysis report and runs the NF session. Launches rspv. Does not re-record baseline.</td>
+      <td>If baseline and analysis are already done and only NF needs to run (e.g., after a break).</td>
+    </tr>
+    <tr>
+      <td><strong>Participant Screen</strong></td>
+      <td>Manually launches the participant-facing full-screen display. Starts in "waiting" state.</td>
+      <td>If you want to open the participant screen before starting the protocol, or to relaunch it after an accidental close.</td>
+    </tr>
+    <tr>
+      <td><strong>Abort</strong> <span class="badge badge-red">red</span></td>
+      <td>Stops the current operation immediately. rspv is terminated. Participant screen returns to waiting state. Output files up to the abort point are preserved.</td>
+      <td>Emergency stop, or if something looks wrong after analysis results appear.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="participant-screen">Participant Screen</h2>
+
+<p>The participant screen (<code>antares_gui.py</code>) is a separate full-screen py5 window
+intended for the second monitor. It reads a shared state file
+(<code>/tmp/antares_session_state.json</code>) and updates automatically.</p>
+
+<table>
+  <thead><tr><th>State</th><th>What participant sees</th><th>When</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><code>waiting</code></td>
+      <td>ANTARES logo, "Please sit comfortably and relax" text, three animated breathing dots.</td>
+      <td>Before session starts, after abort, after session ends (if screen stays open).</td>
+    </tr>
+    <tr>
+      <td><code>baseline</code></td>
+      <td>Fixation cross at screen centre, slowly pulsing concentric ring.</td>
+      <td>During baseline EEG recording.</td>
+    </tr>
+    <tr>
+      <td><code>nf_ready</code></td>
+      <td>NF instructions: "Focus on the animation. Let it guide you." (localised).</td>
+      <td>Between analysis completion and NF session start.</td>
+    </tr>
+    <tr>
+      <td><code>rest</code></td>
+      <td>Concentric rings animation, block progress dots at the bottom.</td>
+      <td>During rest phases between NF blocks.</td>
+    </tr>
+    <tr>
+      <td><code>nf</code></td>
+      <td>Blank dark screen (rspv visual overlaid), block progress dots.</td>
+      <td>During active NF blocks — rspv runs on top.</td>
+    </tr>
+    <tr>
+      <td><code>end</code></td>
+      <td>Large checkmark, "Session complete. Thank you." text.</td>
+      <td>After successful session completion.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Tip:</strong> The participant screen can be launched independently at any time
+  via the <em>Participant Screen</em> button. It starts in <code>waiting</code> state and
+  transitions automatically as the session progresses. If the window is accidentally closed,
+  click the button again to relaunch it — it will re-sync to the current session phase.
+</div>
+
+<h3>Participant screen keyboard shortcut</h3>
+<p>The participant screen has no visible controls. The only active key is <kbd>Esc</kbd>,
+which closes the window. This is intentional — the participant cannot interact with or
+dismiss any screen element.</p>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="files">Output Files</h2>
+
+<p>All subject data is saved under <code>&lt;subjects_dir&gt;/sub-&lt;id&gt;/</code>.</p>
+
+<div class="tree">
+<span class="dir">sub-abcd/</span>
+├── <span class="dir">logs/</span>
+│   ├── <span class="file">v1.log</span>           <span class="note">per-visit operator log (created at intake)</span>
+│   └── <span class="file">antares.log</span>      <span class="note">global log for audiometry / PTA</span>
+│
+├── <span class="dir">audiometry/</span>
+│   └── <span class="file">audio.csv</span>        <span class="note">thresholds at 9 frequencies + PTA4 (L, R, mean)</span>
+│
+├── <span class="dir">ses-v1b/</span>              <span class="note">baseline EEG folder, visit 1</span>
+│   └── <span class="file">baseline_raw_v1.fif</span>
+│
+├── <span class="dir">ses-v1m/</span>              <span class="note">NF session folder, visit 1</span>
+│   ├── <span class="file">session_metadata_v1.json</span>  <span class="note">protocol, feature, direction, timings</span>
+│   ├── <span class="file">nf_signal_log_v1.csv</span>      <span class="note">per-window reward signal (elapsed_s, raw, corrected, direction)</span>
+│   └── <span class="file">block_log_v1.csv</span>          <span class="note">wall-clock timestamps for each rest/NF block</span>
+│
+├── <span class="dir">models/</span>
+│   └── <span class="file">analysis_report_v1.json</span>  <span class="note">full feature ranking and selected NF target</span>
+│
+└── <span class="file">subject_info.json</span>   <span class="note">demographics + visit history (updated each visit)</span>
+</div>
+
+<h3>Key files explained</h3>
+
+<table>
+  <thead><tr><th>File</th><th>What it contains</th><th>Created when</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><code>subject_info.json</code></td>
+      <td>Subject ID, age, sex, creation date, and a <code>visits</code> dict with per-visit metadata. Grows across sessions.</td>
+      <td>Visit 1 intake (subsequent visits update it).</td>
+    </tr>
+    <tr>
+      <td><code>audio.csv</code></td>
+      <td>Air-conduction thresholds at 125–12,000 Hz for both ears, PTA4 per ear, PTA4 mean.</td>
+      <td>Each visit (audiometry re-processed).</td>
+    </tr>
+    <tr>
+      <td><code>analysis_report_v1.json</code></td>
+      <td>Feature rankings, scores (SNR, ICC, dynamic range, composite), selected primary and backup features, training direction, site/age/sex used.</td>
+      <td>After full analysis (visit 1 and visit 5).</td>
+    </tr>
+    <tr>
+      <td><code>session_metadata_v{N}.json</code></td>
+      <td>Snapshot of the exact protocol parameters used for this NF session: feature, direction, protocol type, z-threshold, warmup, block design, timestamps.</td>
+      <td>At the start of every NF session.</td>
+    </tr>
+    <tr>
+      <td><code>nf_signal_log_v{N}.csv</code></td>
+      <td>Time series of the reward signal. One row per OSC window (~2 s). Columns: elapsed_s, raw_value, rolling_min, rolling_max, direction_corrected, direction.</td>
+      <td>During NF session (appended continuously).</td>
+    </tr>
+    <tr>
+      <td><code>block_log_v{N}.csv</code></td>
+      <td>Exact wall-clock start and end times for each rest and NF block. Useful for epoch alignment in offline analysis.</td>
+      <td>After NF session completes.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout success">
+  <strong>Post-session check:</strong> After every session, verify that
+  <code>session_metadata_v{N}.json</code>, <code>nf_signal_log_v{N}.csv</code>, and
+  <code>block_log_v{N}.csv</code> are all present in <code>ses-v{N}m/</code>.
+  If <code>nf_signal_log</code> is missing, the rspv OSC sender failed to initialise — check
+  the log panel for the error.
+</div>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<table>
+  <thead><tr><th>Problem</th><th>Likely cause</th><th>Fix</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Validation error: "Subject ID must be exactly 4 letters"</td>
+      <td>Subject ID contains digits, spaces, or is the wrong length.</td>
+      <td>Use only 4 alphabetic characters (e.g. <code>jdoe</code>).</td>
+    </tr>
+    <tr>
+      <td>"Log file for visit N already exists"</td>
+      <td>This visit has already been run — the duplicate run guard prevents overwriting data.</td>
+      <td>Increment the visit number, or manually delete the log file if it was a test run.</td>
+    </tr>
+    <tr>
+      <td>No LSL stream found / recording timeout</td>
+      <td>EEG amplifier not on, or stream name mismatch.</td>
+      <td>Verify the amplifier is running. Use <em>Mock LSL</em> toggle and a recorded file if hardware is unavailable.</td>
+    </tr>
+    <tr>
+      <td>"No audiometry directory found" in log</td>
+      <td>Audiometry files for this subject are missing or in the wrong path.</td>
+      <td>PTA will be <code>NaN</code> — session continues normally. Add files later and re-run <em>Baseline Only</em> to update the CSV.</td>
+    </tr>
+    <tr>
+      <td>Participant screen does not appear on second monitor</td>
+      <td>The display arrangement may have changed, or the GUI failed to launch.</td>
+      <td>Click <em>Participant Screen</em> again. Drag the window to the correct display manually. Check log for any Python errors from the subprocess.</td>
+    </tr>
+    <tr>
+      <td>rspv visual does not open</td>
+      <td><code>rspv/src/main.py</code> not found, or rspv venv missing dependencies.</td>
+      <td>Check log for "rspv not found" or subprocess errors. Activate rspv venv and re-install dependencies.</td>
+    </tr>
+    <tr>
+      <td>Visual shows no reaction to EEG (static)</td>
+      <td>OSC signal not arriving, or <code>max_range_viz == min_range_viz</code> at session start.</td>
+      <td>The first ~40 s (warmup windows) the reward is near 0.5 while statistics build up — this is normal. If still static after 1 min, check the log for "OSC sender" errors. Verify host/port match.</td>
+    </tr>
+    <tr>
+      <td>Analysis takes very long or crashes</td>
+      <td>Source-level features require a pre-computed forward model in <code>models_dir</code>.</td>
+      <td>Check the log for file-not-found errors under <code>models_dir</code>. Source features will be skipped if files are absent — analysis continues with sensor-level features only.</td>
+    </tr>
+    <tr>
+      <td>"Error: analysis_report_v1.json not found" on visit 2+</td>
+      <td>Visit 1 analysis was never saved, or the models dir path is wrong.</td>
+      <td>Re-run <em>Analyse Only</em> for visit 1, or correct the models dir path.</td>
+    </tr>
+    <tr>
+      <td>Session aborted mid-NF block</td>
+      <td>Operator clicked Abort, or an exception occurred.</td>
+      <td>All data up to abort point is saved. To resume, increment the visit number and run <em>NF Session Only</em>. Do not use the same visit number again.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ------------------------------------------------------------------ -->
+<h2 id="keyboard">Keyboard Shortcuts</h2>
+
+<h3>Operator GUI</h3>
+<p>The operator GUI is a standard desktop window — no special keyboard shortcuts are defined.
+Use the mouse to interact with all controls.</p>
+
+<h3>Participant screen (antares_gui.py)</h3>
+<table>
+  <thead><tr><th>Key</th><th>Action</th></tr></thead>
+  <tbody>
+    <tr><td><kbd>Esc</kbd></td><td>Close the participant screen window.</td></tr>
+  </tbody>
+</table>
+
+<h3>rspv visualisation window</h3>
+<table>
+  <thead><tr><th>Key combination</th><th>Action</th></tr></thead>
+  <tbody>
+    <tr><td><kbd>Ctrl</kbd>+<kbd>V</kbd></td><td>Toggle version number overlay.</td></tr>
+    <tr><td><kbd>Ctrl</kbd>+<kbd>F</kbd></td><td>Toggle FPS counter.</td></tr>
+    <tr><td><kbd>Ctrl</kbd>+<kbd>M</kbd></td><td>Toggle memory usage display.</td></tr>
+    <tr><td><kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>Toggle live signal value display.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  The rspv diagnostic overlays (<kbd>Ctrl</kbd>+<kbd>S</kbd> in particular) are useful during
+  testing to confirm that the reward signal is arriving and updating correctly. Remove them
+  before real sessions — the participant should not see any numbers on screen.
+</div>
+
+<hr style="border:none;border-top:1px solid var(--border);margin:60px 0 24px">
+<p style="color:var(--muted);font-size:0.82rem">
+  ANTARES · Advancing Neurofeedback in Tinnitus · EPFL ECAL Lab<br>
+  Questions: check the log panel first, then inspect the relevant output file in
+  <code>&lt;subjects_dir&gt;/sub-&lt;id&gt;/</code>.
+</p>
+
+</main>
+</div>
+
+<script>
+  // Highlight the active nav link based on scroll position
+  const sections = document.querySelectorAll('h2[id]');
+  const navLinks  = document.querySelectorAll('nav a[href^="#"]');
+  const observer  = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const link = document.querySelector(`nav a[href="#${e.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '0px 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

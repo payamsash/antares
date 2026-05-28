@@ -1,0 +1,471 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pipeline.baseline &#8212; ANTARES</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=cfa8fc7b" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/pipeline/baseline';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ANTARES</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide.html">
+    ANTARES User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide.html">
+    ANTARES User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pipeline.baseline</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for pipeline.baseline</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Resting-state baseline recording via ANT.&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.triggers</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParallelTrigger</span><span class="p">,</span> <span class="n">TRIG_BASELINE_START</span><span class="p">,</span> <span class="n">TRIG_BASELINE_END</span>
+
+
+<div class="viewcode-block" id="run_baseline">
+<a class="viewcode-back" href="../../generated/pipeline.run_baseline.html#pipeline.baseline.run_baseline">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_baseline</span><span class="p">(</span>
+    <span class="n">subject_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">visit</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">subjects_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">baseline_duration</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">mock_lsl</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">mock_fname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">stream_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">stream_source_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">on_connected</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">log_callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">trigger</span><span class="p">:</span> <span class="n">ParallelTrigger</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Record a resting-state baseline using ANT&#39;s NFRealtime.</span>
+
+<span class="sd">    Initialises an ``ANT.NFRealtime`` recorder for the BIDS session</span>
+<span class="sd">    ``v&lt;visit&gt;b``, connects to the LSL stream (real or mock), waits 4 seconds</span>
+<span class="sd">    for the stream to stabilise, optionally fires a hardware trigger, then</span>
+<span class="sd">    records the continuous EEG for *baseline_duration* seconds.  The raw</span>
+<span class="sd">    recording is saved to the BIDS tree by ANT automatically.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subject_id: Four-letter subject identifier (e.g. ``&quot;abcd&quot;``).</span>
+<span class="sd">        visit: Integer visit number.  Determines the BIDS session label</span>
+<span class="sd">            (``v1b``, ``v2b``, ...).</span>
+<span class="sd">        subjects_dir: Root directory that contains all ``sub-*`` folders.</span>
+<span class="sd">        baseline_duration: Duration of the resting-state recording in seconds.</span>
+<span class="sd">        mock_lsl: If ``True``, replays *mock_fname* via a simulated LSL stream</span>
+<span class="sd">            instead of connecting to real EEG hardware.</span>
+<span class="sd">        mock_fname: Path to a MNE-readable file (e.g. ``.fif``) used as the</span>
+<span class="sd">            source for mock streaming.  Required when *mock_lsl* is ``True``.</span>
+<span class="sd">        stream_name: LSL stream name to connect to (e.g. ``&quot;BrainVision RDA&quot;``).</span>
+<span class="sd">            Passed directly to ``NFRealtime.connect_to_lsl()``.</span>
+<span class="sd">        stream_source_id: LSL source identifier string.  Passed directly to</span>
+<span class="sd">            ``NFRealtime.connect_to_lsl()``.</span>
+<span class="sd">        on_connected: Optional zero-argument callable invoked immediately after</span>
+<span class="sd">            the LSL connection is established.  Used by the GUI to signal rspv</span>
+<span class="sd">            to show the fixation cross.</span>
+<span class="sd">        log_callback: Optional callable that accepts a string, used to forward</span>
+<span class="sd">            log messages to the operator GUI.</span>
+<span class="sd">        trigger: Optional ``ParallelTrigger`` or ``SerialTrigger`` instance.</span>
+<span class="sd">            When provided, sends ``TRIG_BASELINE_START`` (10) at recording</span>
+<span class="sd">            start and ``TRIG_BASELINE_END`` (11) at recording end.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">ant</span><span class="w"> </span><span class="kn">import</span> <span class="n">NFRealtime</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_log</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">log_callback</span><span class="p">:</span>
+            <span class="n">log_callback</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="n">session</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">b&quot;</span>  <span class="c1"># BIDS session label: v1b, v2b, ...</span>
+
+    <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initialising ANT baseline recorder (session=</span><span class="si">{</span><span class="n">session</span><span class="si">}</span><span class="s2">) ...&quot;</span><span class="p">)</span>
+    <span class="n">nf</span> <span class="o">=</span> <span class="n">NFRealtime</span><span class="p">(</span>
+        <span class="n">subject_id</span><span class="o">=</span><span class="n">subject_id</span><span class="p">,</span>
+        <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+        <span class="n">subjects_dir</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">subjects_dir</span><span class="p">),</span>
+        <span class="n">montage</span><span class="o">=</span><span class="s2">&quot;easycap-M1&quot;</span><span class="p">,</span>
+        <span class="n">mri</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">artifact_correction</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">_log</span><span class="p">(</span><span class="s2">&quot;Connecting to LSL stream ...&quot;</span><span class="p">)</span>
+    <span class="n">nf</span><span class="o">.</span><span class="n">connect_to_lsl</span><span class="p">(</span>
+        <span class="n">mock_lsl</span><span class="o">=</span><span class="n">mock_lsl</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="n">mock_fname</span><span class="p">,</span>
+        <span class="n">stream_name</span><span class="o">=</span><span class="n">stream_name</span><span class="p">,</span> <span class="n">stream_source_id</span><span class="o">=</span><span class="n">stream_source_id</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">on_connected</span><span class="p">:</span>
+        <span class="n">on_connected</span><span class="p">()</span>
+    <span class="n">_log</span><span class="p">(</span><span class="s2">&quot;Connected. Waiting 4 s for stream to stabilise ...&quot;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Recording baseline (</span><span class="si">{</span><span class="n">baseline_duration</span><span class="si">}</span><span class="s2"> s) ...&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">trigger</span><span class="p">:</span>
+        <span class="n">_log</span><span class="p">(</span><span class="s2">&quot;Trigger: BASELINE_START (10)&quot;</span><span class="p">)</span>
+        <span class="n">trigger</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">TRIG_BASELINE_START</span><span class="p">)</span>
+    <span class="n">nf</span><span class="o">.</span><span class="n">record_baseline</span><span class="p">(</span><span class="n">baseline_duration</span><span class="o">=</span><span class="n">baseline_duration</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">trigger</span><span class="p">:</span>
+        <span class="n">_log</span><span class="p">(</span><span class="s2">&quot;Trigger: BASELINE_END (11)&quot;</span><span class="p">)</span>
+        <span class="n">trigger</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">TRIG_BASELINE_END</span><span class="p">)</span>
+    <span class="n">_log</span><span class="p">(</span><span class="s2">&quot;Baseline recording finished.&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Payam S. Shabestari.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

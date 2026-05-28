@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+*.so
+*.dylib
+
+# Virtual environments
+.venv/
+venv/
+env/
+rspv/venv/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Logs and crash dumps
+*.log
+hs_err_pid*.log
+
+# Runtime / temp
+/tmp/antares_session_state.json
+antares_rspv_*.json
+
+# Subject data — never commit real EEG or participant data
+antares_subjects/
+subjects/
+data/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Distribution / packaging
+*.spec

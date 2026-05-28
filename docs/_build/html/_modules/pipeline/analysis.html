@@ -1,0 +1,1505 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pipeline.analysis &#8212; ANTARES</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=cfa8fc7b" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/pipeline/analysis';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ANTARES</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide.html">
+    ANTARES User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide.html">
+    ANTARES User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pipeline.analysis</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for pipeline.analysis</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Offline EEG analysis: preprocessing, feature extraction, normative scoring, ranking.&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;Agg&quot;</span><span class="p">)</span>  <span class="c1"># headless – no display required</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Patch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">spearmanr</span>
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Helpers</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_log</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Log *msg* via the standard logger and optionally forward it to a GUI callback.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        msg: The message string to log.</span>
+<span class="sd">        cb: Optional callable that accepts a single string argument.  When</span>
+<span class="sd">            provided, the message is forwarded to it (e.g. to update a GUI</span>
+<span class="sd">            text widget).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cb</span><span class="p">:</span>
+        <span class="n">cb</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_baseline_fif</span><span class="p">(</span><span class="n">subjects_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">subject_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">visit</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the BIDS-compliant path where ANT saves the baseline raw .fif.</span>
+
+<span class="sd">    The path follows the pattern::</span>
+
+<span class="sd">        &lt;subjects_dir&gt;/sub-&lt;id&gt;/ses-v&lt;visit&gt;b/eeg/sub-&lt;id&gt;_ses-v&lt;visit&gt;b_task-baseline_eeg.fif</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subjects_dir: Root directory that contains all ``sub-*`` folders.</span>
+<span class="sd">        subject_id: Four-letter subject identifier (e.g. ``&quot;abcd&quot;``).</span>
+<span class="sd">        visit: Integer visit number.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Absolute ``Path`` object for the expected .fif file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">b&quot;</span>
+    <span class="n">stem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">_ses-</span><span class="si">{</span><span class="n">session</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">subjects_dir</span>
+        <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;ses-</span><span class="si">{</span><span class="n">session</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="o">/</span> <span class="s2">&quot;eeg&quot;</span>
+        <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stem</span><span class="si">}</span><span class="s2">_task-baseline_eeg.fif&quot;</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_inv_fif</span><span class="p">(</span><span class="n">subjects_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">subject_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">visit</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the BIDS-compliant path where ANT saves the inverse operator .fif.</span>
+
+<span class="sd">    The path follows the pattern::</span>
+
+<span class="sd">        &lt;subjects_dir&gt;/sub-&lt;id&gt;/ses-v&lt;visit&gt;b/inv/sub-&lt;id&gt;_ses-v&lt;visit&gt;b_task-baseline_inv.fif</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subjects_dir: Root directory that contains all ``sub-*`` folders.</span>
+<span class="sd">        subject_id: Four-letter subject identifier.</span>
+<span class="sd">        visit: Integer visit number.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Absolute ``Path`` object for the expected inverse operator file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">b&quot;</span>
+    <span class="n">stem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">_ses-</span><span class="si">{</span><span class="n">session</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">subjects_dir</span>
+        <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;ses-</span><span class="si">{</span><span class="n">session</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="o">/</span> <span class="s2">&quot;inv&quot;</span>
+        <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stem</span><span class="si">}</span><span class="s2">_task-baseline_inv.fif&quot;</span>
+    <span class="p">)</span>
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Stage 1 – preprocessing</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="preprocess_baseline">
+<a class="viewcode-back" href="../../generated/pipeline.analysis.preprocess_baseline.html#pipeline.analysis.preprocess_baseline">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">preprocess_baseline</span><span class="p">(</span>
+    <span class="n">subject_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">visit</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">subjects_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">log_callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load, filter, re-reference, epoch, and AutoReject the baseline recording.</span>
+
+<span class="sd">    Reads the raw baseline .fif file saved by ANT, applies a 0.1–40 Hz bandpass</span>
+<span class="sd">    filter, sets an average reference, assigns the EasyCap-M1 montage, cuts the</span>
+<span class="sd">    continuous recording into 10-second fixed-length epochs, and then runs</span>
+<span class="sd">    AutoReject to interpolate or drop bad epochs.  An HTML AutoReject report and</span>
+<span class="sd">    cleaned epoch file are written to the subject BIDS tree.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subject_id: Four-letter subject identifier.</span>
+<span class="sd">        visit: Integer visit number.  Used to locate the correct BIDS session.</span>
+<span class="sd">        subjects_dir: Root directory containing all ``sub-*`` folders.</span>
+<span class="sd">        log_callback: Optional callable forwarded to ``_log()`` for GUI updates.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        mne.Epochs: The cleaned epoch object after AutoReject.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        FileNotFoundError: If the baseline .fif file does not exist.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">autoreject</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoReject</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">mne</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_fixed_length_epochs</span><span class="p">,</span> <span class="n">set_log_level</span><span class="p">,</span> <span class="n">Report</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">mne.channels</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_standard_montage</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">mne.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_raw_fif</span>
+
+    <span class="n">set_log_level</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">)</span>
+    <span class="n">cb</span> <span class="o">=</span> <span class="n">log_callback</span>
+
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">_baseline_fif</span><span class="p">(</span><span class="n">subjects_dir</span><span class="p">,</span> <span class="n">subject_id</span><span class="p">,</span> <span class="n">visit</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">fname</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Baseline file not found: </span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;Run the baseline recording stage first.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">subject_dir</span> <span class="o">=</span> <span class="n">subjects_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">report_dir</span> <span class="o">=</span> <span class="n">subject_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;ses-v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">b&quot;</span> <span class="o">/</span> <span class="s2">&quot;reports&quot;</span>
+    <span class="n">report_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading </span><span class="si">{</span><span class="n">fname</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> ...&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+    <span class="n">raw</span> <span class="o">=</span> <span class="n">read_raw_fif</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">raw</span><span class="o">.</span><span class="n">drop_channels</span><span class="p">([</span><span class="s1">&#39;IO&#39;</span><span class="p">],</span> <span class="n">on_missing</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+    <span class="n">raw</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">raw</span><span class="o">.</span><span class="n">set_eeg_reference</span><span class="p">(</span><span class="s2">&quot;average&quot;</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">raw</span><span class="o">.</span><span class="n">set_montage</span><span class="p">(</span>
+        <span class="n">make_standard_montage</span><span class="p">(</span><span class="s2">&quot;easycap-M1&quot;</span><span class="p">),</span>
+        <span class="n">match_case</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">on_missing</span><span class="o">=</span><span class="s2">&quot;warn&quot;</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">_log</span><span class="p">(</span><span class="s2">&quot;Filtered (0.1–40 Hz), average-referenced, montage set.&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+
+    <span class="n">epochs</span> <span class="o">=</span> <span class="n">make_fixed_length_epochs</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoched into </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">epochs</span><span class="p">)</span><span class="si">}</span><span class="s2"> x 10 s segments.&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+
+    <span class="n">_log</span><span class="p">(</span><span class="s2">&quot;Running AutoReject ...&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+    <span class="n">ar</span> <span class="o">=</span> <span class="n">AutoReject</span><span class="p">(</span>
+        <span class="n">n_interpolate</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">]),</span>
+        <span class="n">consensus</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span>
+        <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ar</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">epochs</span><span class="p">)</span>
+    <span class="n">epochs</span><span class="p">,</span> <span class="n">reject_log</span> <span class="o">=</span> <span class="n">ar</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">return_log</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AutoReject done: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">epochs</span><span class="p">)</span><span class="si">}</span><span class="s2"> clean epochs retained.&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+
+    <span class="n">epo_dir</span> <span class="o">=</span> <span class="n">subject_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;ses-v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">b&quot;</span> <span class="o">/</span> <span class="s2">&quot;eeg&quot;</span>
+    <span class="n">epo_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">epochs</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">epo_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">_ses-v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">b_task-baseline_epo.fif&quot;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">report</span> <span class="o">=</span> <span class="n">Report</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">report</span><span class="o">.</span><span class="n">add_figure</span><span class="p">(</span><span class="n">reject_log</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;AutoReject log&quot;</span><span class="p">,</span> <span class="n">image_format</span><span class="o">=</span><span class="s2">&quot;PNG&quot;</span><span class="p">)</span>
+    <span class="n">report</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">report_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;autoreject_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.html&quot;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">open_browser</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">_log</span><span class="p">(</span><span class="s2">&quot;AutoReject report saved.&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">epochs</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Stage 2 – feature extraction</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="extract_features">
+<a class="viewcode-back" href="../../generated/pipeline.analysis.extract_features.html#pipeline.analysis.extract_features">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_features</span><span class="p">(</span>
+    <span class="n">epochs</span><span class="p">,</span>
+    <span class="n">subject_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">visit</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">subjects_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">log_callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract band-power and coherence features in sensor and source space.</span>
+
+<span class="sd">    Computes per-epoch band-power for ten frequency bands (delta through gamma)</span>
+<span class="sd">    and pairwise coherence using a single CWT pass.  Source-space features</span>
+<span class="sd">    require a pre-computed inverse operator (.fif) in the subject BIDS tree; if</span>
+<span class="sd">    it is absent, source features are skipped with a warning.</span>
+
+<span class="sd">    Feature CSVs and reliability-metric CSVs are written to::</span>
+
+<span class="sd">        &lt;subjects_dir&gt;/sub-&lt;id&gt;/features/</span>
+<span class="sd">        &lt;subjects_dir&gt;/sub-&lt;id&gt;/reliability_metrics/</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        epochs: Clean ``mne.Epochs`` object (output of ``preprocess_baseline``).</span>
+<span class="sd">        subject_id: Four-letter subject identifier.</span>
+<span class="sd">        visit: Integer visit number.</span>
+<span class="sd">        subjects_dir: Root directory containing all ``sub-*`` folders.</span>
+<span class="sd">        log_callback: Optional callable for GUI log forwarding.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">mne</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_labels_from_annot</span><span class="p">,</span> <span class="n">extract_label_time_course</span><span class="p">,</span> <span class="n">set_log_level</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">mne.minimum_norm</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_inverse_operator</span><span class="p">,</span> <span class="n">apply_inverse_epochs</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">mne.time_frequency</span><span class="w"> </span><span class="kn">import</span> <span class="n">psd_array_multitaper</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">mne_connectivity</span><span class="w"> </span><span class="kn">import</span> <span class="n">spectral_connectivity_time</span>
+
+    <span class="n">set_log_level</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">)</span>
+    <span class="n">cb</span> <span class="o">=</span> <span class="n">log_callback</span>
+
+    <span class="n">subject_dir</span> <span class="o">=</span> <span class="n">subjects_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">features_dir</span> <span class="o">=</span> <span class="n">subject_dir</span> <span class="o">/</span> <span class="s2">&quot;features&quot;</span>
+    <span class="n">features_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">reliability_dir</span> <span class="o">=</span> <span class="n">subject_dir</span> <span class="o">/</span> <span class="s2">&quot;reliability_metrics&quot;</span>
+    <span class="n">reliability_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">freq_bands</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;delta&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mi">1</span><span class="p">,</span>    <span class="mi">6</span><span class="p">],</span>
+        <span class="s2">&quot;theta&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">6.5</span><span class="p">,</span>  <span class="mf">8.5</span><span class="p">],</span>
+        <span class="s2">&quot;alpha_0&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">8.5</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">],</span>
+        <span class="s2">&quot;alpha_1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">8.5</span><span class="p">,</span> <span class="mf">10.5</span><span class="p">],</span>
+        <span class="s2">&quot;alpha_2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.5</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">],</span>
+        <span class="s2">&quot;beta_0&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">12.5</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>
+        <span class="s2">&quot;beta_1&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">12.5</span><span class="p">,</span> <span class="mf">18.5</span><span class="p">],</span>
+        <span class="s2">&quot;beta_2&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">18.5</span><span class="p">,</span> <span class="mi">21</span><span class="p">],</span>
+        <span class="s2">&quot;beta_3&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mi">21</span><span class="p">,</span>   <span class="mi">30</span><span class="p">],</span>
+        <span class="s2">&quot;gamma&quot;</span><span class="p">:</span>   <span class="p">[</span><span class="mi">30</span><span class="p">,</span>   <span class="mi">40</span><span class="p">],</span>
+    <span class="p">}</span>
+
+    <span class="c1"># -- Sensor band power --------------------------------------------------</span>
+    <span class="n">epochs</span><span class="o">.</span><span class="n">pick_types</span><span class="p">(</span><span class="n">eeg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    epochs_ts = epochs.get_data(picks=&quot;eeg&quot;)</span>
+<span class="sd">    ch_names = epochs.info[&quot;ch_names&quot;]</span>
+
+<span class="sd">    _log(&quot;Computing sensor-space band powers ...&quot;, cb)</span>
+<span class="sd">    psd_chs, freqs = epochs.compute_psd(</span>
+<span class="sd">        fmin=1, fmax=40, verbose=False</span>
+<span class="sd">    ).get_data(return_freqs=True)</span>
+
+<span class="sd">    columns, all_band_powers = [], []</span>
+<span class="sd">    for band_name, (fmin, fmax) in freq_bands.items():</span>
+<span class="sd">        mask = (freqs &gt;= fmin) &amp; (freqs &lt;= fmax)</span>
+<span class="sd">        bp = np.trapezoid(psd_chs[:, :, mask], freqs[mask], axis=-1)</span>
+<span class="sd">        all_band_powers.append(bp)</span>
+<span class="sd">        columns.extend([f&quot;{ch}_{band_name}&quot; for ch in ch_names])</span>
+
+<span class="sd">    chs_power = np.concatenate(all_band_powers, axis=1)</span>
+<span class="sd">    pd.DataFrame(chs_power, columns=columns).to_csv(</span>
+<span class="sd">        features_dir / f&quot;power_sensor_v{visit}.csv&quot;, index=False</span>
+<span class="sd">    )</span>
+<span class="sd">    compute_reliability_metrics(chs_power, columns, &quot;power_sensor&quot;).to_csv(</span>
+<span class="sd">        reliability_dir / f&quot;power_sensor_v{visit}.csv&quot;, index=False</span>
+<span class="sd">    )</span>
+<span class="sd">    _log(&quot;Sensor band power done.&quot;, cb)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="c1"># -- Source band power --------------------------------------------------</span>
+    <span class="n">inv_fname</span> <span class="o">=</span> <span class="n">_inv_fif</span><span class="p">(</span><span class="n">subjects_dir</span><span class="p">,</span> <span class="n">subject_id</span><span class="p">,</span> <span class="n">visit</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">inv_fname</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Inverse operator not found (</span><span class="si">{</span><span class="n">inv_fname</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">); skipping source features.&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_log</span><span class="p">(</span><span class="s2">&quot;Computing source-space band powers ...&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+        <span class="n">inverse_operator</span> <span class="o">=</span> <span class="n">read_inverse_operator</span><span class="p">(</span><span class="n">inv_fname</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">read_labels_from_annot</span><span class="p">(</span>
+            <span class="s2">&quot;fsaverage&quot;</span><span class="p">,</span> <span class="n">subjects_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parc</span><span class="o">=</span><span class="s2">&quot;aparc&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">stcs</span> <span class="o">=</span> <span class="n">apply_inverse_epochs</span><span class="p">(</span>
+            <span class="n">epochs</span><span class="p">,</span>
+            <span class="n">inverse_operator</span><span class="p">,</span>
+            <span class="n">lambda2</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">method</span><span class="o">=</span><span class="s2">&quot;dSPM&quot;</span><span class="p">,</span>
+            <span class="n">pick_ori</span><span class="o">=</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+            <span class="n">return_generator</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>   <span class="c1"># generator avoids holding all ~20k-source STCs in RAM</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">label_ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="n">extract_label_time_course</span><span class="p">(</span>
+                <span class="n">stcs</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">inverse_operator</span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">],</span>
+                <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;mean_flip&quot;</span><span class="p">,</span> <span class="n">return_generator</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">lb_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">lb</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">lb</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">]</span>
+        <span class="n">n_epochs</span><span class="p">,</span> <span class="n">n_labels</span><span class="p">,</span> <span class="n">n_times</span> <span class="o">=</span> <span class="n">label_ts</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">psd</span><span class="p">,</span> <span class="n">freqs_src</span> <span class="o">=</span> <span class="n">psd_array_multitaper</span><span class="p">(</span>
+            <span class="n">label_ts</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_times</span><span class="p">),</span>
+            <span class="n">sfreq</span><span class="o">=</span><span class="n">epochs</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;sfreq&quot;</span><span class="p">],</span>
+            <span class="n">fmin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">src_columns</span><span class="p">,</span> <span class="n">labels_power</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">band_name</span><span class="p">,</span> <span class="p">(</span><span class="n">fmin</span><span class="p">,</span> <span class="n">fmax</span><span class="p">)</span> <span class="ow">in</span> <span class="n">freq_bands</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">freqs_src</span> <span class="o">&gt;=</span> <span class="n">fmin</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">freqs_src</span> <span class="o">&lt;=</span> <span class="n">fmax</span><span class="p">)</span>
+            <span class="n">bp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">psd</span><span class="p">[:,</span> <span class="n">mask</span><span class="p">],</span> <span class="n">freqs_src</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">labels_power</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_epochs</span><span class="p">,</span> <span class="n">n_labels</span><span class="p">))</span>
+            <span class="n">src_columns</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">lb</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">band_name</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">lb</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">])</span>
+        <span class="n">labels_power</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">labels_power</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">labels_power</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">src_columns</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+            <span class="n">features_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;power_source_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="n">compute_reliability_metrics</span><span class="p">(</span><span class="n">labels_power</span><span class="p">,</span> <span class="n">src_columns</span><span class="p">,</span> <span class="s2">&quot;power_source&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+            <span class="n">reliability_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;power_source_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="n">_log</span><span class="p">(</span><span class="s2">&quot;Source band power done.&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+
+    <span class="c1"># -- Connectivity -------------------------------------------------------</span>
+    <span class="k">for</span> <span class="n">mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">]:</span> <span class="c1"># (&quot;sensor&quot;, &quot;source&quot;)</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;source&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">inv_fname</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">continue</span>
+        <span class="n">data_ts</span> <span class="o">=</span> <span class="n">epochs_ts</span> <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;sensor&quot;</span> <span class="k">else</span> <span class="n">label_ts</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="n">ch_names</span> <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;sensor&quot;</span> <span class="k">else</span> <span class="n">lb_names</span>
+        <span class="n">n_nodes</span> <span class="o">=</span> <span class="n">data_ts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">i_lower</span><span class="p">,</span> <span class="n">j_lower</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tril_indices</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Computing </span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2"> coherence ...&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+        <span class="c1"># Single CWT pass over the full frequency range, averaged into bands — 10× faster</span>
+        <span class="c1"># than calling spectral_connectivity_time once per band.</span>
+        <span class="n">all_fmins</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">freq_bands</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+        <span class="n">all_fmaxs</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">freq_bands</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+        <span class="n">min_f</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">all_fmins</span><span class="p">)</span>
+        <span class="n">max_f</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">all_fmaxs</span><span class="p">)</span>
+        <span class="n">all_freqs_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">min_f</span><span class="p">,</span> <span class="n">max_f</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="c1"># MNE wavelet length ≈ 10·n_cycles/(2π·f)·sfreq samples; cap so it fits epoch.</span>
+        <span class="n">_epoch_dur</span> <span class="o">=</span> <span class="n">data_ts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">epochs</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;sfreq&quot;</span><span class="p">]</span>
+        <span class="n">_n_cycles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">0.9</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">all_freqs_arr</span> <span class="o">*</span> <span class="n">_epoch_dur</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="n">con</span> <span class="o">=</span> <span class="n">spectral_connectivity_time</span><span class="p">(</span>
+            <span class="n">data_ts</span><span class="p">,</span>
+            <span class="n">freqs</span><span class="o">=</span><span class="n">all_freqs_arr</span><span class="p">,</span>
+            <span class="n">method</span><span class="o">=</span><span class="s2">&quot;coh&quot;</span><span class="p">,</span>
+            <span class="n">average</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">sfreq</span><span class="o">=</span><span class="n">epochs</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;sfreq&quot;</span><span class="p">],</span>
+            <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;cwt_morlet&quot;</span><span class="p">,</span>
+            <span class="n">fmin</span><span class="o">=</span><span class="n">all_fmins</span><span class="p">,</span>
+            <span class="n">fmax</span><span class="o">=</span><span class="n">all_fmaxs</span><span class="p">,</span>
+            <span class="n">faverage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">n_cycles</span><span class="o">=</span><span class="n">_n_cycles</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># con.get_data shape: (n_epochs, n_nodes, n_nodes, n_bands)</span>
+        <span class="n">con_data</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;dense&quot;</span><span class="p">)</span>
+        <span class="n">con_columns</span><span class="p">,</span> <span class="n">freq_cons</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">band_idx</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">freq_bands</span><span class="p">):</span>
+            <span class="n">con_matrix</span> <span class="o">=</span> <span class="n">con_data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="n">band_idx</span><span class="p">]</span>  <span class="c1"># (n_epochs, n_nodes, n_nodes)</span>
+            <span class="n">cons</span> <span class="o">=</span> <span class="p">[</span><span class="n">ep</span><span class="p">[</span><span class="n">i_lower</span><span class="p">,</span> <span class="n">j_lower</span><span class="p">]</span> <span class="k">for</span> <span class="n">ep</span> <span class="ow">in</span> <span class="n">con_matrix</span><span class="p">]</span>
+            <span class="n">freq_cons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cons</span><span class="p">))</span>
+            <span class="n">con_columns</span> <span class="o">+=</span> <span class="p">[</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">_vs_</span><span class="si">{</span><span class="n">names</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">_coh&quot;</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">i_lower</span><span class="p">,</span> <span class="n">j_lower</span><span class="p">)</span>
+            <span class="p">]</span>
+
+        <span class="n">freq_cons_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">freq_cons</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">freq_cons_arr</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">con_columns</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+            <span class="n">features_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;conn_</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="n">compute_reliability_metrics</span><span class="p">(</span><span class="n">freq_cons_arr</span><span class="p">,</span> <span class="n">con_columns</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;conn_</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+            <span class="n">reliability_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;conn_</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mode</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s2"> coherence done.&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Stage 3 – reliability metrics</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="compute_reliability_metrics">
+<a class="viewcode-back" href="../../generated/pipeline.analysis.compute_reliability_metrics.html#pipeline.analysis.compute_reliability_metrics">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_reliability_metrics</span><span class="p">(</span>
+    <span class="n">epoch_features</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">feature_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">feature_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute ICC, SNR, dynamic range, and stationarity for each feature.</span>
+
+<span class="sd">    For each feature column in *epoch_features* the following metrics are</span>
+<span class="sd">    computed:</span>
+
+<span class="sd">    - **ICC**: split-half intraclass correlation via the Spearman-Brown formula</span>
+<span class="sd">      applied to the Spearman rank correlation between the first and second</span>
+<span class="sd">      halves of the epoch array.</span>
+<span class="sd">    - **SNR**: ratio of the absolute mean to the standard deviation.</span>
+<span class="sd">    - **Dynamic range**: normalised inter-percentile range (P90 - P10) / ``|median|``.</span>
+<span class="sd">    - **Stationarity**: stability of the rolling per-window variance, expressed</span>
+<span class="sd">      as 1 / (1 + CV of rolling variances).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        epoch_features: 2-D array of shape ``(n_epochs, n_features)``.</span>
+<span class="sd">        feature_names: List of column names matching the second axis.</span>
+<span class="sd">        feature_type: Descriptive tag written to the ``feature_type`` column</span>
+<span class="sd">            (e.g. ``&quot;power_source&quot;``).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame with one row per feature and columns: ``feature_name``,</span>
+<span class="sd">        ``feature_type``, ``icc``, ``snr``, ``dynamic_range``, ``stationarity``,</span>
+<span class="sd">        ``mean``, ``std``, ``median``, ``p10``, ``p90``, ``n_epochs``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n_epochs</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">epoch_features</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">half</span> <span class="o">=</span> <span class="n">n_epochs</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="o">=</span> <span class="n">epoch_features</span><span class="p">[:</span><span class="n">half</span><span class="p">],</span> <span class="n">epoch_features</span><span class="p">[</span><span class="n">half</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">half</span><span class="p">]</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_names</span><span class="p">):</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="n">epoch_features</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">]</span>
+        <span class="c1"># ICC via split-half Spearman-Brown</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">first</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+                <span class="n">r</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">spearmanr</span><span class="p">(</span><span class="n">first</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">],</span> <span class="n">second</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">])</span>
+            <span class="n">icc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">r</span><span class="p">))</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">else</span> <span class="mf">0.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">icc</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">mean_val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">vals</span><span class="p">))</span>
+        <span class="n">std_val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">vals</span><span class="p">))</span>
+        <span class="n">snr</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">mean_val</span><span class="p">)</span> <span class="o">/</span> <span class="n">std_val</span> <span class="k">if</span> <span class="n">std_val</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+        <span class="n">p10</span><span class="p">,</span> <span class="n">p90</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">90</span><span class="p">])</span>
+        <span class="n">med</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">vals</span><span class="p">))</span>
+        <span class="n">dynamic_range</span> <span class="o">=</span> <span class="nb">float</span><span class="p">((</span><span class="n">p90</span> <span class="o">-</span> <span class="n">p10</span><span class="p">)</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">med</span><span class="p">))</span> <span class="k">if</span> <span class="n">med</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+        <span class="c1"># Rolling variance stationarity</span>
+        <span class="n">ws</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_epochs</span> <span class="o">//</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">rvars</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">ws</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_epochs</span> <span class="o">-</span> <span class="n">ws</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ws</span> <span class="o">//</span> <span class="mi">2</span><span class="p">))]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rvars</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">stationarity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">rvars</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rvars</span><span class="p">)))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">stationarity</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">&quot;feature_name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+            <span class="s2">&quot;feature_type&quot;</span><span class="p">:</span> <span class="n">feature_type</span><span class="p">,</span>
+            <span class="s2">&quot;icc&quot;</span><span class="p">:</span> <span class="n">icc</span><span class="p">,</span>
+            <span class="s2">&quot;snr&quot;</span><span class="p">:</span> <span class="n">snr</span><span class="p">,</span>
+            <span class="s2">&quot;dynamic_range&quot;</span><span class="p">:</span> <span class="n">dynamic_range</span><span class="p">,</span>
+            <span class="s2">&quot;stationarity&quot;</span><span class="p">:</span> <span class="n">stationarity</span><span class="p">,</span>
+            <span class="s2">&quot;mean&quot;</span><span class="p">:</span> <span class="n">mean_val</span><span class="p">,</span>
+            <span class="s2">&quot;std&quot;</span><span class="p">:</span> <span class="n">std_val</span><span class="p">,</span>
+            <span class="s2">&quot;median&quot;</span><span class="p">:</span> <span class="n">med</span><span class="p">,</span>
+            <span class="s2">&quot;p10&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">p10</span><span class="p">),</span>
+            <span class="s2">&quot;p90&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">p90</span><span class="p">),</span>
+            <span class="s2">&quot;n_epochs&quot;</span><span class="p">:</span> <span class="n">n_epochs</span><span class="p">,</span>
+        <span class="p">})</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Stage 4 – normative deviation scores</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="compute_dev_scores">
+<a class="viewcode-back" href="../../generated/pipeline.analysis.compute_dev_scores.html#pipeline.analysis.compute_dev_scores">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_dev_scores</span><span class="p">(</span>
+    <span class="n">subject_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">sex</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">visit</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">subjects_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">models_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">site</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;zuerich&quot;</span><span class="p">,</span>
+    <span class="n">log_callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Score each feature against normative models using pcntoolkit.</span>
+
+<span class="sd">    Loads the pre-trained normative models from *models_dir* and computes</span>
+<span class="sd">    deviation Z-scores for every feature that has a corresponding reliability</span>
+<span class="sd">    CSV.  Covariates are age, sex, and PTA4 (pure-tone average); the PTA4 is</span>
+<span class="sd">    read from ``&lt;subjects_dir&gt;/sub-&lt;id&gt;/audiometry/audio.csv``.  If that file</span>
+<span class="sd">    is absent or if pcntoolkit is not installed, the function logs a warning</span>
+<span class="sd">    and returns without modifying any files.</span>
+
+<span class="sd">    The Z-score column ``deviation`` is appended in-place to the matching</span>
+<span class="sd">    reliability metric CSV files under::</span>
+
+<span class="sd">        &lt;subjects_dir&gt;/sub-&lt;id&gt;/reliability_metrics/</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subject_id: Four-letter subject identifier.</span>
+<span class="sd">        age: Subject age in years.</span>
+<span class="sd">        sex: ``&quot;M&quot;`` (male) or ``&quot;F&quot;`` (female).</span>
+<span class="sd">        visit: Integer visit number.</span>
+<span class="sd">        subjects_dir: Root directory containing all ``sub-*`` folders.</span>
+<span class="sd">        models_dir: Directory that contains the pre-trained normative model</span>
+<span class="sd">            hierarchy (``&lt;models_dir&gt;/&lt;space&gt;/&lt;tag&gt;/full_model/``).</span>
+<span class="sd">        site: Acquisition site label used as a batch-effect covariate.</span>
+<span class="sd">            Defaults to ``&quot;zuerich&quot;``.</span>
+<span class="sd">        log_callback: Optional callable for GUI log forwarding.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">pcntoolkit.normative_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">NormativeModel</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">pcntoolkit</span><span class="w"> </span><span class="kn">import</span> <span class="n">NormData</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">pcntoolkit.util.output</span>
+        <span class="n">pcntoolkit</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">Output</span><span class="o">.</span><span class="n">set_show_messages</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="n">_log</span><span class="p">(</span><span class="s2">&quot;pcntoolkit not available - skipping normative scoring.&quot;</span><span class="p">,</span> <span class="n">log_callback</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">mne</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_labels_from_annot</span><span class="p">,</span> <span class="n">set_log_level</span>
+    <span class="n">set_log_level</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">)</span>
+    <span class="n">cb</span> <span class="o">=</span> <span class="n">log_callback</span>
+
+    <span class="n">sex_code</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">sex</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;M&quot;</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="n">subject_dir</span> <span class="o">=</span> <span class="n">subjects_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">reliability_dir</span> <span class="o">=</span> <span class="n">subject_dir</span> <span class="o">/</span> <span class="s2">&quot;reliability_metrics&quot;</span>
+
+    <span class="n">audio_csv</span> <span class="o">=</span> <span class="n">subject_dir</span> <span class="o">/</span> <span class="s2">&quot;audiometry&quot;</span> <span class="o">/</span> <span class="s2">&quot;audio.csv&quot;</span>
+    <span class="n">pta</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">audio_csv</span><span class="p">)[</span><span class="s2">&quot;PTA4_mean&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">audio_csv</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">pta</span><span class="p">):</span>
+        <span class="n">_log</span><span class="p">(</span><span class="s2">&quot;WARNING: PTA4 not available - normative scoring requires audiometry data. Skipping.&quot;</span><span class="p">,</span> <span class="n">log_callback</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="n">freq_bands</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;delta&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s2">&quot;theta&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">6.5</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">],</span>
+        <span class="s2">&quot;alpha_0&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">8.5</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">],</span> <span class="s2">&quot;alpha_1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">8.5</span><span class="p">,</span> <span class="mf">10.5</span><span class="p">],</span> <span class="s2">&quot;alpha_2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.5</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">],</span>
+        <span class="s2">&quot;beta_0&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">12.5</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="s2">&quot;beta_1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">12.5</span><span class="p">,</span> <span class="mf">18.5</span><span class="p">],</span> <span class="s2">&quot;beta_2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">18.5</span><span class="p">,</span> <span class="mi">21</span><span class="p">],</span>
+        <span class="s2">&quot;beta_3&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">mode</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;power&quot;</span><span class="p">,</span> <span class="s2">&quot;conn&quot;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">space</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">]:</span> <span class="c1"># (&quot;sensor&quot;, &quot;source&quot;)</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;conn_coh&quot;</span> <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;conn&quot;</span> <span class="k">else</span> <span class="n">mode</span>
+            <span class="n">model_path</span> <span class="o">=</span> <span class="n">models_dir</span> <span class="o">/</span> <span class="n">space</span> <span class="o">/</span> <span class="n">tag</span> <span class="o">/</span> <span class="s2">&quot;full_model&quot;</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">model_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No normative model at </span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="s2"> - skipping.&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="n">feat_csv</span> <span class="o">=</span> <span class="n">subject_dir</span> <span class="o">/</span> <span class="s2">&quot;features&quot;</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">space</span><span class="si">}</span><span class="s2">_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+            <span class="n">rel_csv</span> <span class="o">=</span> <span class="n">reliability_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">space</span><span class="si">}</span><span class="s2">_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">feat_csv</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">rel_csv</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Feature file missing for </span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">space</span><span class="si">}</span><span class="s2"> - skipping.&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scoring </span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">space</span><span class="si">}</span><span class="s2"> against normative model ...&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+            <span class="n">df_f</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">feat_csv</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;conn&quot;</span><span class="p">:</span>
+                <span class="n">labels</span> <span class="o">=</span> <span class="n">read_labels_from_annot</span><span class="p">(</span>
+                    <span class="s2">&quot;fsaverage&quot;</span><span class="p">,</span> <span class="n">subjects_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parc</span><span class="o">=</span><span class="s2">&quot;aparc&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+                <span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">lb_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">lb</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">lb</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">]</span>
+                <span class="n">n_nodes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lb_names</span><span class="p">)</span>
+                <span class="n">i_lower</span><span class="p">,</span> <span class="n">j_lower</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tril_indices</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">col_list</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">lb_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">_vs_</span><span class="si">{</span><span class="n">lb_names</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">_coh&quot;</span>
+                    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">freq_bands</span>
+                    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">i_lower</span><span class="p">,</span> <span class="n">j_lower</span><span class="p">)</span>
+                <span class="p">]</span>
+                <span class="n">df_f</span> <span class="o">=</span> <span class="n">df_f</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">df_f</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">col_list</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">df_f</span> <span class="o">=</span> <span class="n">df_f</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+
+            <span class="n">df_f</span><span class="p">[</span><span class="s2">&quot;SITE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">site</span>
+            <span class="n">df_f</span><span class="p">[</span><span class="s2">&quot;subject_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">subject_id</span>
+            <span class="n">df_f</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">age</span>
+            <span class="n">df_f</span><span class="p">[</span><span class="s2">&quot;sex&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sex_code</span>
+            <span class="n">df_f</span><span class="p">[</span><span class="s2">&quot;PTA4_mean&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pta</span>
+
+            <span class="n">feat_cols</span> <span class="o">=</span> <span class="n">df_f</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span>
+            <span class="n">covar_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="s2">&quot;PTA4_mean&quot;</span><span class="p">]</span>
+
+            <span class="n">norm_data</span> <span class="o">=</span> <span class="n">NormData</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
+                <span class="n">dataframe</span><span class="o">=</span><span class="n">df_f</span><span class="p">,</span>
+                <span class="n">covariates</span><span class="o">=</span><span class="n">covar_cols</span><span class="p">,</span>
+                <span class="n">batch_effects</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SITE&quot;</span><span class="p">],</span>
+                <span class="n">response_vars</span><span class="o">=</span><span class="n">feat_cols</span><span class="p">,</span>
+                <span class="n">subject_ids</span><span class="o">=</span><span class="s2">&quot;subject_id&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">NormativeModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">model_path</span><span class="p">))</span>
+            <span class="n">zscores</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">compute_zscores</span><span class="p">(</span><span class="n">norm_data</span><span class="p">)</span><span class="o">.</span><span class="n">Z</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="n">df_rel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">rel_csv</span><span class="p">)</span>
+            <span class="n">df_z</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;feature_name&quot;</span><span class="p">:</span> <span class="n">feat_cols</span><span class="p">,</span> <span class="s2">&quot;deviation&quot;</span><span class="p">:</span> <span class="n">zscores</span><span class="p">})</span>
+            <span class="n">df_rel</span> <span class="o">=</span> <span class="n">df_rel</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_z</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;feature_name&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+            <span class="n">df_rel</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">rel_csv</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Normative scoring done for </span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">space</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Stage 5 – feature ranking &amp; selection</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="rank_features">
+<a class="viewcode-back" href="../../generated/pipeline.analysis.rank_features.html#pipeline.analysis.rank_features">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">rank_features</span><span class="p">(</span>
+    <span class="n">subject_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">visit</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">subjects_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">log_callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rank all features by composite score and select the NF target.</span>
+
+<span class="sd">    Reads all reliability metric CSVs for the given visit, computes a weighted</span>
+<span class="sd">    composite score (30 % ``|z|``, 25 % ICC, 20 % SNR, 15 % dynamic range, 10 %</span>
+<span class="sd">    stationarity), and selects the top-ranked feature that meets all quality</span>
+<span class="sd">    criteria (``|z|`` &gt;= 1.5, ICC &gt;= 0.6, SNR &gt;= 2.0, DR &gt;= 0.3).  If no feature</span>
+<span class="sd">    meets the criteria, the overall top-ranked feature is used with status</span>
+<span class="sd">    ``&quot;relaxed_criteria&quot;``.</span>
+
+<span class="sd">    The full ranking table is saved to::</span>
+
+<span class="sd">        &lt;subjects_dir&gt;/sub-&lt;id&gt;/nf_selection/feature_ranking_v&lt;visit&gt;.csv</span>
+
+<span class="sd">    A JSON summary (excluding the full DataFrame) is written alongside it as::</span>
+
+<span class="sd">        &lt;subjects_dir&gt;/sub-&lt;id&gt;/nf_selection/selection_report_v&lt;visit&gt;.json</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subject_id: Four-letter subject identifier.</span>
+<span class="sd">        visit: Integer visit number.</span>
+<span class="sd">        subjects_dir: Root directory containing all ``sub-*`` folders.</span>
+<span class="sd">        log_callback: Optional callable for GUI log forwarding.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict with keys: ``subject_id``, ``visit``, ``selection_status``,</span>
+<span class="sd">        ``selection_message``, ``selected_feature``, ``backup_features``</span>
+<span class="sd">        (up to 3 dicts), ``n_features_evaluated``,</span>
+<span class="sd">        ``n_features_meeting_criteria``, ``ranking_table`` (DataFrame).</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        RuntimeError: If no reliability metric files with deviation scores are</span>
+<span class="sd">            found (i.e. ``compute_dev_scores`` has not been run yet).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">cb</span> <span class="o">=</span> <span class="n">log_callback</span>
+    <span class="n">subject_dir</span> <span class="o">=</span> <span class="n">subjects_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">reliability_dir</span> <span class="o">=</span> <span class="n">subject_dir</span> <span class="o">/</span> <span class="s2">&quot;reliability_metrics&quot;</span>
+
+    <span class="n">all_rankings</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">rel_file</span> <span class="ow">in</span> <span class="n">reliability_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;*_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">):</span>
+        <span class="n">df_r</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">rel_file</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;deviation&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df_r</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df_r</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;deviation&quot;</span><span class="p">]</span>
+            <span class="n">icc</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;icc&quot;</span><span class="p">]</span>
+            <span class="n">snr</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;snr&quot;</span><span class="p">]</span>
+            <span class="n">dr</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;dynamic_range&quot;</span><span class="p">]</span>
+            <span class="n">stat</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;stationarity&quot;</span><span class="p">]</span>
+            <span class="n">abs_z</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+            <span class="n">meets</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">abs_z</span> <span class="o">&gt;=</span> <span class="mf">1.5</span> <span class="ow">and</span> <span class="n">icc</span> <span class="o">&gt;=</span> <span class="mf">0.6</span> <span class="ow">and</span> <span class="n">snr</span> <span class="o">&gt;=</span> <span class="mf">2.0</span> <span class="ow">and</span> <span class="n">dr</span> <span class="o">&gt;=</span> <span class="mf">0.3</span><span class="p">)</span>
+            <span class="n">score</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="mf">0.30</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="n">abs_z</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+                <span class="o">+</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">icc</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">)</span>
+                <span class="o">+</span> <span class="mf">0.20</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="n">snr</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+                <span class="o">+</span> <span class="mf">0.15</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="n">dr</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+                <span class="o">+</span> <span class="mf">0.10</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="n">stat</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">all_rankings</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;feature_name&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;feature_name&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;feature_type&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;feature_type&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;z_score&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">z</span><span class="p">),</span>
+                <span class="s2">&quot;icc&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">icc</span><span class="p">),</span>
+                <span class="s2">&quot;snr&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">snr</span><span class="p">),</span>
+                <span class="s2">&quot;dynamic_range&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">dr</span><span class="p">),</span>
+                <span class="s2">&quot;stationarity&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">stat</span><span class="p">),</span>
+                <span class="s2">&quot;composite_score&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">score</span><span class="p">),</span>
+                <span class="s2">&quot;meets_criteria&quot;</span><span class="p">:</span> <span class="n">meets</span><span class="p">,</span>
+            <span class="p">})</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">all_rankings</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;No ranked features found. Run analysis first.&quot;</span><span class="p">)</span>
+
+    <span class="n">df_ranked</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">all_rankings</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+        <span class="s2">&quot;composite_score&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df_ranked</span><span class="p">[</span><span class="s2">&quot;rank&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_ranked</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">viable</span> <span class="o">=</span> <span class="n">df_ranked</span><span class="p">[</span><span class="n">df_ranked</span><span class="p">[</span><span class="s2">&quot;meets_criteria&quot;</span><span class="p">]]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">viable</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">selected</span> <span class="o">=</span> <span class="n">viable</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+        <span class="n">backups</span> <span class="o">=</span> <span class="n">viable</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;success&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Selected </span><span class="si">{</span><span class="n">selected</span><span class="p">[</span><span class="s1">&#39;feature_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (score=</span><span class="si">{</span><span class="n">selected</span><span class="p">[</span><span class="s1">&#39;composite_score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">selected</span> <span class="o">=</span> <span class="n">df_ranked</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+        <span class="n">backups</span> <span class="o">=</span> <span class="n">df_ranked</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;relaxed_criteria&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;No feature met all criteria; using best available: </span><span class="si">{</span><span class="n">selected</span><span class="p">[</span><span class="s1">&#39;feature_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="n">_log</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+
+    <span class="n">out_dir</span> <span class="o">=</span> <span class="n">subject_dir</span> <span class="o">/</span> <span class="s2">&quot;nf_selection&quot;</span>
+    <span class="n">out_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df_ranked</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;feature_ranking_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">report</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;subject_id&quot;</span><span class="p">:</span> <span class="n">subject_id</span><span class="p">,</span>
+        <span class="s2">&quot;visit&quot;</span><span class="p">:</span> <span class="n">visit</span><span class="p">,</span>
+        <span class="s2">&quot;selection_status&quot;</span><span class="p">:</span> <span class="n">status</span><span class="p">,</span>
+        <span class="s2">&quot;selection_message&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="p">,</span>
+        <span class="s2">&quot;selected_feature&quot;</span><span class="p">:</span> <span class="n">selected</span><span class="p">,</span>
+        <span class="s2">&quot;backup_features&quot;</span><span class="p">:</span> <span class="n">backups</span><span class="p">,</span>
+        <span class="s2">&quot;n_features_evaluated&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_ranked</span><span class="p">),</span>
+        <span class="s2">&quot;n_features_meeting_criteria&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">viable</span><span class="p">),</span>
+        <span class="s2">&quot;ranking_table&quot;</span><span class="p">:</span> <span class="n">df_ranked</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># persist JSON (without ranking_table)</span>
+    <span class="n">json_rep</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s2">&quot;ranking_table&quot;</span><span class="p">}</span>
+    <span class="n">json_rep</span><span class="p">[</span><span class="s2">&quot;selected_feature&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">k</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">))</span> <span class="k">else</span> <span class="n">v</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">selected</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="p">}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;selection_report_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">json_rep</span><span class="p">,</span> <span class="n">fh</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">report</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Stage 6 – HTML report</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="generate_selection_report_html">
+<a class="viewcode-back" href="../../generated/pipeline.analysis.generate_selection_report_html.html#pipeline.analysis.generate_selection_report_html">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_selection_report_html</span><span class="p">(</span><span class="n">report_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">subjects_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a PNG summary figure and a self-contained HTML report for feature selection.</span>
+
+<span class="sd">    Creates four matplotlib panels (top-20 bar chart, selected-feature metric</span>
+<span class="sd">    comparison, score histogram, and ICC vs SNR scatter) saved as a PNG, and</span>
+<span class="sd">    wraps them in a styled HTML page with a ranked top-10 table.  Both files</span>
+<span class="sd">    are written to::</span>
+
+<span class="sd">        &lt;subjects_dir&gt;/sub-&lt;id&gt;/nf_selection/selection_report_v&lt;visit&gt;.{png,html}</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        report_dict: Output dict from ``rank_features()``, containing at minimum</span>
+<span class="sd">            ``subject_id``, ``visit``, ``selected_feature``, ``backup_features``,</span>
+<span class="sd">            and ``ranking_table``.</span>
+<span class="sd">        subjects_dir: Root directory containing all ``sub-*`` folders.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Path to the saved HTML report file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sid</span> <span class="o">=</span> <span class="n">report_dict</span><span class="p">[</span><span class="s2">&quot;subject_id&quot;</span><span class="p">]</span>
+    <span class="n">visit</span> <span class="o">=</span> <span class="n">report_dict</span><span class="p">[</span><span class="s2">&quot;visit&quot;</span><span class="p">]</span>
+    <span class="n">out_dir</span> <span class="o">=</span> <span class="n">subjects_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">sid</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">/</span> <span class="s2">&quot;nf_selection&quot;</span>
+    <span class="n">out_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">selected</span> <span class="o">=</span> <span class="n">report_dict</span><span class="p">[</span><span class="s2">&quot;selected_feature&quot;</span><span class="p">]</span>
+    <span class="n">backups</span> <span class="o">=</span> <span class="n">report_dict</span><span class="p">[</span><span class="s2">&quot;backup_features&quot;</span><span class="p">]</span>
+    <span class="n">df_ranked</span> <span class="o">=</span> <span class="n">report_dict</span><span class="p">[</span><span class="s2">&quot;ranking_table&quot;</span><span class="p">]</span>
+
+    <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Feature Selection: </span><span class="si">{</span><span class="n">sid</span><span class="si">}</span><span class="s2"> — Visit </span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Top-20 bar</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">top20</span> <span class="o">=</span> <span class="n">df_ranked</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;#2ecc71&quot;</span> <span class="k">if</span> <span class="n">m</span> <span class="k">else</span> <span class="s2">&quot;#e74c3c&quot;</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">top20</span><span class="p">[</span><span class="s2">&quot;meets_criteria&quot;</span><span class="p">]]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">top20</span><span class="p">)),</span> <span class="n">top20</span><span class="p">[</span><span class="s2">&quot;composite_score&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">top20</span><span class="p">)))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">top20</span><span class="p">[</span><span class="s2">&quot;feature_name&quot;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Composite Score&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Top 20 Features&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">Patch</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;#2ecc71&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Meets criteria&quot;</span><span class="p">),</span>
+        <span class="n">Patch</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;#e74c3c&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Below threshold&quot;</span><span class="p">),</span>
+    <span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+    <span class="c1"># Selected feature metrics</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;z_score&quot;</span><span class="p">,</span> <span class="s2">&quot;icc&quot;</span><span class="p">,</span> <span class="s2">&quot;snr&quot;</span><span class="p">,</span> <span class="s2">&quot;dynamic_range&quot;</span><span class="p">,</span> <span class="s2">&quot;stationarity&quot;</span><span class="p">]</span>
+    <span class="n">thresholds</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">metrics</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="n">selected</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#3498db&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">thresholds</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Threshold&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s2">&quot;Z-score&quot;</span><span class="p">,</span> <span class="s2">&quot;ICC&quot;</span><span class="p">,</span> <span class="s2">&quot;SNR&quot;</span><span class="p">,</span> <span class="s2">&quot;Dyn. Range&quot;</span><span class="p">,</span> <span class="s2">&quot;Stationarity&quot;</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Selected: </span><span class="si">{</span><span class="n">selected</span><span class="p">[</span><span class="s1">&#39;feature_name&#39;</span><span class="p">][:</span><span class="mi">30</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="c1"># Histogram</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df_ranked</span><span class="p">[</span><span class="s2">&quot;composite_score&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#95a5a6&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">selected</span><span class="p">[</span><span class="s2">&quot;composite_score&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#2ecc71&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Selected&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">backups</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="s2">&quot;composite_score&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#f39c12&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Composite Score&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Count&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Distribution of Scores&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="c1"># ICC vs SNR scatter</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">sc</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_ranked</span><span class="p">[</span><span class="s2">&quot;icc&quot;</span><span class="p">],</span> <span class="n">df_ranked</span><span class="p">[</span><span class="s2">&quot;snr&quot;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">df_ranked</span><span class="p">[</span><span class="s2">&quot;composite_score&quot;</span><span class="p">],</span>
+                    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">selected</span><span class="p">[</span><span class="s2">&quot;icc&quot;</span><span class="p">],</span> <span class="n">selected</span><span class="p">[</span><span class="s2">&quot;snr&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#2ecc71&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span>
+               <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Selected&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;ICC&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;SNR&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Feature Space&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Composite Score&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">png_path</span> <span class="o">=</span> <span class="n">out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;selection_report_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.png&quot;</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">png_path</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+
+    <span class="n">html</span> <span class="o">=</span> <span class="n">_build_html_report</span><span class="p">(</span><span class="n">report_dict</span><span class="p">,</span> <span class="n">visit</span><span class="p">)</span>
+    <span class="n">html_path</span> <span class="o">=</span> <span class="n">out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;selection_report_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.html&quot;</span>
+    <span class="n">html_path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Selection report saved to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">html_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">html_path</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_build_html_report</span><span class="p">(</span><span class="n">report_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">visit</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">sid</span> <span class="o">=</span> <span class="n">report_dict</span><span class="p">[</span><span class="s2">&quot;subject_id&quot;</span><span class="p">]</span>
+    <span class="n">selected</span> <span class="o">=</span> <span class="n">report_dict</span><span class="p">[</span><span class="s2">&quot;selected_feature&quot;</span><span class="p">]</span>
+    <span class="n">backups</span> <span class="o">=</span> <span class="n">report_dict</span><span class="p">[</span><span class="s2">&quot;backup_features&quot;</span><span class="p">]</span>
+    <span class="n">df_ranked</span> <span class="o">=</span> <span class="n">report_dict</span><span class="p">[</span><span class="s2">&quot;ranking_table&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_class</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">good_thresh</span><span class="p">,</span> <span class="n">bad_thresh</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">bad_thresh</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">val</span> <span class="o">&lt;</span> <span class="n">bad_thresh</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;bad&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;good&quot;</span> <span class="k">if</span> <span class="n">val</span> <span class="o">&gt;=</span> <span class="n">good_thresh</span> <span class="k">else</span> <span class="s2">&quot;warning&quot;</span>
+
+    <span class="n">rows_html</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df_ranked</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">rows_html</span> <span class="o">+=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;&lt;tr&gt;&lt;td&gt;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">&lt;/td&gt;&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;&lt;td&gt;&lt;b&gt;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;feature_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/b&gt;&lt;/td&gt;&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;&lt;td&gt;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;feature_type&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/td&gt;&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;&lt;td&gt;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;composite_score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&lt;/td&gt;&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;&lt;td&gt;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;z_score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&lt;/td&gt;&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;&lt;td&gt;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;icc&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&lt;/td&gt;&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;&lt;td&gt;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;snr&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&lt;/td&gt;&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;&lt;td&gt;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;dynamic_range&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&lt;/td&gt;&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;&lt;td&gt;</span><span class="si">{</span><span class="s1">&#39;✓&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;meets_criteria&#39;</span><span class="p">]</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;✗&#39;</span><span class="si">}</span><span class="s2">&lt;/td&gt;&lt;/tr&gt;&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">backup_html</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">backups</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">backup_html</span> <span class="o">+=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;&lt;div style=&#39;margin:10px 0;padding:10px;background:#ecf0f1;border-radius:5px;&#39;&gt;&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">b</span><span class="p">[</span><span class="s1">&#39;feature_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/b&gt; &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;(Score:</span><span class="si">{</span><span class="n">b</span><span class="p">[</span><span class="s1">&#39;composite_score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> Z:</span><span class="si">{</span><span class="n">b</span><span class="p">[</span><span class="s1">&#39;z_score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> ICC:</span><span class="si">{</span><span class="n">b</span><span class="p">[</span><span class="s1">&#39;icc&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&lt;/div&gt;&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;&lt;!DOCTYPE html&gt;</span>
+<span class="s2">&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;</span>
+<span class="s2">&lt;title&gt;NF Feature Selection — </span><span class="si">{</span><span class="n">sid</span><span class="si">}</span><span class="s2">&lt;/title&gt;</span>
+<span class="s2">&lt;style&gt;</span>
+<span class="s2">body</span><span class="se">{{</span><span class="s2">font-family:Arial,sans-serif;max-width:1200px;margin:40px auto;padding:20px;background:#f5f5f5</span><span class="se">}}</span>
+<span class="s2">.header</span><span class="se">{{</span><span class="s2">background:linear-gradient(135deg,#667eea,#764ba2);color:white;padding:30px;border-radius:10px;margin-bottom:20px</span><span class="se">}}</span>
+<span class="s2">.card</span><span class="se">{{</span><span class="s2">background:white;padding:20px;border-radius:10px;margin:20px 0;box-shadow:0 2px 10px rgba(0,0,0,.1)</span><span class="se">}}</span>
+<span class="s2">.good</span><span class="se">{{</span><span class="s2">color:#2ecc71</span><span class="se">}}</span><span class="s2">.warning</span><span class="se">{{</span><span class="s2">color:#f39c12</span><span class="se">}}</span><span class="s2">.bad</span><span class="se">{{</span><span class="s2">color:#e74c3c</span><span class="se">}}</span>
+<span class="s2">table</span><span class="se">{{</span><span class="s2">width:100%;border-collapse:collapse</span><span class="se">}}</span>
+<span class="s2">th,td</span><span class="se">{{</span><span class="s2">padding:10px;text-align:left;border-bottom:1px solid #ddd</span><span class="se">}}</span>
+<span class="s2">th</span><span class="se">{{</span><span class="s2">background:#667eea;color:white</span><span class="se">}}</span>
+<span class="s2">img</span><span class="se">{{</span><span class="s2">width:100%;border-radius:10px;margin:10px 0</span><span class="se">}}</span>
+<span class="s2">&lt;/style&gt;&lt;/head&gt;</span>
+<span class="s2">&lt;body&gt;</span>
+<span class="s2">&lt;div class=&quot;header&quot;&gt;&lt;h1&gt;Neurofeedback Feature Selection&lt;/h1&gt;&lt;h2&gt;</span><span class="si">{</span><span class="n">sid</span><span class="si">}</span><span class="s2"> — Visit </span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">&lt;/h2&gt;&lt;/div&gt;</span>
+<span class="s2">&lt;div class=&quot;card&quot;&gt;</span>
+<span class="s2">  &lt;h2&gt;Selected Feature&lt;/h2&gt;&lt;h3&gt;</span><span class="si">{</span><span class="n">selected</span><span class="p">[</span><span class="s1">&#39;feature_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/h3&gt;</span>
+<span class="s2">  &lt;p&gt;&lt;em&gt;</span><span class="si">{</span><span class="n">selected</span><span class="p">[</span><span class="s1">&#39;feature_type&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/em&gt;&lt;/p&gt;</span>
+<span class="s2">  &lt;span class=&quot;</span><span class="si">{</span><span class="n">_class</span><span class="p">(</span><span class="n">selected</span><span class="p">[</span><span class="s1">&#39;composite_score&#39;</span><span class="p">],</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.4</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;&gt;Score: </span><span class="si">{</span><span class="n">selected</span><span class="p">[</span><span class="s1">&#39;composite_score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&lt;/span&gt; &amp;nbsp;</span>
+<span class="s2">  &lt;span class=&quot;</span><span class="si">{</span><span class="n">_class</span><span class="p">(</span><span class="n">selected</span><span class="p">[</span><span class="s1">&#39;z_score&#39;</span><span class="p">],</span><span class="mf">1.5</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;&gt;Z: </span><span class="si">{</span><span class="n">selected</span><span class="p">[</span><span class="s1">&#39;z_score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&lt;/span&gt; &amp;nbsp;</span>
+<span class="s2">  &lt;span class=&quot;</span><span class="si">{</span><span class="n">_class</span><span class="p">(</span><span class="n">selected</span><span class="p">[</span><span class="s1">&#39;icc&#39;</span><span class="p">],</span><span class="mf">0.6</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;&gt;ICC: </span><span class="si">{</span><span class="n">selected</span><span class="p">[</span><span class="s1">&#39;icc&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&lt;/span&gt; &amp;nbsp;</span>
+<span class="s2">  &lt;span class=&quot;</span><span class="si">{</span><span class="n">_class</span><span class="p">(</span><span class="n">selected</span><span class="p">[</span><span class="s1">&#39;snr&#39;</span><span class="p">],</span><span class="mf">2.0</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;&gt;SNR: </span><span class="si">{</span><span class="n">selected</span><span class="p">[</span><span class="s1">&#39;snr&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&lt;/span&gt; &amp;nbsp;</span>
+<span class="s2">  &lt;span class=&quot;</span><span class="si">{</span><span class="n">_class</span><span class="p">(</span><span class="n">selected</span><span class="p">[</span><span class="s1">&#39;dynamic_range&#39;</span><span class="p">],</span><span class="mf">0.3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;&gt;DR: </span><span class="si">{</span><span class="n">selected</span><span class="p">[</span><span class="s1">&#39;dynamic_range&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&lt;/span&gt;</span>
+<span class="s2">&lt;/div&gt;</span>
+<span class="s2">&lt;div class=&quot;card&quot;&gt;&lt;h2&gt;Backup Features&lt;/h2&gt;</span><span class="si">{</span><span class="n">backup_html</span><span class="si">}</span><span class="s2">&lt;/div&gt;</span>
+<span class="s2">&lt;div class=&quot;card&quot;&gt;&lt;h2&gt;Visualisation&lt;/h2&gt;</span>
+<span class="s2">  &lt;img src=&quot;selection_report_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.png&quot; alt=&quot;Feature selection plots&quot;&gt;&lt;/div&gt;</span>
+<span class="s2">&lt;div class=&quot;card&quot;&gt;&lt;h2&gt;Top 10&lt;/h2&gt;</span>
+<span class="s2">&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Rank&lt;/th&gt;&lt;th&gt;Feature&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Score&lt;/th&gt;</span>
+<span class="s2">&lt;th&gt;Z&lt;/th&gt;&lt;th&gt;ICC&lt;/th&gt;&lt;th&gt;SNR&lt;/th&gt;&lt;th&gt;DR&lt;/th&gt;&lt;th&gt;OK&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;</span>
+<span class="s2">&lt;tbody&gt;</span><span class="si">{</span><span class="n">rows_html</span><span class="si">}</span><span class="s2">&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;</span>
+<span class="s2">&lt;/body&gt;&lt;/html&gt;&quot;&quot;&quot;</span>
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Stage 7 – cross-session tracking</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="track_feature_across_sessions">
+<a class="viewcode-back" href="../../generated/pipeline.analysis.track_feature_across_sessions.html#pipeline.analysis.track_feature_across_sessions">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">track_feature_across_sessions</span><span class="p">(</span>
+    <span class="n">subject_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">subjects_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">current_visit</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">log_callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compare the stability of the primary selected feature across visits.</span>
+
+<span class="sd">    Loads all available selection report JSONs up to *current_visit* and checks</span>
+<span class="sd">    whether the feature chosen at visit 1 remains reliable (ICC std &lt; 0.15 or</span>
+<span class="sd">    SNR std &lt; 1.0) in subsequent recordings.  Based on the latest metrics it</span>
+<span class="sd">    returns a ``MAINTAIN`` or ``SWITCH`` recommendation.</span>
+
+<span class="sd">    A tracking CSV is written to::</span>
+
+<span class="sd">        &lt;subjects_dir&gt;/sub-&lt;id&gt;/nf_selection/feature_tracking_through_v&lt;visit&gt;.csv</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subject_id: Four-letter subject identifier.</span>
+<span class="sd">        subjects_dir: Root directory containing all ``sub-*`` folders.</span>
+<span class="sd">        current_visit: The visit number being evaluated.</span>
+<span class="sd">        log_callback: Optional callable for GUI log forwarding.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict with keys ``decision`` (``&quot;MAINTAIN&quot;`` or ``&quot;SWITCH&quot;``),</span>
+<span class="sd">        ``message``, and ``primary_feature``, or ``None`` if fewer than two</span>
+<span class="sd">        visit reports are available.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">cb</span> <span class="o">=</span> <span class="n">log_callback</span>
+    <span class="n">sel_dir</span> <span class="o">=</span> <span class="n">subjects_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">/</span> <span class="s2">&quot;nf_selection&quot;</span>
+
+    <span class="n">reports</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">current_visit</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">jp</span> <span class="o">=</span> <span class="n">sel_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;selection_report_v</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">.json&quot;</span>
+        <span class="k">if</span> <span class="n">jp</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">jp</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+                <span class="n">reports</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fh</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">reports</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">primary</span> <span class="o">=</span> <span class="n">reports</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;selected_feature&quot;</span><span class="p">][</span><span class="s2">&quot;feature_name&quot;</span><span class="p">]</span>
+    <span class="n">tracking</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">rep</span> <span class="ow">in</span> <span class="n">reports</span><span class="p">:</span>
+        <span class="n">vn</span> <span class="o">=</span> <span class="n">rep</span><span class="p">[</span><span class="s2">&quot;visit&quot;</span><span class="p">]</span>
+        <span class="n">rp</span> <span class="o">=</span> <span class="n">sel_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;feature_ranking_v</span><span class="si">{</span><span class="n">vn</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">rp</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">continue</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">rp</span><span class="p">)</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;feature_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">primary</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+            <span class="n">tracking</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;visit&quot;</span><span class="p">:</span> <span class="n">vn</span><span class="p">,</span> <span class="o">**</span><span class="n">row</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()})</span>
+
+    <span class="n">df_track</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tracking</span><span class="p">)</span>
+    <span class="n">icc_stable</span> <span class="o">=</span> <span class="n">df_track</span><span class="p">[</span><span class="s2">&quot;icc&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.15</span>
+    <span class="n">snr_stable</span> <span class="o">=</span> <span class="n">df_track</span><span class="p">[</span><span class="s2">&quot;snr&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">1.0</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">df_track</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">cur</span><span class="p">[</span><span class="s2">&quot;meets_criteria&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="p">(</span><span class="n">icc_stable</span> <span class="ow">or</span> <span class="n">snr_stable</span><span class="p">):</span>
+        <span class="n">decision</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;MAINTAIN&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Continue training </span><span class="si">{</span><span class="n">primary</span><span class="si">}</span><span class="s2"> — stable and reliable.&quot;</span>
+    <span class="k">elif</span> <span class="n">cur</span><span class="p">[</span><span class="s2">&quot;snr&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">1.5</span><span class="p">:</span>
+        <span class="n">decision</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;SWITCH&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;SNR dropped (</span><span class="si">{</span><span class="n">cur</span><span class="p">[</span><span class="s1">&#39;snr&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">) — consider switching target.&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">decision</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;MAINTAIN&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Continue with </span><span class="si">{</span><span class="n">primary</span><span class="si">}</span><span class="s2"> despite variability.&quot;</span>
+
+    <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cross-session decision: </span><span class="si">{</span><span class="n">decision</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+    <span class="n">df_track</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">sel_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;feature_tracking_through_v</span><span class="si">{</span><span class="n">current_visit</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;decision&quot;</span><span class="p">:</span> <span class="n">decision</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="p">,</span> <span class="s2">&quot;primary_feature&quot;</span><span class="p">:</span> <span class="n">primary</span><span class="p">}</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Convenience: run the full offline analysis pipeline</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="run_full_analysis">
+<a class="viewcode-back" href="../../generated/pipeline.run_full_analysis.html#pipeline.analysis.run_full_analysis">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_full_analysis</span><span class="p">(</span>
+    <span class="n">subject_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">sex</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">visit</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">subjects_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">models_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">site</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;zuerich&quot;</span><span class="p">,</span>
+    <span class="n">log_callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the complete offline analysis pipeline in a single call.</span>
+
+<span class="sd">    Sequentially executes:</span>
+<span class="sd">    1. ``preprocess_baseline`` — filter, re-reference, AutoReject.</span>
+<span class="sd">    2. ``extract_features`` — band-power and coherence CSVs.</span>
+<span class="sd">    3. ``compute_dev_scores`` — normative deviation Z-scores via pcntoolkit.</span>
+<span class="sd">    4. ``rank_features`` — composite scoring and NF target selection.</span>
+<span class="sd">    5. ``generate_selection_report_html`` — PNG + HTML report.</span>
+<span class="sd">    6. ``track_feature_across_sessions`` (visits &gt; 1 only).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subject_id: Four-letter subject identifier.</span>
+<span class="sd">        age: Subject age in years.</span>
+<span class="sd">        sex: ``&quot;M&quot;`` or ``&quot;F&quot;``.</span>
+<span class="sd">        visit: Integer visit number.</span>
+<span class="sd">        subjects_dir: Root directory containing all ``sub-*`` folders.</span>
+<span class="sd">        models_dir: Directory containing pre-trained normative models.</span>
+<span class="sd">        site: Acquisition site label for batch-effect correction.</span>
+<span class="sd">        log_callback: Optional callable for GUI log forwarding.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: The selection report as returned by ``rank_features()``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">cb</span> <span class="o">=</span> <span class="n">log_callback</span>
+    <span class="n">epochs</span> <span class="o">=</span> <span class="n">preprocess_baseline</span><span class="p">(</span><span class="n">subject_id</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">subjects_dir</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+    <span class="n">extract_features</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">subject_id</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">subjects_dir</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+    <span class="n">compute_dev_scores</span><span class="p">(</span><span class="n">subject_id</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">sex</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">subjects_dir</span><span class="p">,</span> <span class="n">models_dir</span><span class="p">,</span> <span class="n">site</span><span class="o">=</span><span class="n">site</span><span class="p">,</span> <span class="n">log_callback</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
+    <span class="n">report</span> <span class="o">=</span> <span class="n">rank_features</span><span class="p">(</span><span class="n">subject_id</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">subjects_dir</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+    <span class="n">generate_selection_report_html</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">subjects_dir</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">visit</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">track_feature_across_sessions</span><span class="p">(</span><span class="n">subject_id</span><span class="p">,</span> <span class="n">subjects_dir</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">report</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Quick feature metrics (used by SessionManager for sessions 2–4)</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="compute_quick_feature_metrics">
+<a class="viewcode-back" href="../../generated/pipeline.compute_quick_feature_metrics.html#pipeline.analysis.compute_quick_feature_metrics">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_quick_feature_metrics</span><span class="p">(</span>
+    <span class="n">subject_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">visit</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">subjects_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">feature_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">log_callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute SNR, ICC, and dynamic range for a single sensor-power feature.</span>
+
+<span class="sd">    Preprocesses the quick baseline recording for *visit* via</span>
+<span class="sd">    ``preprocess_baseline``, then computes band-power epochs for the channel</span>
+<span class="sd">    and band encoded in *feature_name* (e.g. ``&quot;Cz_alpha_0&quot;``).  This is</span>
+<span class="sd">    intended for the fast per-session quality check in sessions 2–4 where</span>
+<span class="sd">    running the full feature extraction pipeline is too slow.</span>
+
+<span class="sd">    Only sensor-space band-power features are supported.  Connectivity features</span>
+<span class="sd">    (``&quot;_vs_&quot;`` in name) and source-space labels (``&quot;-lh&quot;``/``&quot;-rh&quot;`` in</span>
+<span class="sd">    channel) raise ``ValueError``.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subject_id: Four-letter subject identifier.</span>
+<span class="sd">        visit: Integer visit number of the quick baseline to analyse.</span>
+<span class="sd">        subjects_dir: Root directory containing all ``sub-*`` folders.</span>
+<span class="sd">        feature_name: Full feature name in ``&lt;channel&gt;_&lt;band&gt;`` format, e.g.</span>
+<span class="sd">            ``&quot;Cz_alpha_0&quot;``.  The band suffix must match a key in ``BAND_MAP``.</span>
+<span class="sd">        log_callback: Optional callable for GUI log forwarding.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict with keys ``snr`` (float), ``icc`` (float), ``dynamic_range``</span>
+<span class="sd">        (float).</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If *feature_name* cannot be parsed, or if it encodes a</span>
+<span class="sd">            connectivity or source-space feature.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.session</span><span class="w"> </span><span class="kn">import</span> <span class="n">BAND_MAP</span>
+    <span class="n">cb</span> <span class="o">=</span> <span class="n">log_callback</span>
+
+    <span class="c1"># Parse band from feature_name</span>
+    <span class="n">band_name</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">frange</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">bname</span><span class="p">,</span> <span class="n">fr</span> <span class="ow">in</span> <span class="n">BAND_MAP</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">feature_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;_</span><span class="si">{</span><span class="n">bname</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">):</span>
+            <span class="n">band_name</span> <span class="o">=</span> <span class="n">bname</span>
+            <span class="n">frange</span> <span class="o">=</span> <span class="n">fr</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="n">feature_name</span><span class="p">[:</span> <span class="o">-</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bname</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+            <span class="k">break</span>
+
+    <span class="k">if</span> <span class="n">band_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Cannot parse band from feature name &#39;</span><span class="si">{</span><span class="n">feature_name</span><span class="si">}</span><span class="s2">&#39;. &quot;</span>
+            <span class="s2">&quot;Quick metrics only support sensor-band features (e.g. &#39;Cz_alpha_0&#39;).&quot;</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Connectivity and source features are not supported for quick recomputation</span>
+    <span class="k">if</span> <span class="s2">&quot;_vs_&quot;</span> <span class="ow">in</span> <span class="n">feature_name</span> <span class="ow">or</span> <span class="s2">&quot;-lh&quot;</span> <span class="ow">in</span> <span class="n">channel</span> <span class="ow">or</span> <span class="s2">&quot;-rh&quot;</span> <span class="ow">in</span> <span class="n">channel</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Quick metrics not supported for connectivity/source feature &#39;</span><span class="si">{</span><span class="n">feature_name</span><span class="si">}</span><span class="s2">&#39;.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[quick_metrics] Preprocessing quick baseline (visit </span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">) ...&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+    <span class="n">epochs</span> <span class="o">=</span> <span class="n">preprocess_baseline</span><span class="p">(</span><span class="n">subject_id</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">subjects_dir</span><span class="p">,</span> <span class="n">log_callback</span><span class="p">)</span>
+
+    <span class="n">epochs</span><span class="o">.</span><span class="n">pick_types</span><span class="p">(</span><span class="n">eeg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ch_names</span> <span class="o">=</span> <span class="n">epochs</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;ch_names&quot;</span><span class="p">]</span>
+    <span class="c1"># Case-insensitive channel lookup</span>
+    <span class="n">ch_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="o">.</span><span class="n">upper</span><span class="p">():</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ch_names</span><span class="p">}</span>
+    <span class="n">ch_key</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ch_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ch_map</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Channel &#39;</span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s2">&#39; not found in recording &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;(available: </span><span class="si">{</span><span class="n">ch_names</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2"> ...).&quot;</span>
+        <span class="p">)</span>
+    <span class="n">ch_actual</span> <span class="o">=</span> <span class="n">ch_map</span><span class="p">[</span><span class="n">ch_key</span><span class="p">]</span>
+    <span class="n">ch_idx</span> <span class="o">=</span> <span class="n">ch_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">ch_actual</span><span class="p">)</span>
+
+    <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[quick_metrics] Computing </span><span class="si">{</span><span class="n">band_name</span><span class="si">}</span><span class="s2"> power for </span><span class="si">{</span><span class="n">ch_actual</span><span class="si">}</span><span class="s2"> ...&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">)</span>
+    <span class="n">psd_data</span><span class="p">,</span> <span class="n">freqs</span> <span class="o">=</span> <span class="n">epochs</span><span class="o">.</span><span class="n">compute_psd</span><span class="p">(</span>
+        <span class="n">fmin</span><span class="o">=</span><span class="n">frange</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fmax</span><span class="o">=</span><span class="n">frange</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">return_freqs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">freqs</span> <span class="o">&gt;=</span> <span class="n">frange</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">freqs</span> <span class="o">&lt;=</span> <span class="n">frange</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">bp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">psd_data</span><span class="p">[:,</span> <span class="n">ch_idx</span><span class="p">,</span> <span class="n">mask</span><span class="p">],</span> <span class="n">freqs</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">mean_val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bp</span><span class="p">))</span>
+    <span class="n">std_val</span>  <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">bp</span><span class="p">))</span>
+    <span class="n">snr</span>      <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">mean_val</span><span class="p">)</span> <span class="o">/</span> <span class="n">std_val</span> <span class="k">if</span> <span class="n">std_val</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+    <span class="n">p10</span><span class="p">,</span> <span class="n">p90</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">bp</span><span class="p">,</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">90</span><span class="p">])</span>
+    <span class="n">med</span>      <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">bp</span><span class="p">))</span>
+    <span class="n">dr</span>       <span class="o">=</span> <span class="nb">float</span><span class="p">((</span><span class="n">p90</span> <span class="o">-</span> <span class="n">p10</span><span class="p">)</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">med</span><span class="p">))</span> <span class="k">if</span> <span class="n">med</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bp</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">spearmanr</span>
+        <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+            <span class="n">r</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">spearmanr</span><span class="p">(</span><span class="n">bp</span><span class="p">[:</span><span class="n">n</span><span class="p">],</span> <span class="n">bp</span><span class="p">[</span><span class="n">n</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span><span class="p">])</span>
+        <span class="n">icc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">r</span><span class="p">))</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">else</span> <span class="mf">0.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">icc</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="n">_log</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;[quick_metrics] </span><span class="si">{</span><span class="n">ch_actual</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">band_name</span><span class="si">}</span><span class="s2">: &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;SNR=</span><span class="si">{</span><span class="n">snr</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">  ICC=</span><span class="si">{</span><span class="n">icc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">  DR=</span><span class="si">{</span><span class="n">dr</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">cb</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;snr&quot;</span><span class="p">:</span> <span class="n">snr</span><span class="p">,</span> <span class="s2">&quot;icc&quot;</span><span class="p">:</span> <span class="n">icc</span><span class="p">,</span> <span class="s2">&quot;dynamic_range&quot;</span><span class="p">:</span> <span class="n">dr</span><span class="p">}</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Payam S. Shabestari.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

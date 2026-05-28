@@ -1,0 +1,17 @@
+/* ANTARES docs — minor visual tweaks on top of pydata_sphinx_theme */
+
+/* Tighten the top navbar height */
+.bd-header { padding-top: 0.4rem; padding-bottom: 0.4rem; }
+
+/* Make autosummary tables slightly more compact */
+table.autosummary td { padding: 4px 8px; }
+
+/* Slightly wider content area */
+.bd-content { max-width: 960px; }
+
+/* Parameter / returns tables rendered by napoleon */
+.field-list th { white-space: nowrap; }
+
+/* Inline code styling — match MNE */
+code.literal { background: #f0f4f8; border-radius: 3px;
+               padding: 1px 4px; font-size: 0.88em; }

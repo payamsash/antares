@@ -1,0 +1,48 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment directories
+env/
+venv/
+.venv/
+
+# Distribution/Packaging
+.Python
+build/
+dist/
+*.egg-info/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage results
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.py,cover
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore Java crash logs
+hs_err_pid*.log
+
+# macOS files
+.DS_Store
+
+# IDE/Editor specific files
+.vscode/
+.idea/
+
+# Linting and profiling tools
+.mypy_cache/
+.pyre/
+.pytype/
+.pylint.d/
+
+recordings/

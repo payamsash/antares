@@ -1,0 +1,19 @@
+name: rspv
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10.9
+  - numpy
+  - pip  
+  - matplotlib
+  - mne
+  - opencv
+  - keyboard
+  - pip:
+    - bsl
+    - py5
+    - python-osc
+    - trimesh[easy]
+
+
+

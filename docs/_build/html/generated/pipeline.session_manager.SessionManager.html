@@ -1,0 +1,655 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>pipeline.session_manager.SessionManager &#8212; ANTARES</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=cfa8fc7b" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'generated/pipeline.session_manager.SessionManager';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pipeline.triggers.SerialTrigger" href="pipeline.triggers.SerialTrigger.html" />
+    <link rel="prev" title="pipeline.session.run_nf_session" href="pipeline.session.run_nf_session.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ANTARES</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide.html">
+    ANTARES User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide.html">
+    ANTARES User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pipeline.get_user_info.html">pipeline.get_user_info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.compute_pta.html">pipeline.compute_pta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.run_baseline.html">pipeline.run_baseline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.run_full_analysis.html">pipeline.run_full_analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.compute_quick_feature_metrics.html">pipeline.compute_quick_feature_metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.run_nf_session.html">pipeline.run_nf_session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.SessionManager.html">pipeline.SessionManager</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pipeline.analysis.preprocess_baseline.html">pipeline.analysis.preprocess_baseline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.analysis.extract_features.html">pipeline.analysis.extract_features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.analysis.compute_reliability_metrics.html">pipeline.analysis.compute_reliability_metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.analysis.compute_dev_scores.html">pipeline.analysis.compute_dev_scores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.analysis.rank_features.html">pipeline.analysis.rank_features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.analysis.generate_selection_report_html.html">pipeline.analysis.generate_selection_report_html</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.analysis.track_feature_across_sessions.html">pipeline.analysis.track_feature_across_sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.analysis.run_full_analysis.html">pipeline.analysis.run_full_analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.analysis.compute_quick_feature_metrics.html">pipeline.analysis.compute_quick_feature_metrics</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pipeline.session.BlockScheduler.html">pipeline.session.BlockScheduler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.session.RspvOSCSender.html">pipeline.session.RspvOSCSender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.session.BlockAwareOSCSender.html">pipeline.session.BlockAwareOSCSender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.session.create_protocol.html">pipeline.session.create_protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.session.parse_feature_name.html">pipeline.session.parse_feature_name</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.session.create_nf_yaml.html">pipeline.session.create_nf_yaml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.session.save_session_metadata.html">pipeline.session.save_session_metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.session.run_nf_session.html">pipeline.session.run_nf_session</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">pipeline.session_manager.SessionManager</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pipeline.triggers.SerialTrigger.html">pipeline.triggers.SerialTrigger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.triggers.ParallelTrigger.html">pipeline.triggers.ParallelTrigger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.triggers.make_trigger.html">pipeline.triggers.make_trigger</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pipeline.intake.get_user_info.html">pipeline.intake.get_user_info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.intake.compute_pta.html">pipeline.intake.compute_pta</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pipeline.baseline.run_baseline.html">pipeline.baseline.run_baseline</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="antares_app.AntaresApp.html">antares_app.AntaresApp</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../api.html" class="nav-link">API Reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pipeline.session_manager.SessionManager</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="pipeline-session-manager-sessionmanager">
+<h1>pipeline.session_manager.SessionManager<a class="headerlink" href="#pipeline-session-manager-sessionmanager" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pipeline.session_manager.SessionManager">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pipeline.session_manager.</span></span><span class="sig-name descname"><span class="pre">SessionManager</span></span><a class="reference internal" href="../_modules/pipeline/session_manager.html#SessionManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pipeline.session_manager.SessionManager" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Manages adaptive NF target selection across multiple visits.</p>
+<p>Implements the four-phase adaptive logic used across a tinnitus NF
+protocol:</p>
+<ul class="simple">
+<li><p><strong>Visit 1</strong>: Loads the full-analysis selection report produced by
+<code class="docutils literal notranslate"><span class="pre">run_full_analysis</span></code> (no further action).</p></li>
+<li><p><strong>Visits 2-4</strong>: Runs a quick SNR/<code class="docutils literal notranslate"><span class="pre">|z|</span></code> check on the primary feature;
+falls back to a ranked backup if quality thresholds are not met.</p></li>
+<li><p><strong>Visit 5</strong>: Triggers a full re-ranking baseline and applies a
+five-rule decision tree to decide whether to maintain or switch.</p></li>
+<li><p><strong>Visits &gt; 5</strong>: Feature locked — no further switching regardless of
+quality metrics.</p></li>
+</ul>
+<p>All class-level constants serve as configurable thresholds and can be
+overridden by subclassing or monkey-patching for research experiments.</p>
+<dl>
+<dt>Class Attributes:</dt><dd><dl class="simple">
+<dt>QUICK_BASELINE_SECS: Duration of the quick baseline for sessions 2–4</dt><dd><p>and &gt; 5 (180 s).</p>
+</dd>
+<dt>MID_EVAL_BASELINE_SECS: Duration of the mid-protocol baseline for</dt><dd><p>session 5 (300 s).</p>
+</dd>
+</dl>
+<p>MID_EVAL_SESSION: Session number that triggers full re-evaluation (5).
+LOCK_AFTER_SESSION: Session number after which switching is disabled (5).
+SNR_SWITCH_THRESHOLD: SNR floor for keeping the primary feature (1.5).
+Z_MIN_THRESHOLD: Minimum <code class="docutils literal notranslate"><span class="pre">|z|</span></code> for keeping a feature viable (1.0).
+SCORE_SWITCH_MARGIN: Minimum relative composite-score improvement</p>
+<blockquote>
+<div><p>required to justify a cross-modality switch (0.30 = 30 %).</p>
+</div></blockquote>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pipeline.session_manager.SessionManager.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pipeline.session_manager.SessionManager.__init__" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pipeline.session_manager.SessionManager.__init__" title="pipeline.session_manager.SessionManager.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pipeline.session_manager.SessionManager.get_baseline_duration" title="pipeline.session_manager.SessionManager.get_baseline_duration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_baseline_duration</span></code></a>(visit, full_duration)</p></td>
+<td><p>Return the appropriate baseline recording duration for <em>visit</em>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pipeline.session_manager.SessionManager.prepare_session" title="pipeline.session_manager.SessionManager.prepare_session"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prepare_session</span></code></a>(subject_id, visit, ...[, ...])</p></td>
+<td><p>Run pre-session analysis and return the selection report for <em>visit</em>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Attributes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pipeline.session_manager.SessionManager.LOCK_AFTER_SESSION" title="pipeline.session_manager.SessionManager.LOCK_AFTER_SESSION"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LOCK_AFTER_SESSION</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pipeline.session_manager.SessionManager.MID_EVAL_BASELINE_SECS" title="pipeline.session_manager.SessionManager.MID_EVAL_BASELINE_SECS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MID_EVAL_BASELINE_SECS</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pipeline.session_manager.SessionManager.MID_EVAL_SESSION" title="pipeline.session_manager.SessionManager.MID_EVAL_SESSION"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MID_EVAL_SESSION</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pipeline.session_manager.SessionManager.QUICK_BASELINE_SECS" title="pipeline.session_manager.SessionManager.QUICK_BASELINE_SECS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QUICK_BASELINE_SECS</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pipeline.session_manager.SessionManager.SCORE_SWITCH_MARGIN" title="pipeline.session_manager.SessionManager.SCORE_SWITCH_MARGIN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SCORE_SWITCH_MARGIN</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pipeline.session_manager.SessionManager.SNR_SWITCH_THRESHOLD" title="pipeline.session_manager.SessionManager.SNR_SWITCH_THRESHOLD"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SNR_SWITCH_THRESHOLD</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pipeline.session_manager.SessionManager.Z_MIN_THRESHOLD" title="pipeline.session_manager.SessionManager.Z_MIN_THRESHOLD"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Z_MIN_THRESHOLD</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pipeline.session_manager.SessionManager.QUICK_BASELINE_SECS">
+<span class="sig-name descname"><span class="pre">QUICK_BASELINE_SECS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">180.0</span></span><a class="headerlink" href="#pipeline.session_manager.SessionManager.QUICK_BASELINE_SECS" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pipeline.session_manager.SessionManager.MID_EVAL_BASELINE_SECS">
+<span class="sig-name descname"><span class="pre">MID_EVAL_BASELINE_SECS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">300.0</span></span><a class="headerlink" href="#pipeline.session_manager.SessionManager.MID_EVAL_BASELINE_SECS" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pipeline.session_manager.SessionManager.MID_EVAL_SESSION">
+<span class="sig-name descname"><span class="pre">MID_EVAL_SESSION</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></span><a class="headerlink" href="#pipeline.session_manager.SessionManager.MID_EVAL_SESSION" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pipeline.session_manager.SessionManager.LOCK_AFTER_SESSION">
+<span class="sig-name descname"><span class="pre">LOCK_AFTER_SESSION</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></span><a class="headerlink" href="#pipeline.session_manager.SessionManager.LOCK_AFTER_SESSION" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pipeline.session_manager.SessionManager.SNR_SWITCH_THRESHOLD">
+<span class="sig-name descname"><span class="pre">SNR_SWITCH_THRESHOLD</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.5</span></span><a class="headerlink" href="#pipeline.session_manager.SessionManager.SNR_SWITCH_THRESHOLD" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pipeline.session_manager.SessionManager.Z_MIN_THRESHOLD">
+<span class="sig-name descname"><span class="pre">Z_MIN_THRESHOLD</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></span><a class="headerlink" href="#pipeline.session_manager.SessionManager.Z_MIN_THRESHOLD" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pipeline.session_manager.SessionManager.SCORE_SWITCH_MARGIN">
+<span class="sig-name descname"><span class="pre">SCORE_SWITCH_MARGIN</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.3</span></span><a class="headerlink" href="#pipeline.session_manager.SessionManager.SCORE_SWITCH_MARGIN" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pipeline.session_manager.SessionManager.get_baseline_duration">
+<span class="sig-name descname"><span class="pre">get_baseline_duration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">visit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">full_duration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/pipeline/session_manager.html#SessionManager.get_baseline_duration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pipeline.session_manager.SessionManager.get_baseline_duration" title="Link to this definition">#</a></dt>
+<dd><p>Return the appropriate baseline recording duration for <em>visit</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>visit</strong> – Integer visit number.</p></li>
+<li><p><strong>full_duration</strong> – The full baseline duration configured by the
+operator (used only for visit 1).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Seconds to record.  Returns <em>full_duration</em> for visit 1,
+<code class="docutils literal notranslate"><span class="pre">MID_EVAL_BASELINE_SECS</span></code> for visit 5, and
+<code class="docutils literal notranslate"><span class="pre">QUICK_BASELINE_SECS</span></code> for all other visits.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pipeline.session_manager.SessionManager.prepare_session">
+<span class="sig-name descname"><span class="pre">prepare_session</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subject_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">visit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">subjects_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><span class="pre">Path</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">models_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><span class="pre">Path</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">site</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'zuerich'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_callback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.14)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../_modules/pipeline/session_manager.html#SessionManager.prepare_session"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pipeline.session_manager.SessionManager.prepare_session" title="Link to this definition">#</a></dt>
+<dd><p>Run pre-session analysis and return the selection report for <em>visit</em>.</p>
+<p>For visit 1: loads and returns the report produced by run_full_analysis().
+For visits 2-4: runs a quick SNR/<code class="docutils literal notranslate"><span class="pre">|z|</span></code> check; switches to backup if needed.
+For visit 5: runs full re-ranking + decision tree.
+For visits &gt; 5: locks to the last confirmed feature; no switching.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>dict</dt><dd><p>Selection report with keys <code class="docutils literal notranslate"><span class="pre">selected_feature</span></code>, <code class="docutils literal notranslate"><span class="pre">backup_features</span></code>,
+<code class="docutils literal notranslate"><span class="pre">session_decision</span></code> (for visits &gt;= 2), etc.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>FileNotFoundError</dt><dd><p>If the previous visit’s selection report does not exist.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pipeline.session.run_nf_session.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">pipeline.session.run_nf_session</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pipeline.triggers.SerialTrigger.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">pipeline.triggers.SerialTrigger</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline.session_manager.SessionManager"><code class="docutils literal notranslate"><span class="pre">SessionManager</span></code></a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline.session_manager.SessionManager.__init__"><code class="docutils literal notranslate"><span class="pre">SessionManager.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline.session_manager.SessionManager.QUICK_BASELINE_SECS"><code class="docutils literal notranslate"><span class="pre">SessionManager.QUICK_BASELINE_SECS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline.session_manager.SessionManager.MID_EVAL_BASELINE_SECS"><code class="docutils literal notranslate"><span class="pre">SessionManager.MID_EVAL_BASELINE_SECS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline.session_manager.SessionManager.MID_EVAL_SESSION"><code class="docutils literal notranslate"><span class="pre">SessionManager.MID_EVAL_SESSION</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline.session_manager.SessionManager.LOCK_AFTER_SESSION"><code class="docutils literal notranslate"><span class="pre">SessionManager.LOCK_AFTER_SESSION</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline.session_manager.SessionManager.SNR_SWITCH_THRESHOLD"><code class="docutils literal notranslate"><span class="pre">SessionManager.SNR_SWITCH_THRESHOLD</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline.session_manager.SessionManager.Z_MIN_THRESHOLD"><code class="docutils literal notranslate"><span class="pre">SessionManager.Z_MIN_THRESHOLD</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline.session_manager.SessionManager.SCORE_SWITCH_MARGIN"><code class="docutils literal notranslate"><span class="pre">SessionManager.SCORE_SWITCH_MARGIN</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline.session_manager.SessionManager.get_baseline_duration"><code class="docutils literal notranslate"><span class="pre">SessionManager.get_baseline_duration()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline.session_manager.SessionManager.prepare_session"><code class="docutils literal notranslate"><span class="pre">SessionManager.prepare_session()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Payam S. Shabestari.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

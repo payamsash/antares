@@ -1,0 +1,1387 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pipeline.session &#8212; ANTARES</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=0790524f97105ba85085" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=cfa8fc7b" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=0790524f97105ba85085"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085" />
+
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/pipeline/session';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ANTARES</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide.html">
+    ANTARES User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide.html">
+    ANTARES User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pipeline.session</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for pipeline.session</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Personalized NF session: protocol setup, block scheduling, ANT integration.&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.triggers</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParallelTrigger</span><span class="p">,</span> <span class="n">TRIG_REST_START</span><span class="p">,</span> <span class="n">TRIG_NF_START</span><span class="p">,</span> <span class="n">TRIG_SESSION_END</span>
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Band map used across antares</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<span class="n">BAND_MAP</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;delta&quot;</span><span class="p">:</span>   <span class="p">[</span><span class="mi">1</span><span class="p">,</span>    <span class="mi">6</span><span class="p">],</span>
+    <span class="s2">&quot;theta&quot;</span><span class="p">:</span>   <span class="p">[</span><span class="mf">6.5</span><span class="p">,</span>  <span class="mf">8.5</span><span class="p">],</span>
+    <span class="s2">&quot;alpha_0&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">8.5</span><span class="p">,</span>  <span class="mf">12.5</span><span class="p">],</span>
+    <span class="s2">&quot;alpha_1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">8.5</span><span class="p">,</span>  <span class="mf">10.5</span><span class="p">],</span>
+    <span class="s2">&quot;alpha_2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.5</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">],</span>
+    <span class="s2">&quot;beta_0&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">12.5</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>
+    <span class="s2">&quot;beta_1&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">12.5</span><span class="p">,</span> <span class="mf">18.5</span><span class="p">],</span>
+    <span class="s2">&quot;beta_2&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">18.5</span><span class="p">,</span> <span class="mi">21</span><span class="p">],</span>
+    <span class="s2">&quot;beta_3&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mi">21</span><span class="p">,</span>   <span class="mi">30</span><span class="p">],</span>
+    <span class="s2">&quot;gamma&quot;</span><span class="p">:</span>   <span class="p">[</span><span class="mi">30</span><span class="p">,</span>   <span class="mi">40</span><span class="p">],</span>
+<span class="p">}</span>
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Block scheduler</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="BlockScheduler">
+<a class="viewcode-back" href="../../generated/pipeline.session.BlockScheduler.html#pipeline.BlockScheduler">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BlockScheduler</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Drives a rest / NF block sequence in a background daemon thread.</span>
+
+<span class="sd">    Each call to ``start()`` launches a thread that alternates between a</span>
+<span class="sd">    rest phase and an NF phase for *n_blocks* iterations.  The order of the</span>
+<span class="sd">    two phases within each block pair is controlled by *first_phase*.</span>
+
+<span class="sd">    A thread-safe ``threading.Event`` (``_is_nf``) is set during NF phases so</span>
+<span class="sd">    that downstream consumers (e.g. ``RspvOSCSender``) can gate OSC output</span>
+<span class="sd">    without polling.  A timestamp log of every completed phase interval is</span>
+<span class="sd">    accumulated in ``_block_log`` and accessible via ``get_block_log()``.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n_blocks: Number of block pairs (rest + NF) to run.</span>
+<span class="sd">        rest_duration: Duration of each rest phase in seconds.</span>
+<span class="sd">        nf_duration: Duration of each NF phase in seconds.</span>
+<span class="sd">        on_block_change: Optional callback ``(block_index: int, phase: str) -&gt;</span>
+<span class="sd">            None`` invoked at the start of every phase transition.  *phase* is</span>
+<span class="sd">            ``&quot;rest&quot;`` or ``&quot;nf&quot;``.</span>
+<span class="sd">        first_phase: Which phase starts each block pair.  Use ``&quot;nf&quot;``</span>
+<span class="sd">            (default) for threshold/staircase protocols, or ``&quot;rest&quot;`` for</span>
+<span class="sd">            z-score protocols so the EEG can return to a neutral state before</span>
+<span class="sd">            the first reward window.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BlockScheduler.__init__">
+<a class="viewcode-back" href="../../generated/pipeline.session.BlockScheduler.html#pipeline.BlockScheduler.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">n_blocks</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">rest_duration</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">nf_duration</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">on_block_change</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">first_phase</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;nf&quot;</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_blocks</span> <span class="o">=</span> <span class="n">n_blocks</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rest_duration</span> <span class="o">=</span> <span class="n">rest_duration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nf_duration</span> <span class="o">=</span> <span class="n">nf_duration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_block_change</span> <span class="o">=</span> <span class="n">on_block_change</span> <span class="ow">or</span> <span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">_</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_first_phase</span> <span class="o">=</span> <span class="n">first_phase</span> <span class="k">if</span> <span class="n">first_phase</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;nf&quot;</span><span class="p">,</span> <span class="s2">&quot;rest&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;nf&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_nf</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+        <span class="c1"># Block timestamp log: list of {&quot;block&quot;, &quot;phase&quot;, &quot;t_start&quot;, &quot;t_end&quot;}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_block_log</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_block_start</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span></div>
+
+
+<div class="viewcode-block" id="BlockScheduler.start">
+<a class="viewcode-back" href="../../generated/pipeline.session.BlockScheduler.html#pipeline.BlockScheduler.start">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Start the block schedule in a daemon thread.&quot;&quot;&quot;</span>
+        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_run</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="BlockScheduler.stop">
+<a class="viewcode-back" href="../../generated/pipeline.session.BlockScheduler.html#pipeline.BlockScheduler.stop">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Signal the scheduler to stop after the current phase and unblock any waiter.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_nf</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>  <span class="c1"># unblock any waiter</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_nf_active</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return ``True`` when the scheduler is currently in an NF phase.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_nf</span><span class="o">.</span><span class="n">is_set</span><span class="p">()</span>
+
+<div class="viewcode-block" id="BlockScheduler.get_block_log">
+<a class="viewcode-back" href="../../generated/pipeline.session.BlockScheduler.html#pipeline.BlockScheduler.get_block_log">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_block_log</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a copy of the block timestamp log (populated after run completes).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[dict]: Each entry has keys ``block`` (int), ``phase`` (str),</span>
+<span class="sd">            ``t_start`` (float, ``time.time()`` epoch), ``t_end`` (float),</span>
+<span class="sd">            and ``duration_s`` (float).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_block_log</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Internal: iterate over blocks and delegate each phase to ``_run_phase``.&quot;&quot;&quot;</span>
+        <span class="n">second_phase</span> <span class="o">=</span> <span class="s2">&quot;rest&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_first_phase</span> <span class="o">==</span> <span class="s2">&quot;nf&quot;</span> <span class="k">else</span> <span class="s2">&quot;nf&quot;</span>
+        <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_blocks</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
+                <span class="k">break</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_run_phase</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_first_phase</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
+                <span class="k">break</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_run_phase</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">second_phase</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">phase</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Internal: run a single phase, update the NF event flag, and record timing.&quot;&quot;&quot;</span>
+        <span class="n">duration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nf_duration</span> <span class="k">if</span> <span class="n">phase</span> <span class="o">==</span> <span class="s2">&quot;nf&quot;</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest_duration</span>
+        <span class="k">if</span> <span class="n">phase</span> <span class="o">==</span> <span class="s2">&quot;nf&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_is_nf</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_is_nf</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_block_change</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">phase</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_block_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_interruptible_sleep</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_block_log</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">&quot;block&quot;</span><span class="p">:</span> <span class="n">block</span><span class="p">,</span> <span class="s2">&quot;phase&quot;</span><span class="p">:</span> <span class="n">phase</span><span class="p">,</span>
+            <span class="s2">&quot;t_start&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_block_start</span><span class="p">,</span>
+            <span class="s2">&quot;t_end&quot;</span><span class="p">:</span>   <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span>
+            <span class="s2">&quot;duration_s&quot;</span><span class="p">:</span> <span class="n">duration</span><span class="p">,</span>
+        <span class="p">})</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_interruptible_sleep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">secs</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Internal: sleep for *secs* seconds but wake early if ``_stop`` is set.&quot;&quot;&quot;</span>
+        <span class="n">deadline</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span> <span class="o">+</span> <span class="n">secs</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span><span class="o">.</span><span class="n">is_set</span><span class="p">()</span> <span class="ow">and</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">deadline</span><span class="p">:</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Block-aware OSC wrapper</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="BlockAwareOSCSender">
+<a class="viewcode-back" href="../../generated/pipeline.session.BlockAwareOSCSender.html#pipeline.BlockAwareOSCSender">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BlockAwareOSCSender</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wraps an OSCSender and silences it during rest blocks.</span>
+
+<span class="sd">    All ``send*`` calls are forwarded to the underlying *osc_sender* only while</span>
+<span class="sd">    ``scheduler.is_nf_active`` is ``True``.  Calls during rest phases are</span>
+<span class="sd">    silently discarded.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        osc_sender: An ANT ``OSCSender`` instance (or compatible object).</span>
+<span class="sd">        scheduler: The active ``BlockScheduler`` whose ``is_nf_active``</span>
+<span class="sd">            property gates all outgoing OSC messages.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BlockAwareOSCSender.__init__">
+<a class="viewcode-back" href="../../generated/pipeline.session.BlockAwareOSCSender.html#pipeline.BlockAwareOSCSender.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">osc_sender</span><span class="p">,</span> <span class="n">scheduler</span><span class="p">:</span> <span class="n">BlockScheduler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sender</span> <span class="o">=</span> <span class="n">osc_sender</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span> <span class="o">=</span> <span class="n">scheduler</span></div>
+
+
+<div class="viewcode-block" id="BlockAwareOSCSender.send">
+<a class="viewcode-back" href="../../generated/pipeline.session.BlockAwareOSCSender.html#pipeline.BlockAwareOSCSender.send">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modality</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Forward a single-value OSC message if the NF phase is active.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span><span class="o">.</span><span class="n">is_nf_active</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sender</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">modality</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BlockAwareOSCSender.send_all">
+<a class="viewcode-back" href="../../generated/pipeline.session.BlockAwareOSCSender.html#pipeline.BlockAwareOSCSender.send_all">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">send_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modalities</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Forward a multi-value OSC message if the NF phase is active.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span><span class="o">.</span><span class="n">is_nf_active</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sender</span><span class="o">.</span><span class="n">send_all</span><span class="p">(</span><span class="n">modalities</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BlockAwareOSCSender.send_raw">
+<a class="viewcode-back" href="../../generated/pipeline.session.BlockAwareOSCSender.html#pipeline.BlockAwareOSCSender.send_raw">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">send_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Forward a raw-address OSC message if the NF phase is active.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span><span class="o">.</span><span class="n">is_nf_active</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sender</span><span class="o">.</span><span class="n">send_raw</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># rspv OSC bridge</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="RspvOSCSender">
+<a class="viewcode-back" href="../../generated/pipeline.session.RspvOSCSender.html#pipeline.RspvOSCSender">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">RspvOSCSender</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bridges ANT&#39;s OSC output to rspv&#39;s /rspv address format.</span>
+
+<span class="sd">    ANT calls ``send_all(mods, vals)`` with raw EEG feature values.</span>
+<span class="sd">    rspv&#39;s SignalHandler expects OSC messages at ``/rspv`` with the layout::</span>
+
+<span class="sd">        /rspv  float  float  float</span>
+<span class="sd">               min    max    value</span>
+
+<span class="sd">    *value* is direction-corrected before sending:</span>
+<span class="sd">    - direction=&quot;down&quot; (decrease feature): value sent as-is.</span>
+<span class="sd">    - direction=&quot;up&quot;   (increase feature): value is mirrored about the</span>
+<span class="sd">      rolling midpoint so that higher raw feature -&gt; higher reward score.</span>
+
+<span class="sd">    Every incoming window is logged (both rest and NF phases) so that the</span>
+<span class="sd">    CSV provides a continuous record.  OSC output to rspv is still gated to</span>
+<span class="sd">    NF blocks only.  Each CSV row carries a ``phase`` and ``block`` column</span>
+<span class="sd">    that are updated via ``update_phase()`` on every block transition.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="RspvOSCSender.__init__">
+<a class="viewcode-back" href="../../generated/pipeline.session.RspvOSCSender.html#pipeline.RspvOSCSender.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">osc_sender</span><span class="p">,</span>
+        <span class="n">scheduler</span><span class="p">:</span> <span class="n">BlockScheduler</span><span class="p">,</span>
+        <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;down&quot;</span><span class="p">,</span>
+        <span class="n">history_len</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span>
+        <span class="n">log_path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialise the rspv OSC bridge.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            osc_sender: Underlying ANT ``OSCSender`` that owns the UDP socket.</span>
+<span class="sd">            scheduler: ``BlockScheduler`` whose ``is_nf_active`` flag gates</span>
+<span class="sd">                OSC output to rspv.</span>
+<span class="sd">            direction: ``&quot;down&quot;`` to reward decreasing the feature (value sent</span>
+<span class="sd">                as-is); ``&quot;up&quot;`` to reward increasing it (value mirrored about</span>
+<span class="sd">                the rolling midpoint before sending).</span>
+<span class="sd">            history_len: Rolling window length (in samples) used to compute</span>
+<span class="sd">                the adaptive min/max sent alongside each value.</span>
+<span class="sd">            log_path: If provided, a CSV is opened at this path and every</span>
+<span class="sd">                incoming window is appended with columns ``elapsed_s``,</span>
+<span class="sd">                ``raw_value``, ``rolling_min``, ``rolling_max``,</span>
+<span class="sd">                ``direction_corrected``, ``direction``, ``phase``, ``block``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sender</span>      <span class="o">=</span> <span class="n">osc_sender</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span>   <span class="o">=</span> <span class="n">scheduler</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span>   <span class="o">=</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_history_len</span> <span class="o">=</span> <span class="n">history_len</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_min</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_max</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_t0</span>  <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_phase</span> <span class="o">=</span> <span class="s2">&quot;rest&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_block</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log_file</span>   <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_csv_writer</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">log_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">log_path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_log_file</span>   <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">log_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_csv_writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_file</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_csv_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span>
+                <span class="p">[</span><span class="s2">&quot;elapsed_s&quot;</span><span class="p">,</span> <span class="s2">&quot;raw_value&quot;</span><span class="p">,</span> <span class="s2">&quot;rolling_min&quot;</span><span class="p">,</span> <span class="s2">&quot;rolling_max&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;direction_corrected&quot;</span><span class="p">,</span> <span class="s2">&quot;direction&quot;</span><span class="p">,</span> <span class="s2">&quot;phase&quot;</span><span class="p">,</span> <span class="s2">&quot;block&quot;</span><span class="p">]</span>
+            <span class="p">)</span></div>
+
+
+    <span class="c1"># Public interface mirrors ANT&#39;s OSCSender ---------------------------------</span>
+
+<div class="viewcode-block" id="RspvOSCSender.update_phase">
+<a class="viewcode-back" href="../../generated/pipeline.session.RspvOSCSender.html#pipeline.RspvOSCSender.update_phase">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phase</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">block</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Called on each block transition so the CSV reflects the current phase.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_phase</span> <span class="o">=</span> <span class="n">phase</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_block</span> <span class="o">=</span> <span class="n">block</span></div>
+
+
+<div class="viewcode-block" id="RspvOSCSender.send">
+<a class="viewcode-back" href="../../generated/pipeline.session.RspvOSCSender.html#pipeline.RspvOSCSender.send">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modality</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process a single feature value from ANT and forward to rspv.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            modality: ANT modality label (unused; present for API compatibility).</span>
+<span class="sd">            value: Raw EEG feature value for the current window.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_process</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="RspvOSCSender.send_all">
+<a class="viewcode-back" href="../../generated/pipeline.session.RspvOSCSender.html#pipeline.RspvOSCSender.send_all">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">send_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modalities</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process the first feature value in *values* from ANT.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            modalities: Sequence of modality labels (unused).</span>
+<span class="sd">            values: Sequence of raw feature values; only the first is used.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">values</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_process</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span></div>
+
+
+<div class="viewcode-block" id="RspvOSCSender.send_raw">
+<a class="viewcode-back" href="../../generated/pipeline.session.RspvOSCSender.html#pipeline.RspvOSCSender.send_raw">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">send_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Forward a raw OSC message to rspv, gated to NF phases only.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            address: OSC address string.</span>
+<span class="sd">            *args: OSC payload arguments forwarded verbatim.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span><span class="o">.</span><span class="n">is_nf_active</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sender</span><span class="o">.</span><span class="n">send_raw</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RspvOSCSender.send_phase">
+<a class="viewcode-back" href="../../generated/pipeline.session.RspvOSCSender.html#pipeline.RspvOSCSender.send_phase">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">send_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phase</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Notify rspv of a phase transition (always sent, bypasses NF gate).&quot;&quot;&quot;</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">phase</span> <span class="o">==</span> <span class="s2">&quot;nf&quot;</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sender</span><span class="o">.</span><span class="n">send_raw</span><span class="p">(</span><span class="s2">&quot;/rspv_ctrl&quot;</span><span class="p">,</span> <span class="n">flag</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RspvOSCSender.close">
+<a class="viewcode-back" href="../../generated/pipeline.session.RspvOSCSender.html#pipeline.RspvOSCSender.close">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Flush and close the signal log CSV.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_log_file</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_log_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_log_file</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+    <span class="c1"># Internal -----------------------------------------------------------------</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update rolling stats, log the window, and (during NF only) send OSC.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_history_len</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_min</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_min</span> <span class="o">+</span> <span class="mf">1.0</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span> <span class="o">==</span> <span class="s2">&quot;up&quot;</span><span class="p">:</span>
+            <span class="n">corrected</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_min</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_max</span> <span class="o">-</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">corrected</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_csv_writer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_t0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_csv_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span>
+                <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">elapsed</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_min</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_max</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">corrected</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span><span class="p">,</span>
+                 <span class="bp">self</span><span class="o">.</span><span class="n">_phase</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_block</span><span class="p">]</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scheduler</span><span class="o">.</span><span class="n">is_nf_active</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sender</span><span class="o">.</span><span class="n">send_raw</span><span class="p">(</span><span class="s2">&quot;/rspv&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_min</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max</span><span class="p">,</span> <span class="n">corrected</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Protocol factory</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="create_protocol">
+<a class="viewcode-back" href="../../generated/pipeline.session.create_protocol.html#pipeline.create_protocol">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_protocol</span><span class="p">(</span>
+    <span class="n">protocol_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">zscore_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">warmup_windows</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="n">threshold_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Instantiate an ANT feedback protocol object from a name string.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        protocol_name: One of ``&quot;zscore&quot;``, ``&quot;threshold&quot;``, ``&quot;staircase&quot;``,</span>
+<span class="sd">            or ``&quot;sham&quot;``.</span>
+<span class="sd">        direction: ``&quot;up&quot;`` (reward increasing the feature) or ``&quot;down&quot;``</span>
+<span class="sd">            (reward decreasing it).  Derived from the sign of the normative</span>
+<span class="sd">            Z-score.</span>
+<span class="sd">        zscore_threshold: Reward threshold for the Z-score protocol.</span>
+<span class="sd">        warmup_windows: Number of windows used to estimate the rolling baseline</span>
+<span class="sd">            before the Z-score protocol starts emitting feedback.</span>
+<span class="sd">        threshold_value: Fixed threshold value used by the ``&quot;threshold&quot;``</span>
+<span class="sd">            protocol only.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        An ANT protocol instance (``ZScoreProtocol``, ``ThresholdProtocol``,</span>
+<span class="sd">        ``UpDownStaircaseProtocol``, or ``ShamProtocol``).</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If *protocol_name* is not one of the recognised strings.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">ant.protocols</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+        <span class="n">ZScoreProtocol</span><span class="p">,</span>
+        <span class="n">ThresholdProtocol</span><span class="p">,</span>
+        <span class="n">UpDownStaircaseProtocol</span><span class="p">,</span>
+        <span class="n">ShamProtocol</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">protocol_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;zscore&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ZScoreProtocol</span><span class="p">(</span>
+            <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span>
+            <span class="n">warmup_windows</span><span class="o">=</span><span class="n">warmup_windows</span><span class="p">,</span>
+            <span class="n">zscore_threshold</span><span class="o">=</span><span class="n">zscore_threshold</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;threshold&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ThresholdProtocol</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="n">threshold_value</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;staircase&quot;</span><span class="p">:</span>
+        <span class="n">inner</span> <span class="o">=</span> <span class="n">ZScoreProtocol</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span> <span class="n">warmup_windows</span><span class="o">=</span><span class="n">warmup_windows</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">UpDownStaircaseProtocol</span><span class="p">(</span><span class="n">inner_protocol</span><span class="o">=</span><span class="n">inner</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;sham&quot;</span><span class="p">:</span>
+        <span class="n">inner</span> <span class="o">=</span> <span class="n">ZScoreProtocol</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span> <span class="n">warmup_windows</span><span class="o">=</span><span class="n">warmup_windows</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ShamProtocol</span><span class="p">(</span><span class="n">inner_protocol</span><span class="o">=</span><span class="n">inner</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown protocol: </span><span class="si">{</span><span class="n">protocol_name</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Feature-name → ANT modality parser</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="parse_feature_name">
+<a class="viewcode-back" href="../../generated/pipeline.session.parse_feature_name.html#pipeline.parse_feature_name">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_feature_name</span><span class="p">(</span><span class="n">feature_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">feature_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract ANT modality parameters from a ranked-feature name string.</span>
+
+<span class="sd">    Parses the *feature_name* and *feature_type* produced by ``rank_features``</span>
+<span class="sd">    and returns a parameter dict suitable for building the ``NF_modality``</span>
+<span class="sd">    section of the ANT YAML config.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        feature_name: Full feature name, e.g. ``&quot;Cz_alpha_0&quot;``,</span>
+<span class="sd">            ``&quot;pericalcarine-lh_alpha_0&quot;``, or</span>
+<span class="sd">            ``&quot;Ch1_vs_Ch2_alpha_0_coh&quot;``.</span>
+<span class="sd">        feature_type: One of ``&quot;power_sensor&quot;``, ``&quot;power_source&quot;``,</span>
+<span class="sd">            ``&quot;conn_sensor&quot;``, or ``&quot;conn_source&quot;``.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict containing a subset of: ``band`` (str), ``frange`` (list[float]),</span>
+<span class="sd">        ``channel`` (str), ``brain_label`` (str), ``channel_1`` (str),</span>
+<span class="sd">        ``channel_2`` (str), ``brain_label_1`` (str), ``brain_label_2`` (str),</span>
+<span class="sd">        ``method`` (str), ``modality`` (str).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">band_name</span><span class="p">,</span> <span class="n">frange</span> <span class="ow">in</span> <span class="n">BAND_MAP</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">band_name</span> <span class="ow">in</span> <span class="n">feature_name</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;band&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">band_name</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;frange&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frange</span>
+            <span class="k">break</span>
+
+    <span class="k">if</span> <span class="n">feature_type</span> <span class="o">==</span> <span class="s2">&quot;power_sensor&quot;</span><span class="p">:</span>
+        <span class="n">params</span><span class="p">[</span><span class="s2">&quot;channel&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">feature_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">params</span><span class="p">[</span><span class="s2">&quot;modality&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sensor_power&quot;</span>
+
+    <span class="k">elif</span> <span class="n">feature_type</span> <span class="o">==</span> <span class="s2">&quot;power_source&quot;</span><span class="p">:</span>
+        <span class="n">params</span><span class="p">[</span><span class="s2">&quot;brain_label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">feature_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">params</span><span class="p">[</span><span class="s2">&quot;modality&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;source_power&quot;</span>
+
+    <span class="k">elif</span> <span class="n">feature_type</span> <span class="o">==</span> <span class="s2">&quot;conn_sensor&quot;</span><span class="p">:</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(.+?)_vs_(.+?)_(.+?)_(.+)&quot;</span><span class="p">,</span> <span class="n">feature_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+            <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                <span class="n">channel_1</span><span class="o">=</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+                <span class="n">channel_2</span><span class="o">=</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+                <span class="n">method</span><span class="o">=</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+                <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;sensor_connectivity&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">feature_type</span> <span class="o">==</span> <span class="s2">&quot;conn_source&quot;</span><span class="p">:</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(.+?)_vs_(.+?)_(.+?)_(.+)&quot;</span><span class="p">,</span> <span class="n">feature_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+            <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                <span class="n">brain_label_1</span><span class="o">=</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+                <span class="n">brain_label_2</span><span class="o">=</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+                <span class="n">method</span><span class="o">=</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+                <span class="n">modality</span><span class="o">=</span><span class="s2">&quot;source_connectivity&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">params</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># YAML config generator</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="create_nf_yaml">
+<a class="viewcode-back" href="../../generated/pipeline.session.create_nf_yaml.html#pipeline.create_nf_yaml">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_nf_yaml</span><span class="p">(</span>
+    <span class="n">subject_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">visit</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">subjects_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">template_yaml_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a personalised ANT config YAML from the selection report JSON.</span>
+
+<span class="sd">    Reads the ``selection_report_v&lt;visit&gt;.json`` written by ``rank_features``,</span>
+<span class="sd">    calls ``parse_feature_name`` to convert the selected feature into ANT</span>
+<span class="sd">    ``NF_modality`` parameters, merges them into the template YAML (preserving</span>
+<span class="sd">    all ANT-specific hardware and filter settings), and writes the result to::</span>
+
+<span class="sd">        &lt;subjects_dir&gt;/sub-&lt;id&gt;/nf_selection/nf_config_v&lt;visit&gt;.yml</span>
+
+<span class="sd">    List values are serialised in YAML flow style (inline) to match ANT&#39;s</span>
+<span class="sd">    expected format.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subject_id: Four-letter subject identifier.</span>
+<span class="sd">        visit: Integer visit number.</span>
+<span class="sd">        subjects_dir: Root directory containing all ``sub-*`` folders.</span>
+<span class="sd">        template_yaml_path: Path to the master ``config_master.yml`` that</span>
+<span class="sd">            provides all ANT hardware and signal-processing defaults.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Path to the generated YAML config file.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        FileNotFoundError: If the selection report JSON for *visit* does not exist.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">json_path</span> <span class="o">=</span> <span class="n">subjects_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">/</span> <span class="s2">&quot;nf_selection&quot;</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;selection_report_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.json&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">json_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Selection report not found: </span><span class="si">{</span><span class="n">json_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+
+    <span class="n">feature_name</span> <span class="o">=</span> <span class="n">report</span><span class="p">[</span><span class="s2">&quot;selected_feature&quot;</span><span class="p">][</span><span class="s2">&quot;feature_name&quot;</span><span class="p">]</span>
+    <span class="n">feature_type</span> <span class="o">=</span> <span class="n">report</span><span class="p">[</span><span class="s2">&quot;selected_feature&quot;</span><span class="p">][</span><span class="s2">&quot;feature_type&quot;</span><span class="p">]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">parse_feature_name</span><span class="p">(</span><span class="n">feature_name</span><span class="p">,</span> <span class="n">feature_type</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">template_yaml_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
+
+    <span class="n">modality</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;modality&quot;</span><span class="p">,</span> <span class="s2">&quot;sensor_power&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Build only the NF_modality section, then merge into base so all</span>
+    <span class="c1"># ANT-specific fields (filters, amplifier, reference, ...) are preserved.</span>
+    <span class="k">if</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;sensor_power&quot;</span><span class="p">:</span>
+        <span class="n">nf_modality</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;sensor_power&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;frange&quot;</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;frange&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">]),</span>
+            <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;welch&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;relative&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;selected_channel&quot;</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;channel&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;selected_feature&quot;</span><span class="p">:</span> <span class="n">feature_name</span><span class="p">,</span>
+        <span class="p">}}</span>
+    <span class="k">elif</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;source_power&quot;</span><span class="p">:</span>
+        <span class="n">nf_modality</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;source_power&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;frange&quot;</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;frange&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">]),</span>
+            <span class="s2">&quot;brain_label&quot;</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;brain_label&quot;</span><span class="p">,</span> <span class="s2">&quot;pericalcarine-lh&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;atlas&quot;</span><span class="p">:</span> <span class="s2">&quot;aparc&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;dSPM&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;selected_feature&quot;</span><span class="p">:</span> <span class="n">feature_name</span><span class="p">,</span>
+        <span class="p">}}</span>
+    <span class="k">elif</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;sensor_connectivity&quot;</span><span class="p">:</span>
+        <span class="n">nf_modality</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;sensor_connectivity&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;frange&quot;</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;frange&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">]),</span>
+            <span class="s2">&quot;channels&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;channel_1&quot;</span><span class="p">),</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;channel_2&quot;</span><span class="p">)]],</span>
+            <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;method&quot;</span><span class="p">,</span> <span class="s2">&quot;coh&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;cwt_morlet&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;selected_feature&quot;</span><span class="p">:</span> <span class="n">feature_name</span><span class="p">,</span>
+        <span class="p">}}</span>
+    <span class="k">elif</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;source_connectivity&quot;</span><span class="p">:</span>
+        <span class="n">nf_modality</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;source_connectivity&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;frange&quot;</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;frange&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">]),</span>
+            <span class="s2">&quot;brain_label_1&quot;</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;brain_label_1&quot;</span><span class="p">,</span> <span class="s2">&quot;transversetemporal-lh&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;brain_label_2&quot;</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;brain_label_2&quot;</span><span class="p">,</span> <span class="s2">&quot;transversetemporal-rh&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;atlas&quot;</span><span class="p">:</span> <span class="s2">&quot;aparc&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;method&quot;</span><span class="p">,</span> <span class="s2">&quot;coh&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;cwt_morlet&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;selected_feature&quot;</span><span class="p">:</span> <span class="n">feature_name</span><span class="p">,</span>
+        <span class="p">}}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">nf_modality</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Merge: base provides all ANT settings; NF_modality is overwritten.</span>
+    <span class="n">nf_config</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">base</span><span class="p">,</span> <span class="s2">&quot;NF_modality&quot;</span><span class="p">:</span> <span class="n">nf_modality</span><span class="p">}</span>
+
+    <span class="n">out_path</span> <span class="o">=</span> <span class="n">subjects_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">/</span> <span class="s2">&quot;nf_selection&quot;</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;nf_config_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.yml&quot;</span>
+    <span class="n">out_path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">_FlowList</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_rep</span><span class="p">(</span><span class="n">dumper</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">dumper</span><span class="o">.</span><span class="n">represent_sequence</span><span class="p">(</span><span class="s2">&quot;tag:yaml.org,2002:seq&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">flow_style</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">yaml</span><span class="o">.</span><span class="n">add_representer</span><span class="p">(</span><span class="n">_FlowList</span><span class="p">,</span> <span class="n">_rep</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_to_flow</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">_to_flow</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_FlowList</span><span class="p">(</span><span class="n">_to_flow</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">obj</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">out_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">_to_flow</span><span class="p">(</span><span class="n">nf_config</span><span class="p">),</span> <span class="n">fh</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;NF config written to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">out_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out_path</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Session metadata</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="save_session_metadata">
+<a class="viewcode-back" href="../../generated/pipeline.session.save_session_metadata.html#pipeline.save_session_metadata">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">save_session_metadata</span><span class="p">(</span>
+    <span class="n">subject_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">visit</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">subjects_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">params</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save session parameters and an ISO timestamp to a JSON metadata file.</span>
+
+<span class="sd">    Writes all *params* keyword arguments plus ``subject_id``, ``visit``, and</span>
+<span class="sd">    ``timestamp`` to::</span>
+
+<span class="sd">        &lt;subjects_dir&gt;/sub-&lt;id&gt;/ses-v&lt;visit&gt;m/session_metadata_v&lt;visit&gt;.json</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subject_id: Four-letter subject identifier.</span>
+<span class="sd">        visit: Integer visit number.</span>
+<span class="sd">        subjects_dir: Root directory containing all ``sub-*`` folders.</span>
+<span class="sd">        **params: Arbitrary keyword arguments serialised into the metadata</span>
+<span class="sd">            dict (e.g. ``modality``, ``protocol``, ``n_blocks``, etc.).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Path to the saved JSON metadata file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">out_dir</span> <span class="o">=</span> <span class="n">subjects_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;ses-v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">m&quot;</span>
+    <span class="n">out_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;subject_id&quot;</span><span class="p">:</span> <span class="n">subject_id</span><span class="p">,</span>
+        <span class="s2">&quot;visit&quot;</span><span class="p">:</span> <span class="n">visit</span><span class="p">,</span>
+        <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(</span><span class="n">timespec</span><span class="o">=</span><span class="s2">&quot;seconds&quot;</span><span class="p">),</span>
+        <span class="o">**</span><span class="n">params</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;session_metadata_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.json&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="n">fh</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Session metadata saved → </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">path</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Post-session beh annotation</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_annotate_beh_data</span><span class="p">(</span>
+    <span class="n">session_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">block_log</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span>
+    <span class="n">t_session_start</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">log</span><span class="p">:</span> <span class="s2">&quot;Callable[[str], None]&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add ``phase`` and ``block`` columns to ANT&#39;s ``_beh`` output files.</span>
+
+<span class="sd">    ANT records feature values continuously throughout the session.  This</span>
+<span class="sd">    function uses the ``BlockScheduler`` timestamp log to retroactively label</span>
+<span class="sd">    every data row as either ``&quot;rest&quot;`` or ``&quot;nf&quot;`` and to assign the</span>
+<span class="sd">    corresponding block index.  Both JSON list format (``*_beh.json``) and</span>
+<span class="sd">    BIDS TSV format (``*_beh.tsv``) are supported; files without an ``onset``</span>
+<span class="sd">    column are skipped.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        session_dir: BIDS session directory (e.g.</span>
+<span class="sd">            ``&lt;subjects_dir&gt;/sub-&lt;id&gt;/ses-v&lt;visit&gt;m/``).  Searched</span>
+<span class="sd">            recursively for ``*_beh.json`` and ``*_beh.tsv`` files.</span>
+<span class="sd">        block_log: List of block timing dicts as returned by</span>
+<span class="sd">            ``BlockScheduler.get_block_log()``.  Each entry must have</span>
+<span class="sd">            ``t_start``, ``t_end``, ``phase``, and ``block`` keys.</span>
+<span class="sd">        t_session_start: Absolute ``time.time()`` value recorded at the</span>
+<span class="sd">            moment ``nf.record_main`` was called, used to convert relative</span>
+<span class="sd">            ``onset`` values to absolute epoch times for block lookup.</span>
+<span class="sd">        log: Callable that accepts a string; used to forward status messages</span>
+<span class="sd">            to the operator GUI.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_lookup</span><span class="p">(</span><span class="n">onset_rel</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">abs_t</span> <span class="o">=</span> <span class="n">t_session_start</span> <span class="o">+</span> <span class="nb">float</span><span class="p">(</span><span class="n">onset_rel</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">block_log</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">entry</span><span class="p">[</span><span class="s2">&quot;t_start&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">abs_t</span> <span class="o">&lt;=</span> <span class="n">entry</span><span class="p">[</span><span class="s2">&quot;t_end&quot;</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="n">entry</span><span class="p">[</span><span class="s2">&quot;phase&quot;</span><span class="p">],</span> <span class="nb">int</span><span class="p">(</span><span class="n">entry</span><span class="p">[</span><span class="s2">&quot;block&quot;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="s2">&quot;unknown&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="c1"># JSON list format — each element is a dict with an &quot;onset&quot; key</span>
+    <span class="k">for</span> <span class="n">beh_path</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">session_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;**/*_beh.json&quot;</span><span class="p">)):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">beh_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">data</span> <span class="ow">or</span> <span class="s2">&quot;onset&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="k">continue</span>
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">row</span><span class="p">[</span><span class="s2">&quot;phase&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;block&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_lookup</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;onset&quot;</span><span class="p">])</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">beh_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fh</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[beh] Annotated </span><span class="si">{</span><span class="n">beh_path</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> with phase/block labels.&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[beh] Could not annotate </span><span class="si">{</span><span class="n">beh_path</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># TSV format (BIDS *_beh.tsv)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+        <span class="k">for</span> <span class="n">tsv_path</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">session_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;**/*_beh.tsv&quot;</span><span class="p">)):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tsv_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="s2">&quot;onset&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">_lookup</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;onset&quot;</span><span class="p">]]</span>
+                <span class="n">df</span><span class="p">[</span><span class="s2">&quot;phase&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
+                <span class="n">df</span><span class="p">[</span><span class="s2">&quot;block&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
+                <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">tsv_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[beh] Annotated </span><span class="si">{</span><span class="n">tsv_path</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> with phase/block labels.&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+                <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[beh] Could not annotate </span><span class="si">{</span><span class="n">tsv_path</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Main NF session runner</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="run_nf_session">
+<a class="viewcode-back" href="../../generated/pipeline.session.run_nf_session.html#pipeline.run_nf_session">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_nf_session</span><span class="p">(</span>
+    <span class="n">subject_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">visit</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">subjects_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">template_yaml_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">protocol_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;zscore&quot;</span><span class="p">,</span>
+    <span class="n">zscore_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">warmup_windows</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="n">threshold_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">n_blocks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">rest_duration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">30.0</span><span class="p">,</span>
+    <span class="n">nf_duration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">120.0</span><span class="p">,</span>
+    <span class="n">osc_host</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+    <span class="n">osc_port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5005</span><span class="p">,</span>
+    <span class="n">mock_lsl</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">mock_fname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">stream_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">stream_source_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">on_block_change</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">log_callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">first_phase</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">trigger</span><span class="p">:</span> <span class="n">ParallelTrigger</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the personalised closed-loop neurofeedback session with rest/NF blocks.</span>
+
+<span class="sd">    Builds a personalised ANT YAML config from the selection report, determines</span>
+<span class="sd">    the NF training direction from the normative Z-score sign, creates the ANT</span>
+<span class="sd">    feedback protocol, connects to the LSL stream, launches a</span>
+<span class="sd">    ``BlockScheduler`` daemon thread, and calls ``nf.record_main`` for the</span>
+<span class="sd">    total session duration.  After the session, the block timestamp log is</span>
+<span class="sd">    saved as a CSV, a hardware trigger is sent if provided, ANT&#39;s BIDS output</span>
+<span class="sd">    is saved, and the behavioural data files are annotated with phase/block</span>
+<span class="sd">    labels.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subject_id: Four-letter subject identifier.</span>
+<span class="sd">        visit: Integer visit number.</span>
+<span class="sd">        subjects_dir: Root directory containing all ``sub-*`` folders.</span>
+<span class="sd">        template_yaml_path: Path to the master YAML config used as a template</span>
+<span class="sd">            for personalised YAML generation.</span>
+<span class="sd">        protocol_name: One of ``&quot;zscore&quot;`` (default), ``&quot;threshold&quot;``,</span>
+<span class="sd">            ``&quot;staircase&quot;``, or ``&quot;sham&quot;``.</span>
+<span class="sd">        zscore_threshold: Reward threshold for the Z-score protocol.</span>
+<span class="sd">        warmup_windows: Number of windows before the Z-score baseline is</span>
+<span class="sd">            considered initialised.</span>
+<span class="sd">        threshold_value: Fixed threshold for the ``&quot;threshold&quot;`` protocol.</span>
+<span class="sd">        n_blocks: Number of rest+NF block pairs.</span>
+<span class="sd">        rest_duration: Seconds per rest phase.</span>
+<span class="sd">        nf_duration: Seconds per NF phase.</span>
+<span class="sd">        osc_host: OSC target hostname or IP (rspv).</span>
+<span class="sd">        osc_port: OSC target port.</span>
+<span class="sd">        mock_lsl: If ``True``, replay *mock_fname* instead of connecting to</span>
+<span class="sd">            real hardware.</span>
+<span class="sd">        mock_fname: Path to a .fif file for mock LSL streaming.</span>
+<span class="sd">        stream_name: LSL stream name to connect to.</span>
+<span class="sd">        stream_source_id: LSL source identifier string.</span>
+<span class="sd">        on_block_change: Optional ``(block_index: int, phase: str) -&gt; None``</span>
+<span class="sd">            callback invoked at every block transition.  Used by the GUI to</span>
+<span class="sd">            update the operator block label.</span>
+<span class="sd">        log_callback: Optional callable for GUI log forwarding.</span>
+<span class="sd">        first_phase: Override which phase starts each block: ``&quot;nf&quot;`` or</span>
+<span class="sd">            ``&quot;rest&quot;``.  If ``None`` (default), auto-selected: z-score uses</span>
+<span class="sd">            ``&quot;rest&quot;`` so the EEG can return to a neutral baseline before the</span>
+<span class="sd">            first reward window; all other protocols use ``&quot;nf&quot;``.</span>
+<span class="sd">        trigger: Optional ``ParallelTrigger`` or ``SerialTrigger`` instance.</span>
+<span class="sd">            When provided, sends coded TTL pulses at rest/NF transitions and</span>
+<span class="sd">            session end.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        RuntimeError: If the LSL stream reports ``sfreq &lt;= 0`` after connection,</span>
+<span class="sd">            indicating the EEG stream is not running correctly.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">ant</span><span class="w"> </span><span class="kn">import</span> <span class="n">NFRealtime</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">ant.osc</span><span class="w"> </span><span class="kn">import</span> <span class="n">OSCSender</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_log</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">log_callback</span><span class="p">:</span>
+            <span class="n">log_callback</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="c1"># -- Build personalised YAML -----------------------------------------</span>
+    <span class="n">_log</span><span class="p">(</span><span class="s2">&quot;Building personalised NF config ...&quot;</span><span class="p">)</span>
+    <span class="n">yaml_path</span> <span class="o">=</span> <span class="n">create_nf_yaml</span><span class="p">(</span><span class="n">subject_id</span><span class="p">,</span> <span class="n">visit</span><span class="p">,</span> <span class="n">subjects_dir</span><span class="p">,</span> <span class="n">template_yaml_path</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">yaml_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">yaml_data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+
+    <span class="n">modality</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">yaml_data</span><span class="p">[</span><span class="s2">&quot;NF_modality&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">feature_name</span> <span class="o">=</span> <span class="n">yaml_data</span><span class="p">[</span><span class="s2">&quot;NF_modality&quot;</span><span class="p">][</span><span class="n">modality</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;selected_feature&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NF modality: </span><span class="si">{</span><span class="n">modality</span><span class="si">}</span><span class="s2"> | feature: </span><span class="si">{</span><span class="n">feature_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># -- Determine NF direction from z-score sign --------------------------</span>
+    <span class="n">ranking_csv</span> <span class="o">=</span> <span class="n">subjects_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">/</span> <span class="s2">&quot;nf_selection&quot;</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;feature_ranking_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+    <span class="k">if</span> <span class="n">feature_name</span> <span class="ow">and</span> <span class="n">ranking_csv</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="n">df_ranks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ranking_csv</span><span class="p">)</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">df_ranks</span><span class="p">[</span><span class="n">df_ranks</span><span class="p">[</span><span class="s2">&quot;feature_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">feature_name</span><span class="p">][</span><span class="s2">&quot;z_score&quot;</span><span class="p">]</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">rows</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span> <span class="k">else</span> <span class="mf">0.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="n">direction</span> <span class="o">=</span> <span class="s2">&quot;down&quot;</span> <span class="k">if</span> <span class="n">z</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;up&quot;</span>
+    <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Normative z-score = </span><span class="si">{</span><span class="n">z</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> -&gt; training direction: </span><span class="si">{</span><span class="n">direction</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># -- Build protocol ---------------------------------------------------</span>
+    <span class="n">protocol</span> <span class="o">=</span> <span class="n">create_protocol</span><span class="p">(</span>
+        <span class="n">protocol_name</span><span class="p">,</span>
+        <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span>
+        <span class="n">zscore_threshold</span><span class="o">=</span><span class="n">zscore_threshold</span><span class="p">,</span>
+        <span class="n">warmup_windows</span><span class="o">=</span><span class="n">warmup_windows</span><span class="p">,</span>
+        <span class="n">threshold_value</span><span class="o">=</span><span class="n">threshold_value</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Auto-select first phase when caller didn&#39;t specify.</span>
+    <span class="c1"># Z-score: start with REST so the EEG settles before the first reward window.</span>
+    <span class="c1"># All other protocols: start with NF (fixed threshold / sham don&#39;t depend on</span>
+    <span class="c1"># EEG state at block onset, so jumping straight into feedback is fine).</span>
+    <span class="n">_first_phase</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">first_phase</span> <span class="k">if</span> <span class="n">first_phase</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span>
+        <span class="s2">&quot;rest&quot;</span> <span class="k">if</span> <span class="n">protocol_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;zscore&quot;</span> <span class="k">else</span> <span class="s2">&quot;nf&quot;</span>
+    <span class="p">)</span>
+    <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Protocol: </span><span class="si">{</span><span class="n">protocol_name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">direction</span><span class="si">}</span><span class="s2">) | first phase: </span><span class="si">{</span><span class="n">_first_phase</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># -- ANT setup --------------------------------------------------------</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">m&quot;</span>
+    <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initialising ANT main recorder (session=</span><span class="si">{</span><span class="n">session</span><span class="si">}</span><span class="s2">) ...&quot;</span><span class="p">)</span>
+    <span class="n">nf</span> <span class="o">=</span> <span class="n">NFRealtime</span><span class="p">(</span>
+        <span class="n">subject_id</span><span class="o">=</span><span class="n">subject_id</span><span class="p">,</span>
+        <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span>
+        <span class="n">subjects_dir</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">subjects_dir</span><span class="p">),</span>
+        <span class="n">montage</span><span class="o">=</span><span class="s2">&quot;easycap-M1&quot;</span><span class="p">,</span>
+        <span class="n">mri</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">artifact_correction</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">config_file</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">yaml_path</span><span class="p">),</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">_log</span><span class="p">(</span><span class="s2">&quot;Connecting to LSL ...&quot;</span><span class="p">)</span>
+    <span class="n">nf</span><span class="o">.</span><span class="n">connect_to_lsl</span><span class="p">(</span>
+        <span class="n">mock_lsl</span><span class="o">=</span><span class="n">mock_lsl</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="n">mock_fname</span><span class="p">,</span>
+        <span class="n">stream_name</span><span class="o">=</span><span class="n">stream_name</span><span class="p">,</span> <span class="n">stream_source_id</span><span class="o">=</span><span class="n">stream_source_id</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">sfreq</span> <span class="o">=</span> <span class="n">nf</span><span class="o">.</span><span class="n">rec_info</span><span class="p">[</span><span class="s2">&quot;sfreq&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">sfreq</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;LSL stream reported sfreq=</span><span class="si">{</span><span class="n">sfreq</span><span class="si">}</span><span class="s2"> Hz. &quot;</span>
+            <span class="s2">&quot;Check that the correct EEG stream is running and try again.&quot;</span>
+        <span class="p">)</span>
+    <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Connected - stream sfreq: </span><span class="si">{</span><span class="n">sfreq</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> Hz.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># -- Session metadata -------------------------------------------------</span>
+    <span class="n">save_session_metadata</span><span class="p">(</span>
+        <span class="n">subject_id</span><span class="o">=</span><span class="n">subject_id</span><span class="p">,</span>
+        <span class="n">visit</span><span class="o">=</span><span class="n">visit</span><span class="p">,</span>
+        <span class="n">subjects_dir</span><span class="o">=</span><span class="n">subjects_dir</span><span class="p">,</span>
+        <span class="n">modality</span><span class="o">=</span><span class="n">modality</span><span class="p">,</span>
+        <span class="n">feature_name</span><span class="o">=</span><span class="n">feature_name</span><span class="p">,</span>
+        <span class="n">protocol</span><span class="o">=</span><span class="n">protocol_name</span><span class="p">,</span>
+        <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span>
+        <span class="n">n_blocks</span><span class="o">=</span><span class="n">n_blocks</span><span class="p">,</span>
+        <span class="n">rest_duration</span><span class="o">=</span><span class="n">rest_duration</span><span class="p">,</span>
+        <span class="n">nf_duration</span><span class="o">=</span><span class="n">nf_duration</span><span class="p">,</span>
+        <span class="n">zscore_threshold</span><span class="o">=</span><span class="n">zscore_threshold</span><span class="p">,</span>
+        <span class="n">warmup_windows</span><span class="o">=</span><span class="n">warmup_windows</span><span class="p">,</span>
+        <span class="n">osc_host</span><span class="o">=</span><span class="n">osc_host</span><span class="p">,</span>
+        <span class="n">osc_port</span><span class="o">=</span><span class="n">osc_port</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># -- OSC sender: bridges ANT output → rspv /rspv format ---------------</span>
+    <span class="n">osc_sender_raw</span> <span class="o">=</span> <span class="n">OSCSender</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">osc_host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">osc_port</span><span class="p">)</span>
+    <span class="n">total_duration</span> <span class="o">=</span> <span class="n">n_blocks</span> <span class="o">*</span> <span class="p">(</span><span class="n">rest_duration</span> <span class="o">+</span> <span class="n">nf_duration</span><span class="p">)</span>
+
+    <span class="n">nf_log_path</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">subjects_dir</span>
+        <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;ses-v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">m&quot;</span>
+        <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;nf_signal_log_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">scheduler</span> <span class="o">=</span> <span class="n">BlockScheduler</span><span class="p">(</span>
+        <span class="n">n_blocks</span><span class="o">=</span><span class="n">n_blocks</span><span class="p">,</span>
+        <span class="n">rest_duration</span><span class="o">=</span><span class="n">rest_duration</span><span class="p">,</span>
+        <span class="n">nf_duration</span><span class="o">=</span><span class="n">nf_duration</span><span class="p">,</span>
+        <span class="n">on_block_change</span><span class="o">=</span><span class="n">on_block_change</span><span class="p">,</span>
+        <span class="n">first_phase</span><span class="o">=</span><span class="n">_first_phase</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">block_osc</span> <span class="o">=</span> <span class="n">RspvOSCSender</span><span class="p">(</span>
+        <span class="n">osc_sender_raw</span><span class="p">,</span>
+        <span class="n">scheduler</span><span class="p">,</span>
+        <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span>
+        <span class="n">log_path</span><span class="o">=</span><span class="n">nf_log_path</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Wrap on_block_change so every phase transition also sends a control</span>
+    <span class="c1"># message to rspv and keeps the CSV phase/block columns up to date.</span>
+    <span class="n">_gui_callback</span> <span class="o">=</span> <span class="n">scheduler</span><span class="o">.</span><span class="n">on_block_change</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_on_block_change</span><span class="p">(</span><span class="n">block_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">phase</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">block_osc</span><span class="o">.</span><span class="n">send_phase</span><span class="p">(</span><span class="n">phase</span><span class="p">)</span>
+        <span class="n">block_osc</span><span class="o">.</span><span class="n">update_phase</span><span class="p">(</span><span class="n">phase</span><span class="p">,</span> <span class="n">block_idx</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">trigger</span><span class="p">:</span>
+            <span class="n">code</span> <span class="o">=</span> <span class="n">TRIG_NF_START</span> <span class="k">if</span> <span class="n">phase</span> <span class="o">==</span> <span class="s2">&quot;nf&quot;</span> <span class="k">else</span> <span class="n">TRIG_REST_START</span>
+            <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trigger: </span><span class="si">{</span><span class="s1">&#39;NF_START (30)&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">phase</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;nf&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;REST_START (20)&#39;</span><span class="si">}</span><span class="s2"> block </span><span class="si">{</span><span class="n">block_idx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">trigger</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+        <span class="n">_gui_callback</span><span class="p">(</span><span class="n">block_idx</span><span class="p">,</span> <span class="n">phase</span><span class="p">)</span>
+    <span class="n">scheduler</span><span class="o">.</span><span class="n">on_block_change</span> <span class="o">=</span> <span class="n">_on_block_change</span>
+
+    <span class="c1"># -- Launch block scheduler just before record_main -------------------</span>
+    <span class="n">_log</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Starting </span><span class="si">{</span><span class="n">n_blocks</span><span class="si">}</span><span class="s2"> blocks &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">rest_duration</span><span class="si">}</span><span class="s2">s rest + </span><span class="si">{</span><span class="n">nf_duration</span><span class="si">}</span><span class="s2">s NF each, &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;total </span><span class="si">{</span><span class="n">total_duration</span><span class="si">}</span><span class="s2">s) - direction: </span><span class="si">{</span><span class="n">direction</span><span class="si">}</span><span class="s2"> ...&quot;</span>
+    <span class="p">)</span>
+    <span class="n">t_session_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">scheduler</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">nf</span><span class="o">.</span><span class="n">record_main</span><span class="p">(</span>
+            <span class="n">duration</span><span class="o">=</span><span class="n">total_duration</span><span class="p">,</span>
+            <span class="n">modality</span><span class="o">=</span><span class="n">modality</span><span class="p">,</span>
+            <span class="n">winsize</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">estimate_delays</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">show_raw_signal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">show_nf_signal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">show_topo</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">show_brain_activation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">osc_sender</span><span class="o">=</span><span class="n">block_osc</span><span class="p">,</span>
+            <span class="n">protocol</span><span class="o">=</span><span class="n">protocol</span><span class="p">,</span>
+            <span class="n">signal_smoothing</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+            <span class="n">display_smoothing</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">scheduler</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="n">block_osc</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="c1"># -- Save block timestamp log -----------------------------------------</span>
+    <span class="n">block_log</span> <span class="o">=</span> <span class="n">scheduler</span><span class="o">.</span><span class="n">get_block_log</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">block_log</span><span class="p">:</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+        <span class="n">block_log_path</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">subjects_dir</span>
+            <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;ses-v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">m&quot;</span>
+            <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;block_log_v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+        <span class="p">)</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">block_log</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">block_log_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Block log saved: </span><span class="si">{</span><span class="n">block_log_path</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">trigger</span><span class="p">:</span>
+        <span class="n">trigger</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">TRIG_SESSION_END</span><span class="p">)</span>
+    <span class="n">nf</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">bids_tsv</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">_log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Session saved. NF signal log: </span><span class="si">{</span><span class="n">nf_log_path</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Annotate ANT&#39;s _beh output with phase/block labels from the block log.</span>
+    <span class="n">session_dir</span> <span class="o">=</span> <span class="n">subjects_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;sub-</span><span class="si">{</span><span class="n">subject_id</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;ses-v</span><span class="si">{</span><span class="n">visit</span><span class="si">}</span><span class="s2">m&quot;</span>
+    <span class="n">_annotate_beh_data</span><span class="p">(</span><span class="n">session_dir</span><span class="p">,</span> <span class="n">block_log</span><span class="p">,</span> <span class="n">t_session_start</span><span class="p">,</span> <span class="n">_log</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=0790524f97105ba85085"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=0790524f97105ba85085"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Payam S. Shabestari.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.18.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
