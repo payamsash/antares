@@ -4,6 +4,8 @@
 
 ANTARES is a closed-loop EEG neurofeedback system designed for tinnitus research. It runs an adaptive multi-session protocol: automatically selecting the best EEG feature to train per subject, monitoring feature quality across sessions, and adjusting the training target when necessary.
 
+<img width="795" height="434" alt="image" src="https://github.com/user-attachments/assets/25b65ac3-73b7-4ca8-a24e-6d4756754670" />
+
 ---
 
 ## Overview
